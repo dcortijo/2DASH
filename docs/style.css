@@ -1,0 +1,26 @@
+h1 {
+    text-align : center;
+    color: black;
+    font-size: 80px;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+#GameWindow{
+    margin: auto;
+    width: 90vw;
+    padding-top: 56.25%;
+    background-color: black;
+    max-width: 1920px;
+}
+
+#DescriptionDiv{
+    margin: auto;
+    width: 90vw;
+    max-width: 1920px;
+    
+}
+
+p{
+    text-align: justify;
+}
