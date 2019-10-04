@@ -8,10 +8,11 @@ h1 {
 
 #GameWindow{
     margin: auto;
+    display: block;
     width: 90vw;
-    padding-top: 56.25%;
     background-color: black;
     max-width: 1920px;
+    max-height: 1080px;
 }
 
 #DescriptionDiv{

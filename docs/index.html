@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="phaser.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,9 +10,27 @@
 </head>
 <body>
     <h1>2-DASH</h1>
-    <div id="GameWindow">
-        <script>console.log(4+4)</script>
-    </div>
+    <script type="module">
+    import Game from './game.js';     
+    
+       var config = {
+            type: Phaser.AUTO,
+            width: 1400,
+            height: 800,
+            pixelArt: true,
+            input: {
+                gamepad: true
+            },
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            scene: [ Game ],
+            physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: false } }
+        };
+        new Phaser.Game(config);
+    </script>
+    <canvas id="GameWindow"></canvas>
     <div id="DescriptionDiv">
         <h2>Descripción</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
@@ -21,6 +40,5 @@
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
             deserunt mollit anim id est laborum.</p>
     </div>
-    
 </body>
 </html>
