@@ -1,6 +1,6 @@
 export default class Chulo extends Phaser.GameObjects.Sprite{
     constructor(scene, x, y,) {
-        super(scene, x, y, 'chuloImage');
+        super(scene, x, y, 'playerImage');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setCollideWorldBounds();
