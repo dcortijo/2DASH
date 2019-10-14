@@ -1,4 +1,4 @@
-import chulo from './chulo.js';
+import Personaje from './personaje.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -14,12 +14,12 @@ export default class Game extends Phaser.Scene {
       background.setOrigin(0, 0);
       background.scaleX *= 5.4;
       background.scaleY *= 4;
-      this.chulo = new chulo(this, 100, 100);
+      this.personaje = new Personaje(this, 100, 100);
       this.dKey = this.input.keyboard.addKey('D');
       this.wKey = this.input.keyboard.addKey('W');
     }
   
     update(time, delta) {    
-      this.chulo.move();
+      this.personaje.move();
     }
   }
