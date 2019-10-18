@@ -1,8 +1,9 @@
-export default class Personaje extends Phaser.GameObjects.Sprite{
-    constructor(scene, x, y,) {
-        super(scene, x, y, 'playerImage');
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
+import SpriteSize from './SpriteSize.js';
+export default class Personaje extends SpriteSize{
+    constructor(scene, x, y, width, height) {
+      super(scene, x, y, width, height, 'playerImage');
+
+
         this.body.setCollideWorldBounds();
         this.cursors = scene.input.keyboard.addKeys('W,S,A,D');
       }
@@ -18,4 +19,4 @@ export default class Personaje extends Phaser.GameObjects.Sprite{
             this.body.setVelocityY(-400);
           }
         }
-}
+      }
