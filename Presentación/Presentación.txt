@@ -4,3 +4,22 @@ pensamos que debe hacer para poder hacer para derrotar al constrcutor
 pero decimos que está un poco verde y que hayq ue seguir apoyándole
 (la foto del héroe es tan pixelada porque el constructor se cargó la 
 cámara buena)
+
+[GUIÓN]
+
+- Os agradecemos que hayáis venido a esta sesión de información de la Resistencia.
+Como sabéis, un enorme robot llamada el CONSTRUCT-0R está sembrando el caos por todo el mundo.
+Tenemos unas fotos del mismo conseguidas por un agente que consiguió aceracarse...*MIRA* pero 
+no alejarse a tiempo.
+
+- Afortunadamente, uno de los nuestros se ha presentado voluntario para enfrentarse directamente a él. *ENSEÑA FOTO* Disculpad la calidad, el agente llevaba nuestra única cámara buena. Para que pueda conseguir objetivo, hemos diseñado una juego que le permitirá entrenar.
+
+-De momento, el juego está en su fase más temprana: el jugador puede entrar y moverse en el aire ligeramente, pero es un espacio completamente vacío. Hemos diseñado un sistema de clases que implementar para expandirlo.
+
+-Nuestro objetivo es añadir por lo menos tres niveles, cada uno centrado en una mecánica del juego. Dentro de los mismos, el jugador deberá mantener su velocidad para poder superarlos, mientras esquiva obstáculos.
+
+- Pero no estará solo en estos niveles: habrá enemigos que intentarán impedir su paso, que deben ser destruidos o esquivados para poder avanzar. Además, habrña coleccionables que aumentarán la puntuación del jugador.
+
+- Tendremos un juego que premia al jugador por avanzar rápido por un nivel, eliminando el máximo número de enemigos y consiguiendo los máximos coleccionables. Las mejores puntuaciones se registrarán en un top accesible desde el menú.
+
+- Gracias por vuestra atención
