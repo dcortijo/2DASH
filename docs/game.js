@@ -1,5 +1,7 @@
 import Personaje from './personaje.js';
 import StaticObj from './StaticObj.js';
+import LevelGoal from './LevelGoal.js';
+import TriggerObj from './TriggerObj.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -22,16 +24,22 @@ export default class Game extends Phaser.Scene {
       
       this.staticObjs = this.physics.add.staticGroup();
       this.staticObjs.classType = StaticObj;
-      this.platform = new StaticObj(this, 400, 500, 100, 100, 'playerImage', false, false);
+      new StaticObj(this, 400, 500, 100, 100, 'playerImage', false, false);
 
-      this.physics.add.collider(this.staticObjs, this.dynamicObjs, onCollision);
-      
-    function onCollision(obj1, obj2){
-      console.log("!");
-    }
+      this.triggers = this.physics.add.staticGroup();
+      this.triggers.classType = TriggerObj;
+      new LevelGoal(this, 1200, 700, 100, 100, 'playerImage');
+
+      this.physics.add.collider(this.staticObjs, this.dynamicObjs, (obj1, obj2) => {
+        obj1.OnCollision(obj2);
+        obj2.OnCollision(obj1);
+      });
+      this.physics.add.overlap(this.triggers, this.dynamicObjs, (obj1, obj2) => {
+        obj1.OnTrigger(obj2);
+        obj2.OnTrigger(obj1);
+      });
     }
   
     update(time, delta) {    
-      this.personaje.move();
     }
   }

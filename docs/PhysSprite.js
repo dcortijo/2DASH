@@ -11,4 +11,12 @@ export default class PhysSprite extends Phaser.GameObjects.Sprite{
         this.displayWidth = w;
         this.displayHeight = h;
     }
+
+    OnCollision(other){
+
+    }
+
+    OnTrigger(other){
+        
+    }
 }

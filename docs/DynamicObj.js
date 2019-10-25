@@ -1,11 +1,12 @@
 import PhysSprite from "./PhysSprite.js"
 export default class DynamicObj extends PhysSprite{
 
-    constructor(scene, x, y, w, h, image, gravity, trigger, speedX, speedY, drag){
+    constructor(scene, x, y, w, h, image, gravity, trigger, speedX, speedY, drag, maxSpeedX, maxSpeedY){
         super(scene, x, y, w, h, image, gravity, trigger);
         scene.dynamicObjs.add(scene.add.existing(this));
         this.speedX = speedX;
         this.speedY = speedY;
+        this.body.maxVelocity = new Phaser.Math.Vector2(maxSpeedX, maxSpeedY);
         if(drag > 0){
             this.body.allowDrag = true;
         }
