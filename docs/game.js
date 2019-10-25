@@ -2,6 +2,7 @@ import Personaje from './personaje.js';
 import StaticObj from './StaticObj.js';
 import LevelGoal from './LevelGoal.js';
 import TriggerObj from './TriggerObj.js';
+import Collectible from './Collectible.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -29,6 +30,8 @@ export default class Game extends Phaser.Scene {
       this.triggers = this.physics.add.staticGroup();
       this.triggers.classType = TriggerObj;
       new LevelGoal(this, 1200, 700, 100, 100, 'playerImage');
+
+      this.collectible = new Collectible(this, 200, 700, 100, 100, 'playerImage', 100);
 
       this.physics.add.collider(this.staticObjs, this.dynamicObjs, (obj1, obj2) => {
         obj1.OnCollision(obj2);

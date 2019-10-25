@@ -1,5 +1,5 @@
-import PhysSprite from './PhysSprite.js';
-export default class Collectible extends PhysSprite{
+import TriggerObj from './TriggerObj.js';
+export default class Collectible extends TriggerObj{
     constructor(scene, x, y, w, h, image, score){
         super(scene, x, y, w, h, image, false, true);
         this.score = score;
@@ -7,11 +7,12 @@ export default class Collectible extends PhysSprite{
 
     OnTrigger = function(other){
         if(other === this.scene.personaje){
-            Collect();
+            this.Collect();
         }
     }
 
     Collect(){
         console.log("Collected!");
+        this.destroy();
     }
 }
