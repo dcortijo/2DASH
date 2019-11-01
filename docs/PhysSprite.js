@@ -1,15 +1,14 @@
-export default class PhysSprite extends Phaser.GameObjects.Sprite{
+export default class PhysSprite extends Phaser.Physics.Matter.Sprite{
 
-    constructor(scene, x, y, w, h, image, gravity, trigger){
-        super(scene, x, y, image);
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-        this.body.allowGravity = gravity;
-        this.body.onCollide = !trigger;
-        this.body.onOverlap = trigger;
+    constructor(config){ // config{scene, x, y, w, h, gravity, static, image, body{type, width, height}}
+        super(config.scene.matter.world, config.x, config.y, config.image);
+        config.scene.add.existing(this);
         this.setOrigin(0, 0);
-        this.displayWidth = w;
-        this.displayHeight = h;
+        this.displayWidth = config.w;
+        this.displayHeight = config.h;
+        this.setBody(config.body);
+        this.setIgnoreGravity(!config.gravity);
+        this.setStatic(config.static);
     }
 
     OnCollision(other){
