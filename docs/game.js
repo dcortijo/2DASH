@@ -31,15 +31,15 @@ export default class Game extends Phaser.Scene {
 
 
 
-      // Player
+      // "player"
       this.player = new PhysSprite({
         scene: this, 
         x: 100, 
         y: 100, 
         w: 100, 
         h: 100, 
-        gravity: true,
-        static: false,
+        hasGravity: true,
+        //isStatic: false,
         image: 'playerImage', 
         body: {
           type:'rectangle',
@@ -51,16 +51,34 @@ export default class Game extends Phaser.Scene {
       new PhysSprite({
         scene: this, 
         x: 100, 
-        y: 500, 
+        y: 600, 
         w: 100, 
         h: 100, 
-        //gravity: true,
-        static: true,
+        //hasGravity: true,
+        isStatic: true,
         image: 'playerImage', 
         body: {
           type:'rectangle',
-          width: 40,
-          height: 90}
+          width: 100,
+          height: 40},
+        //isSensor: false
+      });
+
+      // "trigger"
+      new PhysSprite({
+        scene: this, 
+        x: 100, 
+        y: 350, 
+        //w: 100, 
+        //h: 100, 
+        //hasGravity: true,
+        isStatic: true,
+        //image: 'playerImage', 
+        body: {
+          type:'rectangle',
+          width: 150,
+          height: 90},
+        isSensor: true
       });
 
 
@@ -78,14 +96,15 @@ export default class Game extends Phaser.Scene {
       //this.collectible = new Collectible(this, 200, 700, 100, 100, 'playerImage', 100);
 
       this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
-          //obj1.OnCollision(obj2);
-          //obj2.OnCollision(obj1);
+        /*if(!obj1.isSensor && !obj2.isSensor){
+          obj1.OnCollision(obj2);
+          obj2.OnCollision(obj1);
+        }else{
+            obj1.OnTrigger(obj2);
+            obj2.OnTrigger(obj1);
+        }*/
+        console.log(obj2.parent);
       });
-      /*this.matter.add.overlap(triggers, dynamicObjs, (obj1, obj2) => {
-        obj1.OnTrigger(obj2);
-        obj2.OnTrigger(obj1);
-      });*/
-
     }
   
     update(time, delta) {    

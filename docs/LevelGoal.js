@@ -1,7 +1,7 @@
-import TriggerObj from './TriggerObj.js';
-export default class LevelGoal extends TriggerObj{
-    constructor(scene, x, y, w, h, image){
-        super(scene, x, y, w, h, image);
+import PhysSprite from './PhysSprite.js';
+export default class LevelGoal extends PhysSprite{
+    constructor(config){ // config de PhysSprite
+        super(config);
     }
 
     OnTrigger = function(other){
