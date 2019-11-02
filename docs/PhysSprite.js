@@ -13,10 +13,10 @@ export default class PhysSprite extends Phaser.Physics.Matter.Sprite{
     }
 
     OnCollision(other){
-
+        
     }
 
     OnTrigger(other){
-        
+        console.log(this);
     }
 }

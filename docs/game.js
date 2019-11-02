@@ -39,12 +39,13 @@ export default class Game extends Phaser.Scene {
         w: 100, 
         h: 100, 
         hasGravity: true,
-        //isStatic: false,
+        isStatic: false,
         image: 'playerImage', 
         body: {
           type:'rectangle',
           width: 40,
-          height: 90}
+          height: 90},
+        //isSensor: false
       });
 
       // "plataforma"
@@ -58,6 +59,7 @@ export default class Game extends Phaser.Scene {
         isStatic: true,
         image: 'playerImage', 
         body: {
+          label: 'aa',
           type:'rectangle',
           width: 100,
           height: 40},
@@ -71,7 +73,7 @@ export default class Game extends Phaser.Scene {
         y: 350, 
         //w: 100, 
         //h: 100, 
-        //hasGravity: true,
+        hasGravity: false,
         isStatic: true,
         //image: 'playerImage', 
         body: {
@@ -96,14 +98,13 @@ export default class Game extends Phaser.Scene {
       //this.collectible = new Collectible(this, 200, 700, 100, 100, 'playerImage', 100);
 
       this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
-        /*if(!obj1.isSensor && !obj2.isSensor){
-          obj1.OnCollision(obj2);
-          obj2.OnCollision(obj1);
+        if(!obj1.isSensor && !obj2.isSensor){
+          obj1.gameObject.OnCollision(obj2);
+          obj2.gameObject.OnCollision(obj1);
         }else{
-            obj1.OnTrigger(obj2);
-            obj2.OnTrigger(obj1);
-        }*/
-        console.log(obj2.parent);
+            obj1.gameObject.OnTrigger(obj2);
+            obj2.gameObject.OnTrigger(obj1);
+        }
       });
     }
   
