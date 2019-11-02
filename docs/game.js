@@ -12,9 +12,18 @@ export default class Game extends Phaser.Scene {
     preload() {  
       this.load.image('playerImage', 'Personaje1.png');
       this.load.image('background', 'background.png');
+      /*this.load.tilemapTiledJSON('test', 'testMap.json');
+      this.load.image('patrones', 'FirstTilemap.png');*/
     }
   
     create() {
+      //Tilemap
+      /*this.map = this.make.tilemap({ 
+        key: 'test', 
+        tileWidth: 64, 
+        tileHeight: 64 
+      });
+      this.map.addTilesetImage('patrones', 'tilemap');*/
 
       // Background
       let background = this.add.image(0, 0, 'background');
