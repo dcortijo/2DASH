@@ -17,6 +17,6 @@ export default class PhysSprite extends Phaser.Physics.Matter.Sprite{
     }
 
     OnTrigger(other){
-        console.log(this);
+
     }
 }
