@@ -12,24 +12,28 @@ export default class Game extends Phaser.Scene {
     preload() {  
       this.load.image('playerImage', 'Personaje1.png');
       this.load.image('background', 'background.png');
-      /*this.load.tilemapTiledJSON('test', 'testMap.json');
-      this.load.image('patrones', 'FirstTilemap.png');*/
+      this.load.tilemapTiledJSON('tilemap', 'tilemap.json');
+      this.load.image('patrones', 'tileset.png');
     }
   
     create() {
-      //Tilemap
-      /*this.map = this.make.tilemap({ 
-        key: 'test', 
-        tileWidth: 64, 
-        tileHeight: 64 
-      });
-      this.map.addTilesetImage('patrones', 'tilemap');*/
-
       // Background
       let background = this.add.image(0, 0, 'background');
       background.setOrigin(0, 0);
       background.displayWidth = 1400;
       background.displayHeight = 800;
+
+      //Tilemap
+      this.map = this.make.tilemap({ 
+        key: 'tilemap', 
+        tileWidth: 64, 
+        tileHeight: 64 
+      });
+      this.map.addTilesetImage('tileset', 'patrones');
+      this.layer = this.map.createStaticLayer('layer', 'tileset');
+      this.layer.setCollisionBetween(0, 999);
+      this.matter.world.convertTilemapLayer(this.layer);     
+      console.log(this.map.gameObject);
 
       // World walls
       this.matter.world.setBounds(0, 0, 1400, 800);
@@ -111,8 +115,8 @@ export default class Game extends Phaser.Scene {
           obj1.gameObject.OnCollision(obj2);
           obj2.gameObject.OnCollision(obj1);
         }else{
-            obj1.gameObject.OnTrigger(obj2);
-            obj2.gameObject.OnTrigger(obj1);
+          obj1.gameObject.OnTrigger(obj2);
+          obj2.gameObject.OnTrigger(obj1);
         }
       });
     }
