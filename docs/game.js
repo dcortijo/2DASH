@@ -1,19 +1,17 @@
-//import Personaje from './personaje.js';
-import StaticObj from './StaticObj.js';
 //import LevelGoal from './LevelGoal.js';
-//import TriggerObj from './TriggerObj.js';
 //import Collectible from './Collectible.js';
 import PhysSprite from './PhysSprite.js';
+import Player from './Player.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
       super({ key: 'main' });
     }
-    preload() {  
+    preload() {
       this.load.image('playerImage', 'Personaje1.png');
       this.load.image('background', 'background.png');
     }
-  
+
     create() {
 
       // Background
@@ -32,32 +30,37 @@ export default class Game extends Phaser.Scene {
 
 
       // "player"
-      this.player = new PhysSprite({
-        scene: this, 
-        x: 100, 
-        y: 100, 
-        w: 100, 
-        h: 100, 
+      this.player = new Player({
+        scene: this,
+        x: 100,
+        y: 100,
+        w: 100,
+        h: 100,
         hasGravity: true,
         isStatic: false,
-        image: 'playerImage', 
+        image: 'playerImage',
         body: {
           type:'rectangle',
           width: 40,
           height: 90},
-        //isSensor: false
+        //isSensor: false,
+        jumpStrength: 15,
+        acceleration: 0.15,
+        drag: 0.10,
+        maxSpeedX: 50,
+        mass: 70
       });
 
       // "plataforma"
       new PhysSprite({
-        scene: this, 
-        x: 100, 
-        y: 600, 
-        w: 100, 
-        h: 100, 
+        scene: this,
+        x: 100,
+        y: 600,
+        w: 100,
+        h: 100,
         //hasGravity: true,
         isStatic: true,
-        image: 'playerImage', 
+        image: 'playerImage',
         body: {
           label: 'aa',
           type:'rectangle',
@@ -68,14 +71,14 @@ export default class Game extends Phaser.Scene {
 
       // "trigger"
       new PhysSprite({
-        scene: this, 
-        x: 100, 
-        y: 350, 
-        //w: 100, 
-        //h: 100, 
+        scene: this,
+        x: 100,
+        y: 350,
+        //w: 100,
+        //h: 100,
         hasGravity: false,
         isStatic: true,
-        //image: 'playerImage', 
+        //image: 'playerImage',
         body: {
           type:'rectangle',
           width: 150,
@@ -88,7 +91,7 @@ export default class Game extends Phaser.Scene {
 
       this.dynamicObjs = this.matter.world.nextCategory();
       //this.personaje = new Personaje(this, 100, 100, 100, 100);
-      
+
       this.staticObjs = this.matter.world.nextCategory();
       //new StaticObj(this, 400, 500, 100, 100, 'playerImage', false, false);
 
@@ -99,16 +102,16 @@ export default class Game extends Phaser.Scene {
 
       this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
         if(!obj1.isSensor && !obj2.isSensor){
-          obj1.gameObject.OnCollision(obj2);
-          obj2.gameObject.OnCollision(obj1);
+          if(obj1.gameObject)obj1.gameObject.OnCollision(obj2);
+          if(obj2.gameObject)obj2.gameObject.OnCollision(obj1);
         }else{
-            obj1.gameObject.OnTrigger(obj2);
-            obj2.gameObject.OnTrigger(obj1);
+            if(obj1.gameObject)obj1.gameObject.OnTrigger(obj2);
+            if(obj2.gameObject)obj2.gameObject.OnTrigger(obj1);
         }
       });
     }
-  
-    update(time, delta) {    
+
+    update(time, delta) {
 
     }
   }
