@@ -115,11 +115,11 @@ export default class Game extends Phaser.Scene {
 
       this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
         if(!obj1.isSensor && !obj2.isSensor){
-          if(obj1.gameObject)obj1.gameObject.OnCollision(obj2);
-          if(obj2.gameObject)obj2.gameObject.OnCollision(obj1);
+          if(obj1.gameObject && obj1.gameObject.OnCollision)obj1.gameObject.OnCollision(obj2);
+          if(obj2.gameObject && obj2.gameObject.OnCollision)obj2.gameObject.OnCollision(obj1);
         }else{
-          if(obj1.gameObject)obj1.gameObject.OnTrigger(obj2);
-          if(obj2.gameObject)obj2.gameObject.OnTrigger(obj1);
+          if(obj1.gameObject && obj1.gameObject.OnTrigger)obj1.gameObject.OnTrigger(obj2);
+          if(obj2.gameObject && obj2.gameObject.OnTrigger)obj2.gameObject.OnTrigger(obj1);
         }
       });
     }
