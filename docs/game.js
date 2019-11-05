@@ -2,6 +2,7 @@
 //import Collectible from './Collectible.js';
 import PhysSprite from './PhysSprite.js';
 import Player from './Player.js';
+import Enemy from './Enemy.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -12,6 +13,7 @@ export default class Game extends Phaser.Scene {
       this.load.image('background', 'background.png');
       this.load.tilemapTiledJSON('tilemap', 'tilemap.json');
       this.load.image('patrones', 'tileset.png');
+      this.load.image('enemy1', 'DronCiudadano.png');
     }
 
     create() {
@@ -31,7 +33,6 @@ export default class Game extends Phaser.Scene {
       this.layer = this.map.createStaticLayer('layer', 'tileset');
       this.layer.setCollisionBetween(0, 999);
       this.matter.world.convertTilemapLayer(this.layer);     
-      console.log(this.map.gameObject);
 
       // World walls
       this.matter.world.setBounds(0, 0, 1400, 800);
@@ -99,7 +100,22 @@ export default class Game extends Phaser.Scene {
         isSensor: true
       });
 
-
+      //Enemy
+      new Enemy({
+        scene: this,
+        x: 200,
+        y: 750,
+        w: 100,
+        h: 100,
+        hasGravity: false,
+        isStatic: false,
+        image: 'enemy1',
+        body: {
+          type:'rectangle',
+          width: 70,
+          height: 60},
+        //isSensor: false
+      })
 
 
       this.dynamicObjs = this.matter.world.nextCategory();
