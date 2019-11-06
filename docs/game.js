@@ -35,15 +35,16 @@ export default class Game extends Phaser.Scene {
       this.matter.world.convertTilemapLayer(this.layer);     
 
       // World walls
-      this.matter.world.setBounds(0, 0, 1400, 800);
+      this.matter.world.setBounds(0, 0, 14000, 800);
 
       // Camera
 
 
 
 
-
       // "player"
+        // Body
+        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(100, 100, 30);
       this.player = new Player({
         scene: this,
         x: 100,
@@ -54,36 +55,36 @@ export default class Game extends Phaser.Scene {
         isStatic: false,
         image: 'playerImage',
         body: {
-          type:'rectangle',
-          width: 40,
-          height: 90},
-        //isSensor: false,
-        jumpStrength: 15,
-        acceleration: 0.15,
-        drag: 0.10,
-        maxSpeedX: 50,
-        mass: 70
+          parts: [playerPartA],
+          inertia: Infinity
+        },
+        jumpStrength: 3,
+        acceleration: 0.12,
+        drag: 0.05,
+        maxSpeedX: 20,
+        mass: 70,
+        restitution: 0
       });
 
       // "plataforma"
+        // Body
+        let plat = Phaser.Physics.Matter.Matter.Bodies.circle(800, 700, 30);
       new PhysSprite({
         scene: this,
         x: 100,
         y: 600,
         w: 100,
         h: 100,
-        //hasGravity: true,
-        isStatic: true,
         image: 'playerImage',
         body: {
-          label: 'aa',
-          type:'rectangle',
-          width: 100,
-          height: 40},
-        //isSensor: false
+          parts: [plat],
+          inertia: Infinity},
+        isStatic: true
       });
 
       // "trigger"
+        // Body
+        let trigger = Phaser.Physics.Matter.Matter.Bodies.circle(800, 400, 30,{isSensor: true});
       new PhysSprite({
         scene: this,
         x: 100,
@@ -91,30 +92,26 @@ export default class Game extends Phaser.Scene {
         //w: 100,
         //h: 100,
         hasGravity: false,
-        isStatic: true,
         //image: 'playerImage',
         body: {
-          type:'rectangle',
-          width: 150,
-          height: 90},
-        isSensor: true
+          parts: [trigger],
+          inertia: Infinity}
       });
 
       //Enemy
+        // Body
+        let enemy = Phaser.Physics.Matter.Matter.Bodies.rectangle(700, 100, 70, 60);
       new Enemy({
         scene: this,
-        x: 200,
-        y: 750,
+        x: 700,
+        y: 100,
         w: 100,
         h: 100,
         hasGravity: false,
-        isStatic: false,
         image: 'enemy1',
         body: {
-          type:'rectangle',
-          width: 70,
-          height: 60},
-        //isSensor: false
+          parts: [enemy],
+          inertia: Infinity}
       })
 
 

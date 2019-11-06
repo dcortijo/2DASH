@@ -1,20 +1,25 @@
 import Character from './Character.js';
 export default class Player extends Character{
-    constructor(config){ // config + {jumpStrength, acceleration, maxSpeed, drag, mass}
+    constructor(config){ // config + {jumpStrength, acceleration, maxSpeed, drag, mass, restitution}
         super(config);
         this.input = config.scene.input.keyboard.addKeys('W, A, S, D');
         this.jumpStrength = config.jumpStrength;
         this.acceleration = config.acceleration;
-        this.setFriction(config.drag);
+        this.setFriction(0);
         this.setFixedRotation();
         this.setMass(config.mass);
+        this.dragX = config.drag;
         this.maxSpeedX = config.maxSpeedX;
+        this.setBounce(config.restitution);
         /*this.input.A.on('down', event => {
             this.MoveLeft();
             console.log("!");
         });*/
         /*this.input.D.on('down', event => {
             this.MoveRight();
+        });*/
+        /*this.input.W.on('down', event => {
+            this.Jump();
         });*/
     }
 
@@ -27,6 +32,19 @@ export default class Player extends Character{
                 this.MoveRight();
             }
         }
+
+        if(this.input.W.isDown/* &&*/){
+            this.Jump();
+        }
+
+        // Drag X
+        if(this.body.velocity.x < -0.1){
+            this.applyForce({x: this.dragX, y: 0});
+        } else if(this.body.velocity.x > 0.1){
+            this.applyForce({x: -this.dragX, y: 0});
+        } else {
+            this.body.velocity.x = 0;
+        }
     }
 
     MoveLeft(){
@@ -35,5 +53,9 @@ export default class Player extends Character{
 
     MoveRight(){
         this.applyForce({x: this.acceleration, y: 0});
+    }
+
+    Jump(){
+        this.applyForce({x: 0, y: -this.jumpStrength});
     }
 }
