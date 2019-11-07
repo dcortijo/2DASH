@@ -12,7 +12,6 @@ export default class Player extends Character{
         this.setBounce(config.restitution);
         /*this.input.A.on('down', event => {
             this.MoveLeft();
-            console.log("!");
         });*/
         /*this.input.D.on('down', event => {
             this.MoveRight();
@@ -55,18 +54,26 @@ export default class Player extends Character{
     }
 
     Jump(){
-        this.body.velocity.y = 0;
-        this.onFloor = false;
-        this.applyForce({x: 0, y: -this.jumpStrength});
+        this.setVelocityY(-this.jumpStrength);
     }
 
-    OnCollision = function(other, event){
-
+    OnCollisionStart = function(body, other, event){
     }
 
-    OnTrigger = function(other){
+    OnCollisionEnd = function (body, other, event) {
+    }
+
+    OnTriggerStart = function(body, other){
         if(!other.isSensor){
             this.onFloor = true;
+            console.log("ontriggerenter");
+        }
+    }
+
+    OnTriggerEnd = function(body, other){
+        if(!other.isSensor){
+            this.onFloor = false;
+            console.log('ontriggerend');
         }
     }
 }

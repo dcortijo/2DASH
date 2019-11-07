@@ -12,11 +12,19 @@ export default class PhysSprite extends Phaser.Physics.Matter.Sprite{
         this.setStatic(config.isStatic);
     }
 
-    OnCollision(other){
+    OnCollisionStart(body, other, event){
         
     }
 
-    OnTrigger(other){
+    OnTriggerStart(body, other){
+
+    }
+
+    OnTriggerEnd(body, other){
+
+    }
+
+    ConcollisionEnd(body, other, event){
 
     }
 }

@@ -27,7 +27,7 @@ export default class Game extends Phaser.Scene {
       this.map = this.make.tilemap({ 
         key: 'tilemap', 
         tileWidth: 64, 
-        tileHeight: 64 
+        tileHeight: 64,
       });
       this.map.addTilesetImage('tileset', 'patrones');
       this.layer = this.map.createStaticLayer('layer', 'tileset');
@@ -35,7 +35,7 @@ export default class Game extends Phaser.Scene {
       this.matter.world.convertTilemapLayer(this.layer);
 
       // World walls
-      this.matter.world.setBounds(0, 0, 14000, 800);
+      this.matter.world.setBounds(-100, 0, 14000, 800);
 
       // Camera
 
@@ -46,7 +46,7 @@ export default class Game extends Phaser.Scene {
         // Body
         let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 20);
         let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 110, 40, 70);
-        let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 165, 30, 10, {isSensor: true, label: 'jose'});
+        let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 170, 30, 20, {isSensor: true, label: 'sensor'});
       this.player = new Player({
         scene: this,
         x: 100,
@@ -60,7 +60,7 @@ export default class Game extends Phaser.Scene {
           parts: [playerPartA, playerPartB, playerSensorFeet],
           inertia: Infinity
         },
-        jumpStrength: 3,
+        jumpStrength: 10,
         acceleration: 0.12,
         drag: 0.05,
         maxSpeedX: 20,
@@ -70,7 +70,7 @@ export default class Game extends Phaser.Scene {
 
       // "plataforma"
         // Body
-        let plat = Phaser.Physics.Matter.Matter.Bodies.circle(800, 700, 30);
+        let plat = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 2000, 30, {label: 'plataforma'});
       new PhysSprite({
         scene: this,
         x: 100,
@@ -86,7 +86,7 @@ export default class Game extends Phaser.Scene {
 
       // "trigger"
         // Body
-        let trigger = Phaser.Physics.Matter.Matter.Bodies.circle(800, 600, 30,{isSensor: true});
+        let trigger = Phaser.Physics.Matter.Matter.Bodies.circle(800, 600, 30,{isSensor: true, label: 'trigger'});
       new PhysSprite({
         scene: this,
         x: 800,
@@ -130,11 +130,21 @@ export default class Game extends Phaser.Scene {
 
       this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
         if(!obj1.isSensor && !obj2.isSensor){
-          if(obj1.gameObject && obj1.gameObject.OnCollision)obj1.gameObject.OnCollision(obj2, evento);
-          if(obj2.gameObject && obj2.gameObject.OnCollision)obj2.gameObject.OnCollision(obj1, evento);
+          if(obj1.gameObject && obj1.gameObject.OnCollisionStart)obj1.gameObject.OnCollisionStart(obj1, obj2, evento);
+          if(obj2.gameObject && obj2.gameObject.OnCollisionStart)obj2.gameObject.OnCollisionStart(obj2, obj1, evento);
         }else{
-          if(obj1.gameObject && obj1.gameObject.OnTrigger)obj1.gameObject.OnTrigger(obj2);
-          if(obj2.gameObject && obj2.gameObject.OnTrigger)obj2.gameObject.OnTrigger(obj1);
+          if(obj1.gameObject && obj1.gameObject.OnTriggerStart)obj1.gameObject.OnTriggerStart(obj1, obj2);
+          if(obj2.gameObject && obj2.gameObject.OnTriggerStart)obj2.gameObject.OnTriggerStart(obj2, obj1);
+        }
+      });
+
+      this.matter.world.on('collisionend', (evento, obj1, obj2) => {
+        if(!obj1.isSensor && !obj2.isSensor){
+          if(obj1.gameObject && obj1.gameObject.OnCollisionEnd)obj1.gameObject.OnCollisionEnd(obj1, obj2, evento);
+          if(obj2.gameObject && obj2.gameObject.OnCollisionEnd)obj2.gameObject.OnCollisionEnd(obj2, obj1, evento);
+        }else{
+          if(obj1.gameObject && obj1.gameObject.OnTriggerEnd)obj1.gameObject.OnTriggerEnd(obj1, obj2);
+          if(obj2.gameObject && obj2.gameObject.OnTriggerEnd)obj2.gameObject.OnTriggerEnd(obj2, obj1);
         }
       });
     }
