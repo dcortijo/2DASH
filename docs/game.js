@@ -32,7 +32,7 @@ export default class Game extends Phaser.Scene {
       this.map.addTilesetImage('tileset', 'patrones');
       this.layer = this.map.createStaticLayer('layer', 'tileset');
       this.layer.setCollisionBetween(0, 999);
-      this.matter.world.convertTilemapLayer(this.layer);     
+      this.matter.world.convertTilemapLayer(this.layer);
 
       // World walls
       this.matter.world.setBounds(0, 0, 14000, 800);
@@ -44,7 +44,9 @@ export default class Game extends Phaser.Scene {
 
       // "player"
         // Body
-        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(100, 100, 30);
+        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 20);
+        let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 110, 40, 70);
+        let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 165, 30, 10, {isSensor: true, label: 'jose'});
       this.player = new Player({
         scene: this,
         x: 100,
@@ -55,7 +57,7 @@ export default class Game extends Phaser.Scene {
         isStatic: false,
         image: 'playerImage',
         body: {
-          parts: [playerPartA],
+          parts: [playerPartA, playerPartB, playerSensorFeet],
           inertia: Infinity
         },
         jumpStrength: 3,
@@ -84,11 +86,11 @@ export default class Game extends Phaser.Scene {
 
       // "trigger"
         // Body
-        let trigger = Phaser.Physics.Matter.Matter.Bodies.circle(800, 400, 30,{isSensor: true});
+        let trigger = Phaser.Physics.Matter.Matter.Bodies.circle(800, 600, 30,{isSensor: true});
       new PhysSprite({
         scene: this,
-        x: 100,
-        y: 350,
+        x: 800,
+        y: 600,
         //w: 100,
         //h: 100,
         hasGravity: false,
@@ -128,8 +130,8 @@ export default class Game extends Phaser.Scene {
 
       this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
         if(!obj1.isSensor && !obj2.isSensor){
-          if(obj1.gameObject && obj1.gameObject.OnCollision)obj1.gameObject.OnCollision(obj2);
-          if(obj2.gameObject && obj2.gameObject.OnCollision)obj2.gameObject.OnCollision(obj1);
+          if(obj1.gameObject && obj1.gameObject.OnCollision)obj1.gameObject.OnCollision(obj2, evento);
+          if(obj2.gameObject && obj2.gameObject.OnCollision)obj2.gameObject.OnCollision(obj1, evento);
         }else{
           if(obj1.gameObject && obj1.gameObject.OnTrigger)obj1.gameObject.OnTrigger(obj2);
           if(obj2.gameObject && obj2.gameObject.OnTrigger)obj2.gameObject.OnTrigger(obj1);

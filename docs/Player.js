@@ -6,7 +6,6 @@ export default class Player extends Character{
         this.jumpStrength = config.jumpStrength;
         this.acceleration = config.acceleration;
         this.setFriction(0);
-        this.setFixedRotation();
         this.setMass(config.mass);
         this.dragX = config.drag;
         this.maxSpeedX = config.maxSpeedX;
@@ -33,8 +32,8 @@ export default class Player extends Character{
             }
         }
 
-        if(this.input.W.isDown/* &&*/){
-            this.Jump();
+        if(this.input.W.isDown && this.onFloor){
+            this.Jump(); 
         }
 
         // Drag X
@@ -56,6 +55,18 @@ export default class Player extends Character{
     }
 
     Jump(){
+        this.body.velocity.y = 0;
+        this.onFloor = false;
         this.applyForce({x: 0, y: -this.jumpStrength});
+    }
+
+    OnCollision = function(other, event){
+
+    }
+
+    OnTrigger = function(other){
+        if(!other.isSensor){
+            this.onFloor = true;
+        }
     }
 }
