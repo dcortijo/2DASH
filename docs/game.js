@@ -102,17 +102,18 @@ export default class Game extends Phaser.Scene {
 
       //Enemy
         // Body
-        let enemy = Phaser.Physics.Matter.Matter.Bodies.rectangle(700, 100, 70, 60);
+        let enemy = Phaser.Physics.Matter.Matter.Bodies.rectangle(700, 600, 70, 60);
+        let enemyTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(700, 570, 60, 20, {isSensor: true});
       new Enemy({
         scene: this,
-        x: 700,
-        y: 100,
+        x: 50,
+        y: 600,
         w: 100,
         h: 100,
         hasGravity: false,
         image: 'enemy1',
         body: {
-          parts: [enemy],
+          parts: [enemy, enemyTop],
           inertia: Infinity}
       })
 

@@ -66,14 +66,14 @@ export default class Player extends Character{
     OnTriggerStart = function(body, other){
         if(!other.isSensor){
             this.onFloor = true;
-            console.log("ontriggerenter");
+            //console.log("ontriggerenter");
         }
     }
 
     OnTriggerEnd = function(body, other){
         if(!other.isSensor){
             this.onFloor = false;
-            console.log('ontriggerend');
+            //console.log('ontriggerend');
         }
     }
 }
