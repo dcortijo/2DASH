@@ -18,9 +18,9 @@ export default class Game extends Phaser.Scene {
 
     create() {
       // Background
-      let background = this.add.image(0, 0, 'background');
+      let background = this.add.image(-100, 0, 'background');
       background.setOrigin(0, 0);
-      background.displayWidth = 1400;
+      background.displayWidth = 14100;
       background.displayHeight = 800;
 
       //Tilemap
@@ -37,12 +37,7 @@ export default class Game extends Phaser.Scene {
       // World walls
       this.matter.world.setBounds(-100, 0, 14000, 800);
 
-      // Camera
-
-
-
-
-      // "player"
+      // Player
         // Body
         let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 20);
         let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 110, 40, 70);
@@ -67,6 +62,11 @@ export default class Game extends Phaser.Scene {
         mass: 70,
         restitution: 0
       });
+
+      // Camera
+      this.cam = this.cameras.main;
+      this.cam.setBounds(-100, 0, 14000, 800);
+      this.cam.startFollow(this.player);
 
       // "plataforma"
         // Body
