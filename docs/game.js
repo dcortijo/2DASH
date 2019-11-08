@@ -3,6 +3,7 @@
 import PhysSprite from './PhysSprite.js';
 import Player from './Player.js';
 import Enemy from './Enemy.js';
+import PlayerCamera from './PlayerCamera.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -65,9 +66,23 @@ export default class Game extends Phaser.Scene {
       });
 
       // Camera
-      this.cam = this.cameras.main;
-      this.cam.setBounds(-100, 0, 14000, 800);
-      this.cam.startFollow(this.player);
+        // ELIMINAR LA CAMARA DEFAULT
+
+
+
+
+      let cam = new PlayerCamera({
+        x: 0,
+        y: 0,
+        width: 1440,
+        height: 810,
+        bounds: { x: -100, y: 0, width: 14000, height: 8000 },
+        target: this.player,
+        maxOffsetX: 400,
+        offsetY: 200,
+        repositionSpeed: 10
+      });
+      this.cameras.addExisting(cam, true);
 
       // "plataforma"
         // Body
@@ -150,6 +165,7 @@ export default class Game extends Phaser.Scene {
 
       //this.collectible = new Collectible(this, 200, 700, 100, 100, 'playerImage', 100);
 
+      // Inicio de colisiones
       this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
         if(!obj1.isSensor && !obj2.isSensor){
           if(obj1.gameObject && obj1.gameObject.OnCollisionStart)obj1.gameObject.OnCollisionStart(obj1, obj2, evento);
@@ -160,6 +176,7 @@ export default class Game extends Phaser.Scene {
         }
       });
 
+      // Fin de colisiones
       this.matter.world.on('collisionend', (evento, obj1, obj2) => {
         if(!obj1.isSensor && !obj2.isSensor){
           if(obj1.gameObject && obj1.gameObject.OnCollisionEnd)obj1.gameObject.OnCollisionEnd(obj1, obj2, evento);
@@ -170,6 +187,7 @@ export default class Game extends Phaser.Scene {
         }
       });
 
+      // Durante colisiones
       this.matter.world.on('collisionactive', (evento) => {
         for(let i = 0; i < evento.pairs.length; i++){
             let obj1 = evento.pairs[i].bodyA;

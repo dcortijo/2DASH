@@ -1,5 +1,5 @@
 import Character from './Character.js';
-export default class Enemy extends Character{
+export default class Enemy extends Character{ // config
     constructor(config){
         super(config);
         this.setFixedRotation();
