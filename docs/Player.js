@@ -41,7 +41,7 @@ export default class Player extends Character{
         } else if(this.body.velocity.x > 0.1){
             this.applyForce({x: -this.dragX, y: 0});
         } else {
-            this.body.velocity.x = 0;
+            this.setVelocityX(0);
         }
     }
 
@@ -55,6 +55,7 @@ export default class Player extends Character{
 
     Jump(){
         this.setVelocityY(-this.jumpStrength);
+        this.onFloor = false;
     }
 
     OnCollisionStart = function(body, other, event){
@@ -64,16 +65,20 @@ export default class Player extends Character{
     }
 
     OnTriggerStart = function(body, other){
-        if(!other.isSensor){
-            this.onFloor = true;
-            //console.log("ontriggerenter");
-        }
+
     }
 
     OnTriggerEnd = function(body, other){
         if(!other.isSensor){
             this.onFloor = false;
-            //console.log('ontriggerend');
+            //console.log("ontriggerend");
+        }
+    }
+
+    OnTriggerStay = function(body, other){
+        if(!other.isSensor){
+            this.onFloor = true;
+            //console.log("ontriggerstay");
         }
     }
 }

@@ -39,7 +39,7 @@ export default class Game extends Phaser.Scene {
 
       // Player
         // Body
-        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 20);
+        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 21);
         let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 110, 40, 70);
         let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 170, 30, 20, {isSensor: true, label: 'sensor'});
       this.player = new Player({
@@ -60,7 +60,8 @@ export default class Game extends Phaser.Scene {
         drag: 0.05,
         maxSpeedX: 20,
         mass: 70,
-        restitution: 0
+        restitution: 0,
+        label: 'player'
       });
 
       // Camera
@@ -70,7 +71,7 @@ export default class Game extends Phaser.Scene {
 
       // "plataforma"
         // Body
-        let plat = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 2000, 30, {label: 'plataforma'});
+        let plat = Phaser.Physics.Matter.Matter.Bodies.rectangle(1000, 750, 2000, 30, {label: 'plataforma'});
       new PhysSprite({
         scene: this,
         x: 100,
@@ -81,7 +82,25 @@ export default class Game extends Phaser.Scene {
         body: {
           parts: [plat],
           inertia: Infinity},
-        isStatic: true
+        isStatic: true,
+        label: 'platform'
+      });
+
+      // "plataforma2"
+        // Body
+        let plat2 = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 2000, 30, {label: 'plataforma'});
+      new PhysSprite({
+        scene: this,
+        x: 100,
+        y: 600,
+        w: 100,
+        h: 100,
+        image: 'playerImage',
+        body: {
+          parts: [plat2],
+          inertia: Infinity},
+        isStatic: true,
+        label: 'platform'
       });
 
       // "trigger"
@@ -97,7 +116,8 @@ export default class Game extends Phaser.Scene {
         //image: 'playerImage',
         body: {
           parts: [trigger],
-          inertia: Infinity}
+          inertia: Infinity},
+          label: 'trigger'
       });
 
       //Enemy
@@ -114,8 +134,9 @@ export default class Game extends Phaser.Scene {
         image: 'enemy1',
         body: {
           parts: [enemy, enemyTop],
-          inertia: Infinity}
-      })
+          inertia: Infinity},
+        label: 'enemy'
+      });
 
 
       this.dynamicObjs = this.matter.world.nextCategory();
@@ -146,6 +167,20 @@ export default class Game extends Phaser.Scene {
         }else{
           if(obj1.gameObject && obj1.gameObject.OnTriggerEnd)obj1.gameObject.OnTriggerEnd(obj1, obj2);
           if(obj2.gameObject && obj2.gameObject.OnTriggerEnd)obj2.gameObject.OnTriggerEnd(obj2, obj1);
+        }
+      });
+
+      this.matter.world.on('collisionactive', (evento) => {
+        for(let i = 0; i < evento.pairs.length; i++){
+            let obj1 = evento.pairs[i].bodyA;
+            let obj2 = evento.pairs[i].bodyB;
+          if(!obj1.isSensor && !obj2.isSensor){
+           if(obj1.gameObject && obj1.gameObject.OnCollisionStay)obj1.gameObject.OnCollisionStay(obj1, obj2, evento);
+           if(obj2.gameObject && obj2.gameObject.OnCollisionStay)obj2.gameObject.OnCollisionStay(obj2, obj1, evento);
+          }else{
+           if(obj1.gameObject && obj1.gameObject.OnTriggerStay)obj1.gameObject.OnTriggerStay(obj1, obj2);
+           if(obj2.gameObject && obj2.gameObject.OnTriggerStay)obj2.gameObject.OnTriggerStay(obj2, obj1);
+          }
         }
       });
     }

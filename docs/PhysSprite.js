@@ -1,6 +1,6 @@
 export default class PhysSprite extends Phaser.Physics.Matter.Sprite{
 
-    constructor(config){ // config{scene, x, y, w, h, hasGravity, image, body{parts[{..., isSensor}], inertia}, isStatic}
+    constructor(config){ // config{scene, x, y, w, h, hasGravity, image, body{parts[{..., isSensor}], inertia}, isStatic, label}
         super(config.scene.matter.world, config.x, config.y, config.image);
         config.scene.add.existing(this);
         this.setOrigin(0, 0);
@@ -10,6 +10,7 @@ export default class PhysSprite extends Phaser.Physics.Matter.Sprite{
         this.setExistingBody(compuesto);
         this.setIgnoreGravity(!config.hasGravity);
         this.setStatic(config.isStatic);
+        this.label = config.label;
     }
 
     OnCollisionStart(body, other, event){
@@ -24,7 +25,15 @@ export default class PhysSprite extends Phaser.Physics.Matter.Sprite{
 
     }
 
-    ConcollisionEnd(body, other, event){
+    OnCollisionEnd(body, other, event){
+
+    }
+
+    OnTriggerStay(body, other){
+
+    }
+
+    OnCollisionStay(body, other, event){
 
     }
 }
