@@ -4,8 +4,8 @@ export default class LevelGoal extends PhysSprite{
         super(config);
     }
 
-    OnTrigger = function(other){
-        if(other === this.scene.personaje){
+    OnTriggerEnter = function(other){
+        if(!other.gameObject.isSensor && other.gameObject.label === "player"){
             this.EndLevel();
         }
     }
