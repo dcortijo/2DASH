@@ -45,6 +45,10 @@ export default class Player extends Character{
         }
     }
 
+    Die(){
+        this.scene.scene.restart();
+      }
+
     MoveLeft(){
         this.applyForce({x: -this.acceleration, y: 0});
     }
