@@ -22,7 +22,7 @@ export default class Game extends Phaser.Scene {
       let background = this.add.image(-100, 0, 'background');
       background.setOrigin(0, 0);
       background.displayWidth = 14100;
-      background.displayHeight = 800;
+      background.displayHeight = 810;
 
       //Tilemap
       this.map = this.make.tilemap({ 
@@ -36,12 +36,12 @@ export default class Game extends Phaser.Scene {
       this.matter.world.convertTilemapLayer(this.layer);
 
       // World walls
-      this.matter.world.setBounds(-100, 0, 14000, 800);
+      this.matter.world.setBounds(-100, 0, 2800, 1610);
 
       // Player
         // Body
-        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 21);
-        let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 110, 40, 70);
+        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 20);
+        let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 110, 40, 70, {chamfer: {radius: 10}});
         let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 170, 30, 20, {isSensor: true, label: 'sensor'});
       this.player = new Player({
         scene: this,
@@ -66,27 +66,24 @@ export default class Game extends Phaser.Scene {
       });
 
       // Camera
-        // ELIMINAR LA CAMARA DEFAULT
-
-
-
-
+        // Remove default camera
+        this.cameras.remove(this.cameras.main);
       let cam = new PlayerCamera({
         x: 0,
         y: 0,
         width: 1440,
         height: 810,
-        bounds: { x: -100, y: 0, width: 14000, height: 8000 },
+        bounds: { x: -100, y: 0, width: 2800, height: 1610 },
         target: this.player,
         maxOffsetX: 400,
         offsetY: 200,
-        repositionSpeed: 10
+        repositionSpeed: 5
       });
       this.cameras.addExisting(cam, true);
 
       // "plataforma"
         // Body
-        let plat = Phaser.Physics.Matter.Matter.Bodies.rectangle(1000, 750, 2000, 30, {label: 'plataforma'});
+        let plat = Phaser.Physics.Matter.Matter.Bodies.rectangle(1000, 850, 200, 30, {label: 'plataforma'});
       new PhysSprite({
         scene: this,
         x: 100,
@@ -103,7 +100,7 @@ export default class Game extends Phaser.Scene {
 
       // "plataforma2"
         // Body
-        let plat2 = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 2000, 30, {label: 'plataforma'});
+        let plat2 = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 200, 30, {label: 'plataforma'});
       new PhysSprite({
         scene: this,
         x: 100,
