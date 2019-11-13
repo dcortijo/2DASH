@@ -10,15 +10,8 @@ export default class Player extends Character{
         this.dragX = config.drag;
         this.maxSpeedX = config.maxSpeedX;
         this.setBounce(config.restitution);
-        /*this.input.A.on('down', event => {
-            this.MoveLeft();
-        });*/
-        /*this.input.D.on('down', event => {
-            this.MoveRight();
-        });*/
-        /*this.input.W.on('down', event => {
-            this.Jump();
-        });*/
+        this.health = config.health;
+        this.healthMeter = config.healthMeter;
     }
 
     preUpdate(){
@@ -43,6 +36,12 @@ export default class Player extends Character{
         } else {
             this.setVelocityX(0);
         }
+    }
+
+    Die(){
+        this.health--;
+        if(this.health === 0) this.scene.scene.restart();
+        else this.healthMeter.HandleHealth(this.health);  
     }
 
     MoveLeft(){

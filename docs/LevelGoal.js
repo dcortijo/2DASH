@@ -4,8 +4,12 @@ export default class LevelGoal extends PhysSprite{
         super(config);
     }
 
-    OnTrigger = function(other){
-        if(other === this.scene.personaje){
+    OnTriggerStart = function(obj1, obj2){
+        if(!obj2.isSensor && obj2.gameObject.label === "player" /*&& obj2.label === "Rectangle Body"*/){
+
+
+
+            //A VECES PASA 2 VECES POR LOS 2 BODIES DEL PLAYER
             this.EndLevel();
         }
     }
