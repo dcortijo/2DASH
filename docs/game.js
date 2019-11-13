@@ -4,6 +4,7 @@ import PhysSprite from './PhysSprite.js';
 import Player from './Player.js';
 import Enemy from './Enemy.js';
 import PlayerCamera from './PlayerCamera.js';
+import LevelGoal from './LevelGoal.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -40,7 +41,7 @@ export default class Game extends Phaser.Scene {
 
       // Player
         // Body
-        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 21);
+        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 20);
         let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 110, 40, 70);
         let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 170, 30, 20, {isSensor: true, label: 'sensor'});
       this.player = new Player({
@@ -153,6 +154,21 @@ export default class Game extends Phaser.Scene {
         label: 'enemy'
       });
 
+      //levelGoal
+        //Body
+        let goal = Phaser.Physics.Matter.Matter.Bodies.rectangle(1800, 600, 200, 100, {isSensor: true});
+        new LevelGoal({
+          scene: this,
+          x: 1800,
+          y: 700,
+          w: 100,
+          h: 100,
+          hasGravity: false,
+          body: {
+            parts: [goal],
+            inertia: Infinity},
+          label: 'levelGoal'
+        });
 
       this.dynamicObjs = this.matter.world.nextCategory();
       //this.personaje = new Personaje(this, 100, 100, 100, 100);
