@@ -5,6 +5,7 @@ import Player from './Player.js';
 import Enemy from './Enemy.js';
 import PlayerCamera from './PlayerCamera.js';
 import LevelGoal from './LevelGoal.js';
+import HealthMeter from './HealthMeter.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -16,6 +17,10 @@ export default class Game extends Phaser.Scene {
       this.load.tilemapTiledJSON('tilemap', 'tilemap.json');
       this.load.image('patrones', 'tileset.png');
       this.load.image('enemy1', 'DronCiudadano.png');
+      this.load.spritesheet('healthMeter1', 'Heart1.png', {
+        frameWidth: 64,
+        frameHeight: 32,
+      })    
     }
 
     create() {
@@ -38,6 +43,18 @@ export default class Game extends Phaser.Scene {
 
       // World walls
       this.matter.world.setBounds(-100, 0, 14000, 800);
+
+      //HealthMeter
+      this.healthMeter = new HealthMeter({
+        scene: this,
+        x: 90,
+        y: 65,
+        w: 64,
+        h: 32,
+        displayTime: 1000,  //En ms
+        image: 'healthMeter1',
+        toy: 65,
+      });
 
       // Player
         // Body
@@ -63,8 +80,12 @@ export default class Game extends Phaser.Scene {
         maxSpeedX: 20,
         mass: 70,
         restitution: 0,
-        label: 'player'
+        label: 'player',
+        health: 3,
+        healthMeter: this.healthMeter,
       });
+
+      this.healthMeter.setTarget(this.player);
 
       // Camera
         // ELIMINAR LA CAMARA DEFAULT
