@@ -1,6 +1,6 @@
 import Character from './Character.js';
-export default class Enemy extends Character{ // config
-    constructor(config){
+export default class Enemy extends Character{
+    constructor(config){ // config de Character
         super(config);
         this.setFixedRotation();
         this.setFriction(1, 1, 1)
@@ -11,6 +11,10 @@ export default class Enemy extends Character{ // config
         this.body.setInertia(this.body, 10);*/
         this.varX = config.x;
         this.varY = config.y;
+        this.triggerLeft = this.body.parts.find(function(element){return element.label === 'triggerLeft';});
+        this.triggerRight = this.body.parts.find(function(element){return element.label === 'triggerRight';});
+        this.triggerTop = this.body.parts.find(function(element){return element.label === 'triggerTop';});
+        this.colliding = false;
     }
 
     preUpdate(){
@@ -21,16 +25,42 @@ export default class Enemy extends Character{ // config
     }
 
     OnCollisionStart = function(body1, body2, evento){       
-        if(body2.gameObject && body2.gameObject.Hurt){     
+        if(body2.gameObject && body2.gameObject.Hurt){    
+            this.colliding = true; 
             body2.gameObject.Hurt();
-            console.log("¡Zasca!");
         } 
+    }
+    
+    OnCollisionEnd = function (body, other, evento) {
+        if(other.gameObject && other.gameObject.Hurt){
+            this.colliding = false;
+        }
     }
 
     OnTriggerStart = function(obj1, obj2){
-        if(obj2.gameObject && obj2.gameObject.Jump){
-            obj2.gameObject.Jump();
-            this.Die();
+        if(obj2.gameObject && obj2.gameObject.label === 'player'){
+            if(obj1 === this.triggerTop){
+                obj2.gameObject.Jump();
+                this.Die();
+            }
+        }
+    }
+
+    OnTriggerEnd = function (body, other) {
+        if(other.gameObject && other.gameObject.label === 'player'){
+         this.colliding = false;   
+        }
+    }
+
+    OnTriggerStay = function(body, other){
+        if(other.gameObject && other.gameObject.label === 'player'){
+            if(this.colliding){
+                if(body === this.triggerLeft){
+                    other.gameObject.PushLeft();
+                } else if(body === this.triggerRight){
+                    other.gameObject.PushRight();
+                }
+            }
         }
     }
 }

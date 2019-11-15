@@ -83,6 +83,8 @@ export default class Game extends Phaser.Scene {
         label: 'player',
         health: 3,
         healthMeter: this.healthMeter,
+        pushX: 8,
+        pushY: 6
       });
 
       this.healthMeter.setTarget(this.player);
@@ -122,7 +124,7 @@ export default class Game extends Phaser.Scene {
 
       // "plataforma2"
         // Body
-        let plat2 = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 200, 30, {label: 'plataforma'});
+        let plat2 = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 2000, 30, {label: 'plataforma'});
       new PhysSprite({
         scene: this,
         x: 100,
@@ -157,7 +159,9 @@ export default class Game extends Phaser.Scene {
       //Enemy
         // Body
         let enemy = Phaser.Physics.Matter.Matter.Bodies.rectangle(700, 600, 70, 60);
-        let enemyTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(700, 570, 60, 20, {isSensor: true});
+        let enemyTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(700, 570, 60, 20, {isSensor: true, label: 'triggerTop'});
+        let enemyLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(665, 600, 20, 65, {isSensor: true, label: 'triggerLeft'});
+        let enemyRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(735, 600, 20, 65, {isSensor: true, label: 'triggerRight'});
       new Enemy({
         scene: this,
         x: 50,
@@ -167,7 +171,7 @@ export default class Game extends Phaser.Scene {
         hasGravity: false,
         image: 'enemy1',
         body: {
-          parts: [enemy, enemyTop],
+          parts: [enemy, enemyTop, enemyLeft, enemyRight],
           inertia: Infinity},
         label: 'enemy'
       });

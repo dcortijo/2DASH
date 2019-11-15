@@ -1,6 +1,6 @@
 import Character from './Character.js';
 export default class Player extends Character{
-    constructor(config){ // config + {jumpStrength, acceleration, maxSpeed, drag, mass, restitution}
+    constructor(config){ // config + {jumpStrength, acceleration, maxSpeed, drag, mass, restitution, pushX, pushY}
         super(config);
         this.input = config.scene.input.keyboard.addKeys('W, A, S, D');
         this.jumpStrength = config.jumpStrength;
@@ -12,20 +12,25 @@ export default class Player extends Character{
         this.setBounce(config.restitution);
         this.health = config.health;
         this.healthMeter = config.healthMeter;
+        this.pushX = config.pushX;
+        this.pushY = config.pushY;
+        this.disabledControls = false;
     }
 
     preUpdate(){
-        if(Math.abs(this.body.velocity.x) < this.maxSpeedX){
-            if(this.input.A.isDown){
-                this.MoveLeft();
+        if(!this.disabledControls){
+            if(Math.abs(this.body.velocity.x) < this.maxSpeedX){
+                if(this.input.A.isDown){
+                    this.MoveLeft();
+                }
+                if(this.input.D.isDown){
+                    this.MoveRight();
+                }
             }
-            if(this.input.D.isDown){
-                this.MoveRight();
-            }
-        }
 
-        if(this.input.W.isDown && this.onFloor){
-            this.Jump(); 
+            if(this.input.W.isDown && this.onFloor){
+                this.Jump(); 
+            }
         }
 
         // Drag X
@@ -61,16 +66,6 @@ export default class Player extends Character{
         this.onFloor = false;
     }
 
-    OnCollisionStart = function(body, other, event){
-    }
-
-    OnCollisionEnd = function (body, other, event) {
-    }
-
-    OnTriggerStart = function(body, other){
-
-    }
-
     OnTriggerEnd = function(body, other){
         if(!other.isSensor){
             this.onFloor = false;
@@ -83,5 +78,25 @@ export default class Player extends Character{
             this.onFloor = true;
             //console.log("ontriggerstay");
         }
+    }
+
+    OnCollisionStart = function(body, other){
+        if(other.gameObject && !other.gameObject.Die){
+            this.disabledControls = false;
+        }
+    }
+
+    PushLeft(){
+        this.setVelocityX(-this.pushX);
+        this.setVelocityY(-this.pushY);
+        this.disabledControls = true;
+        //this.applyForce({x: -10000, y: -10000});
+    }
+
+    PushRight(){
+        this.setVelocityX(this.pushX);
+        this.setVelocityY(-this.pushY);
+        this.disabledControls = true;
+        //this.applyForce({x: this.pushX, y: -this.pushY});
     }
 }
