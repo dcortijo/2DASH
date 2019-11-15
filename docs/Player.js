@@ -38,10 +38,14 @@ export default class Player extends Character{
         }
     }
 
-    Die(){
+    Hurt(){
         this.health--;
-        if(this.health === 0) this.scene.scene.restart();
+        if(this.health === 0) this.Die();
         else this.healthMeter.HandleHealth(this.health);  
+    }
+
+    Die(){
+        this.scene.scene.restart();
     }
 
     MoveLeft(){

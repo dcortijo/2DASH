@@ -1,4 +1,3 @@
-//import LevelGoal from './LevelGoal.js';
 import Collectible from './Collectible.js';
 import PhysSprite from './PhysSprite.js';
 import Player from './Player.js';
@@ -6,6 +5,7 @@ import Enemy from './Enemy.js';
 import PlayerCamera from './PlayerCamera.js';
 import LevelGoal from './LevelGoal.js';
 import HealthMeter from './HealthMeter.js';
+import DeadZone from './DeadZone.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -187,6 +187,22 @@ export default class Game extends Phaser.Scene {
             inertia: Infinity},
           label: 'levelGoal'
         });
+
+      //DeadZone
+        //Body
+        let deadZoneBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(1800, 1000, 20000, 30, {isSensor: true});
+      new DeadZone({
+        scene: this,
+        x: 1800,
+        y: 1000,
+        w: 20000,
+        h: 30,
+        hasGravity: false,
+        body:{
+          parts:[deadZoneBody],
+          inertia: Infinity},
+        label: 'deadzone'
+      });
 
       this.dynamicObjs = this.matter.world.nextCategory();
       //this.personaje = new Personaje(this, 100, 100, 100, 100);

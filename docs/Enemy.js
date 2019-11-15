@@ -21,8 +21,8 @@ export default class Enemy extends Character{ // config
     }
 
     OnCollisionStart = function(body1, body2, evento){       
-        if(body2.gameObject && body2.gameObject.Die){     
-            body2.gameObject.Die();
+        if(body2.gameObject && body2.gameObject.Hurt){     
+            body2.gameObject.Hurt();
             console.log("¡Zasca!");
         } 
     }
