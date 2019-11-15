@@ -14,8 +14,8 @@ export default class Game extends Phaser.Scene {
     preload() {
       this.load.image('playerImage', 'Personaje1.png');
       this.load.image('background', 'background.png');
-      this.load.tilemapTiledJSON('tilemap', 'tilemap.json');
-      this.load.image('patrones', 'tileset.png');
+      this.load.tilemapTiledJSON('NivelPrueba', 'NivelPrueba.json');
+      this.load.image('patrones', 'TilesetPrueba.png');
       this.load.image('enemy1', 'DronCiudadano.png');
       this.load.spritesheet('healthMeter1', 'Heart1.png', {
         frameWidth: 64,
@@ -27,22 +27,30 @@ export default class Game extends Phaser.Scene {
       // Background
       let background = this.add.image(-100, 0, 'background');
       background.setOrigin(0, 0);
-      background.displayWidth = 14100;
-      background.displayHeight = 810;
+      background.displayWidth = 32000;
+      background.displayHeight = 3200;
 
       //Tilemap
       this.map = this.make.tilemap({ 
-        key: 'tilemap', 
+        key: 'NivelPrueba', 
         tileWidth: 64, 
         tileHeight: 64,
       });
-      this.map.addTilesetImage('tileset', 'patrones');
-      this.layer = this.map.createStaticLayer('layer', 'tileset');
+      this.map.addTilesetImage('tilesetBuildings', 'patrones');
+      this.layer = this.map.createStaticLayer('layer', 'tilesetBuildings');
       this.layer.setCollisionBetween(0, 999);
+      let objectLayers = this.map.objects;
+      for(let i = 0; i < objectLayers[1].objects.length; i++){     
+          this.CreateColectible(objectLayers[1].objects[i].x, objectLayers[1].objects[i].y);
+      }
+      for(let i = 0; i < objectLayers[0].objects.length; i++){     
+        this.CreateEnemy(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y);
+      }
+      
       this.matter.world.convertTilemapLayer(this.layer);
 
       // World walls
-      this.matter.world.setBounds(-100, 0, 2800, 1610);
+      this.matter.world.setBounds(0, 0, 32000, 3250);
 
       //HealthMeter
       this.healthMeter = new HealthMeter({
@@ -97,7 +105,7 @@ export default class Game extends Phaser.Scene {
         y: 0,
         width: 1440,
         height: 810,
-        bounds: { x: -100, y: 0, width: 2800, height: 1610 },
+        bounds: { x: 0, y: 0, width: 32000, height: 3200 },
         target: this.player,
         maxOffsetX: 400,
         offsetY: 200,
@@ -105,26 +113,9 @@ export default class Game extends Phaser.Scene {
       });
       this.cameras.addExisting(cam, true);
 
-      // "plataforma"
+      /*// "plataforma2"
         // Body
-        let plat = Phaser.Physics.Matter.Matter.Bodies.rectangle(1000, 850, 200, 30, {label: 'plataforma'});
-      new PhysSprite({
-        scene: this,
-        x: 100,
-        y: 600,
-        w: 100,
-        h: 100,
-        image: 'playerImage',
-        body: {
-          parts: [plat],
-          inertia: Infinity},
-        isStatic: true,
-        label: 'platform'
-      });
-
-      // "plataforma2"
-        // Body
-        let plat2 = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 2000, 30, {label: 'plataforma'});
+        let plat2 = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 200, 30, {label: 'plataforma'});
       new PhysSprite({
         scene: this,
         x: 100,
@@ -137,7 +128,7 @@ export default class Game extends Phaser.Scene {
           inertia: Infinity},
         isStatic: true,
         label: 'platform'
-      });
+      });*/
 
       // Collectible
         // Body
@@ -194,12 +185,12 @@ export default class Game extends Phaser.Scene {
 
       //DeadZone
         //Body
-        let deadZoneBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(1800, 1000, 20000, 30, {isSensor: true});
+        let deadZoneBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(1800, 3200, 20000, 30, {isSensor: true});
       new DeadZone({
         scene: this,
-        x: 1800,
-        y: 1000,
-        w: 20000,
+        x: 0,
+        y: 3200,
+        w: 32000,
         h: 30,
         hasGravity: false,
         body:{
@@ -254,6 +245,41 @@ export default class Game extends Phaser.Scene {
            if(obj2.gameObject && obj2.gameObject.OnTriggerStay)obj2.gameObject.OnTriggerStay(obj2, obj1);
           }
         }
+      });
+    }
+
+    CreateColectible(x, y){
+      new Collectible({
+        scene: this,
+        x: x,
+        y: y,
+        w: 100,
+        h: 100,
+        hasGravity: false,
+        image: 'playerImage',
+        body: {
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 100, {isSensor: true})],
+          inertia: Infinity},
+          label: 'trigger'
+      });
+    }
+
+    CreateEnemy(x, y){
+      new Enemy({
+        scene: this,
+        x: x,
+        y: y,
+        w: 100,
+        h: 100,
+        hasGravity: false,
+        image: 'enemy1',
+        body: {
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 60), 
+            Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerTop'}), 
+            Phaser.Physics.Matter.Matter.Bodies.rectangle(x-35, y, 20, 65, {isSensor: true, label: 'triggerLeft'}),
+            Phaser.Physics.Matter.Matter.Bodies.rectangle(x+35, y, 20, 65, {isSensor: true, label: 'triggerRight'})],
+          inertia: Infinity},
+        label: 'enemy'
       });
     }
 
