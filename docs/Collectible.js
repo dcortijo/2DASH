@@ -1,12 +1,12 @@
-import TriggerObj from './TriggerObj.js';
-export default class Collectible extends TriggerObj{
-    constructor(scene, x, y, w, h, image, score){
-        super(scene, x, y, w, h, image, false, true);
-        this.score = score;
+import PhysSprite from './PhysSprite.js';
+export default class Collectible extends PhysSprite{
+    constructor(config){ // config + {score}
+        super(config);
+        this.score = config.score;
     }
 
-    OnTrigger = function(other){
-        if(other === this.scene.personaje){
+    OnTriggerStart = function(body, other){
+        if(other.gameObject.label === 'player'){
             this.Collect();
         }
     }

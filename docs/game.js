@@ -1,5 +1,5 @@
 //import LevelGoal from './LevelGoal.js';
-//import Collectible from './Collectible.js';
+import Collectible from './Collectible.js';
 import PhysSprite from './PhysSprite.js';
 import Player from './Player.js';
 import Enemy from './Enemy.js';
@@ -137,19 +137,19 @@ export default class Game extends Phaser.Scene {
         label: 'platform'
       });
 
-      // "trigger"
+      // Collectible
         // Body
-        let trigger = Phaser.Physics.Matter.Matter.Bodies.circle(800, 600, 30,{isSensor: true, label: 'trigger'});
-      new PhysSprite({
+        let collectibleBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(300, 600, 100, 100, {isSensor: true});
+      new Collectible({
         scene: this,
-        x: 800,
+        x: 300,
         y: 600,
-        //w: 100,
-        //h: 100,
+        w: 100,
+        h: 100,
         hasGravity: false,
-        //image: 'playerImage',
+        image: 'playerImage',
         body: {
-          parts: [trigger],
+          parts: [collectibleBody],
           inertia: Infinity},
           label: 'trigger'
       });
