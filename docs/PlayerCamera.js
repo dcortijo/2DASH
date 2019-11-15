@@ -7,7 +7,7 @@ export default class PlayerCamera extends Phaser.Cameras.Scene2D.Camera{
         this.maxOffsetX = config.maxOffsetX;
         this.offsetY = config.offsetY;
         this.offsetX = 0;
-        this.deadzone = new Phaser.Geom.Rectangle(-10, -100, 10, 100);
+        this.deadzone = new Phaser.Geom.Rectangle(-150, -100, 150, 100);
         this.startFollow(this.target, false, 1, 1, this.offsetX, this.offsetY);
     }
 
