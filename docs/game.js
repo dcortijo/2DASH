@@ -17,6 +17,7 @@ export default class Game extends Phaser.Scene {
       this.load.tilemapTiledJSON('NivelPrueba', 'NivelPrueba.json');
       this.load.image('patrones', 'TilesetPrueba.png');
       this.load.image('enemy1', 'DronCiudadano.png');
+      this.load.image('collectible', 'Collectible.png')
       this.load.spritesheet('healthMeter1', 'Heart1.png', {
         frameWidth: 64,
         frameHeight: 32,
@@ -256,7 +257,7 @@ export default class Game extends Phaser.Scene {
         w: 100,
         h: 100,
         hasGravity: false,
-        image: 'playerImage',
+        image: 'collectible',
         body: {
           parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 100, {isSensor: true})],
           inertia: Infinity},
