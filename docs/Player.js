@@ -9,6 +9,7 @@ export default class Player extends Character{
         this.setMass(config.mass);
         this.dragX = config.drag;
         this.maxSpeedX = config.maxSpeedX;
+        this.curMaxSpeedX = config.maxSpeedX;
         this.setBounce(config.restitution);
         this.health = config.health;
         this.healthMeter = config.healthMeter;
@@ -19,7 +20,7 @@ export default class Player extends Character{
 
     preUpdate(){
         if(!this.disabledControls){
-            if(Math.abs(this.body.velocity.x) < this.maxSpeedX){
+            if(Math.abs(this.body.velocity.x) < this.curMaxSpeedX){
                 if(this.input.A.isDown){
                     this.MoveLeft();
                 }
@@ -98,5 +99,17 @@ export default class Player extends Character{
         this.setVelocityY(-this.pushY);
         this.disabledControls = true;
         //this.applyForce({x: this.pushX, y: -this.pushY});
+    }
+
+    ReduceMaxSpeed(multiplier){
+        if(this.curMaxSpeedX === this.maxSpeedX){
+        this.curMaxSpeedX = this.maxSpeedX * multiplier;
+        } else if(this.curMaxSpeedX > this.maxSpeedX * multiplier){
+            this.curMaxSpeedX = this.maxSpeedX * multiplier;
+        }
+    }
+
+    ResetMaxSpeed(){
+        this.curMaxSpeedX = this.maxSpeedX;
     }
 }

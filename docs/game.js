@@ -6,6 +6,7 @@ import PlayerCamera from './PlayerCamera.js';
 import LevelGoal from './LevelGoal.js';
 import HealthMeter from './HealthMeter.js';
 import DeadZone from './DeadZone.js';
+import BrokenGlass from './BrokenGlass.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -62,7 +63,7 @@ export default class Game extends Phaser.Scene {
         h: 32,
         displayTime: 1000,  //En ms
         image: 'healthMeter1',
-        toy: 65,
+        toy: 65
       });
 
       // Player
@@ -114,75 +115,36 @@ export default class Game extends Phaser.Scene {
       });
       this.cameras.addExisting(cam, true);
 
-      /*// "plataforma2"
-        // Body
-        let plat2 = Phaser.Physics.Matter.Matter.Bodies.rectangle(800, 700, 200, 30, {label: 'plataforma'});
-      new PhysSprite({
-        scene: this,
-        x: 100,
-        y: 600,
-        w: 100,
-        h: 100,
-        image: 'playerImage',
-        body: {
-          parts: [plat2],
-          inertia: Infinity},
-        isStatic: true,
-        label: 'platform'
-      });*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       // Collectible
-        // Body
-        let collectibleBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(300, 600, 100, 100, {isSensor: true});
-      new Collectible({
-        scene: this,
-        x: 300,
-        y: 600,
-        w: 100,
-        h: 100,
-        hasGravity: false,
-        image: 'playerImage',
-        body: {
-          parts: [collectibleBody],
-          inertia: Infinity},
-          label: 'trigger'
-      });
+      this.CreateColectible(300, 600);
 
       //Enemy
-        // Body
-        let enemy = Phaser.Physics.Matter.Matter.Bodies.rectangle(700, 600, 70, 60);
-        let enemyTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(700, 570, 60, 20, {isSensor: true, label: 'triggerTop'});
-        let enemyLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(665, 600, 20, 65, {isSensor: true, label: 'triggerLeft'});
-        let enemyRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(735, 600, 20, 65, {isSensor: true, label: 'triggerRight'});
-      new Enemy({
-        scene: this,
-        x: 50,
-        y: 600,
-        w: 100,
-        h: 100,
-        hasGravity: false,
-        image: 'enemy1',
-        body: {
-          parts: [enemy, enemyTop, enemyLeft, enemyRight],
-          inertia: Infinity},
-        label: 'enemy'
-      });
+      this.CreateEnemy(50, 700);
+
+      //Platform
+      this.CreatePlatform(1500, 600, 3000, 30);
 
       //levelGoal
-        //Body
-        let goal = Phaser.Physics.Matter.Matter.Bodies.rectangle(1800, 600, 200, 100, {isSensor: true});
-        new LevelGoal({
-          scene: this,
-          x: 1800,
-          y: 700,
-          w: 100,
-          h: 100,
-          hasGravity: false,
-          body: {
-            parts: [goal],
-            inertia: Infinity},
-          label: 'levelGoal'
-        });
+      this.CreateLevelGoal(3000, 600);
 
       //DeadZone
         //Body
@@ -200,6 +162,9 @@ export default class Game extends Phaser.Scene {
         label: 'deadzone'
       });
 
+      // BrokenGlass
+      this.CreateBrokenGlass(1700, 575);
+
       this.dynamicObjs = this.matter.world.nextCategory();
       //this.personaje = new Personaje(this, 100, 100, 100, 100);
 
@@ -207,9 +172,19 @@ export default class Game extends Phaser.Scene {
       //new StaticObj(this, 400, 500, 100, 100, 'playerImage', false, false);
 
       this.triggers = this.matter.world.nextCategory();
-      //new LevelGoal(this, 1200, 700, 100, 100, 'playerImage');
 
-      //this.collectible = new Collectible(this, 200, 700, 100, 100, 'playerImage', 100);
+
+
+
+
+
+
+
+
+
+
+
+
 
       // Inicio de colisiones
       this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
@@ -261,7 +236,7 @@ export default class Game extends Phaser.Scene {
         body: {
           parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 100, {isSensor: true})],
           inertia: Infinity},
-          label: 'trigger'
+          label: 'collectible'
       });
     }
 
@@ -281,6 +256,54 @@ export default class Game extends Phaser.Scene {
             Phaser.Physics.Matter.Matter.Bodies.rectangle(x+35, y, 20, 65, {isSensor: true, label: 'triggerRight'})],
           inertia: Infinity},
         label: 'enemy'
+      });
+    }
+
+    CreateBrokenGlass(x, y){
+      new BrokenGlass({
+        scene: this,
+        x: x,
+        y: y,
+        w: 100,
+        h: 30,
+        hasGravity: false,
+        image: 'playerImage',
+        body: {
+        parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 30, {isSensor: true})],
+        inertia: Infinity },
+        label: 'brokenglass',
+        slowMultiplier: 0.2
+      });
+    }
+
+    CreatePlatform(x, y, w, h){
+      new PhysSprite({
+        scene: this,
+        x: x,
+        y: y,
+        w: w,
+        h: h,
+        image: 'playerImage',
+        body: {
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, w, h, {label: 'plataforma'})],
+          inertia: Infinity},
+        isStatic: true,
+        label: 'platform'
+      });
+    }
+
+    CreateLevelGoal(x, y){
+      new LevelGoal({
+        scene: this,
+        x: x,
+        y: y,
+        w: 100,
+        h: 100,
+        hasGravity: false,
+        body: {
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 100, {isSensor: true})],
+          inertia: Infinity},
+        label: 'levelGoal'
       });
     }
 
