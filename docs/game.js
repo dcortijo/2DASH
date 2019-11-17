@@ -42,11 +42,15 @@ export default class Game extends Phaser.Scene {
       this.layer = this.map.createStaticLayer('layer', 'tilesetBuildings');
       this.layer.setCollisionBetween(0, 999);
       let objectLayers = this.map.objects;
-      for(let i = 0; i < objectLayers[1].objects.length; i++){     
-          this.CreateColectible(objectLayers[1].objects[i].x, objectLayers[1].objects[i].y);
+      for(let i = 0; i < objectLayers[2].objects.length; i++){     
+          this.CreateColectible(objectLayers[2].objects[i].x, objectLayers[2].objects[i].y);
       }
+      for(let i = 0; i < objectLayers[1].objects.length; i++){     
+        this.CreateEnemy(objectLayers[1].objects[i].x, objectLayers[1].objects[i].y);
+      }
+
       for(let i = 0; i < objectLayers[0].objects.length; i++){     
-        this.CreateEnemy(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y);
+          this.CreateBrokenGlass(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y);
       }
       
       this.matter.world.convertTilemapLayer(this.layer);
