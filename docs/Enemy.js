@@ -40,7 +40,7 @@ export default class Enemy extends Character{
     OnTriggerStart = function(obj1, obj2){
         if(obj2.gameObject && obj2.gameObject.label === 'player'){
             if(obj1 === this.triggerTop){
-                obj2.gameObject.Jump();
+                obj2.gameObject.BoostJump();
                 this.Die();
             }
         }

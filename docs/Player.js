@@ -67,6 +67,11 @@ export default class Player extends Character{
         this.onFloor = false;
     }
 
+    BoostJump(){
+        this.Jump();
+        this.setVelocityX(this.body.velocity.x * 1.2);
+    }
+
     OnTriggerEnd = function(body, other){
         if(!other.isSensor){
             this.onFloor = false;
