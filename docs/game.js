@@ -48,12 +48,21 @@ export default class Game extends Phaser.Scene {
       for(let i = 0; i < objectLayers[1].objects.length; i++){     
         this.CreateEnemy(objectLayers[1].objects[i].x, objectLayers[1].objects[i].y);
       }
-
       for(let i = 0; i < objectLayers[0].objects.length; i++){     
           this.CreateBrokenGlass(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y);
       }
       
       this.matter.world.convertTilemapLayer(this.layer);
+
+      //Score
+      this.score = 0;
+      this.scoreText = this.add.text(70, 55, "SCORE: " + this.score, {fill: "#ffffff"}).setFontSize(40);
+      this.scoreText.setScrollFactor(0);
+
+      //Timer
+      this.timeNum = 0;
+      this.timerText = this.add.text(1200, 55, "TIME: " + (Math.round(this.timeNum/1000)), {fill: "#ffffff"}).setFontSize(40);
+      this.timerText.setScrollFactor(0);
 
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 3250);
@@ -237,6 +246,7 @@ export default class Game extends Phaser.Scene {
         h: 100,
         hasGravity: false,
         image: 'collectible',
+        score: 10,
         body: {
           parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 100, {isSensor: true})],
           inertia: Infinity},
@@ -253,6 +263,7 @@ export default class Game extends Phaser.Scene {
         h: 100,
         hasGravity: false,
         image: 'enemy1',
+        score: 15,
         body: {
           parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 60), 
             Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerTop'}), 
@@ -311,7 +322,13 @@ export default class Game extends Phaser.Scene {
       });
     }
 
-    update(time, delta) {
+    AddScore(scoreAdd){
+      this.score = this.score + scoreAdd;
+      this.scoreText.text = "SCORE: " + this.score;
+    }
 
+    update(time, delta) {
+      this.timeNum = this.timeNum + delta;
+      this.timerText.text =  "TIME: "+ (Math.round(this.timeNum/1000)); 
     }
   }

@@ -15,6 +15,7 @@ export default class Enemy extends Character{
         this.triggerRight = this.body.parts.find(function(element){return element.label === 'triggerRight';});
         this.triggerTop = this.body.parts.find(function(element){return element.label === 'triggerTop';});
         this.colliding = false;
+        this.score = config.score;
     }
 
     preUpdate(){
@@ -41,6 +42,7 @@ export default class Enemy extends Character{
         if(obj2.gameObject && obj2.gameObject.label === 'player'){
             if(obj1 === this.triggerTop){
                 obj2.gameObject.BoostJump();
+                this.scene.AddScore(this.score);
                 this.Die();
             }
         }
