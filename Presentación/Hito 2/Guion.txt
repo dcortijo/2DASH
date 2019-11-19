@@ -1,0 +1,13 @@
+Hola, somos [Nombre1] y [Nombre2], formamos parte de la Resistencia y venimos a contaros nuestros avances en 2DASH.
+
+Si no recordáis, 2DASH es una simulación diseñada para entrenar a nuestros agentes para poder enfrentarse al CONSTRUCT-0R, el robot que asola la Tierra. En ella, el personaje tiene que recorrer la ciudad en ruinas dando saltos y acabando con enemigos lo más rápido posible. Un tiempo después de la otra presentación terminamos con la primera versión del juego, pusimos a entrenar a un voluntario y...
+
+Se fue a enfrentar al CONSTRUCT-0R. La cosa no salió muy bien... -Murió. [DECEPCIONADO]-Sí, murió. [CLUELESS]-Fue hecho cachitos. [CON TONO DE ¿POR QUÉ HABLAS?]-Sí. -Destrozado. [SILENCIO DURANTE UN RATO]. Por suerte, se ha ofrecido otro voluntario y vamos a crear una versión más completa del juego.
+
+Aquí está una parte del nivel de prueba que hemos creado, en la que se ve a un enemigo flotando entre los edificios. También hay coleccionables que el jugador puede recoger para aumentar su puntuación. El jugador puede saltar sobre los edificios y sobre los enemigos, intentando mantener su velocidad.
+
+Durante el desarrollo hemos tenido algunos problemas con la API del framework que estamos utilizando. Además, no nos hemos podido centrar plenamente en el proyecto por otros motivos. [SILENCIO PARA QUE PASE LA ANIMACIÓN].
+
+A pesar de esto, tenemos pensado acabar el proyecto, con tres o más niveles, más enemigos, obstáculos, animaciones y sonido, para que nuestros voluntarios puedan enfrentarse al CONSTRUCT-0R y salvar nuestro planeta.
+
+Eso ha sido todo, muchas gracias por vuestra atención.
