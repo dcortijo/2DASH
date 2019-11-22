@@ -10,6 +10,7 @@ export default class Player extends Character{
         this.dragX = config.drag;
         this.maxSpeedX = config.maxSpeedX;
         this.curMaxSpeedX = config.maxSpeedX;
+        this.baseSpeedX = config.baseSpeedX;
         this.setBounce(config.restitution);
         this.health = config.health;
         this.healthMeter = config.healthMeter;
@@ -55,10 +56,12 @@ export default class Player extends Character{
     }
 
     MoveLeft(){
+        if(this.body.velocity.x > -0.1 && this.body.velocity.x < 0.1) this.setVelocityX(-this.baseSpeedX);
         this.applyForce({x: -this.acceleration, y: 0});
     }
 
     MoveRight(){
+        if(this.body.velocity.x > -0.1 && this.body.velocity.x < 0.1) this.setVelocityX(this.baseSpeedX);
         this.applyForce({x: this.acceleration, y: 0});
     }
 
