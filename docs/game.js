@@ -7,6 +7,7 @@ import LevelGoal from './LevelGoal.js';
 import HealthMeter from './HealthMeter.js';
 import DeadZone from './DeadZone.js';
 import BrokenGlass from './BrokenGlass.js';
+import Whip from './Whip.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -23,6 +24,7 @@ export default class Game extends Phaser.Scene {
         frameWidth: 64,
         frameHeight: 32,
       });
+      this.load.image('whip', 'WhipSheet.png');
       this.load.spritesheet('playerRun', 'MachFoxRunSheet.png', {frameWidth: 32, frameHeight: 32});
     }
 
@@ -68,65 +70,8 @@ export default class Game extends Phaser.Scene {
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 3250);
 
-      //HealthMeter
-      this.healthMeter = new HealthMeter({
-        scene: this,
-        x: 90,
-        y: 65,
-        w: 64,
-        h: 32,
-        displayTime: 1000,  //En ms
-        image: 'healthMeter1',
-        toy: 65
-      });
-
-      //Animaciones
-      this.anims.create({
-        key: 'runRight',
-        frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 3 }),
-        frameRate: 10,
-        repeat: -1
-      });
-
-      this.anims.create({
-        key: 'runLeft',
-        frames: this.anims.generateFrameNumbers('playerRun', { start: 4, end: 7 }),
-        frameRate: 10,
-        repeat: -1
-      });
-      
       // Player
-        // Body
-        let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 20);
-        let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 110, 40, 70, {chamfer: {radius: 10}});
-        let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(90, 170, 30, 20, {isSensor: true, label: 'sensor'});
-      this.player = new Player({
-        scene: this,
-        x: 100,
-        y: 100,
-        w: 100,
-        h: 100,
-        hasGravity: true,
-        isStatic: false,
-        image: 'playerImage',
-        body: {
-          parts: [playerPartA, playerPartB, playerSensorFeet],
-          inertia: Infinity
-        },
-        jumpStrength: 10,
-        acceleration: 0.1,
-        drag: 0.05,
-        maxSpeedX: 12,
-        mass: 70,
-        restitution: 0,
-        label: 'player',
-        health: 3,
-        healthMeter: this.healthMeter,
-        pushX: 8,
-        pushY: 6
-      });
-
-      this.healthMeter.setTarget(this.player);
+      this.CreatePlayer(100, 100);
 
       // Camera
         // Remove default camera
@@ -143,7 +88,6 @@ export default class Game extends Phaser.Scene {
         repositionSpeed: 5
       });
       this.cameras.addExisting(cam, true);
-
 
 
 
@@ -288,6 +232,9 @@ export default class Game extends Phaser.Scene {
     }
 
     CreateEnemy(x, y){
+      let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerTop'});
+      let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerLeft'});
+      let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerRight'});
       new Enemy({
         scene: this,
         x: x,
@@ -298,12 +245,12 @@ export default class Game extends Phaser.Scene {
         image: 'enemy1',
         score: 15,
         body: {
-          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 60), 
-            Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerTop'}), 
-            Phaser.Physics.Matter.Matter.Bodies.rectangle(x-35, y, 20, 65, {isSensor: true, label: 'triggerLeft'}),
-            Phaser.Physics.Matter.Matter.Bodies.rectangle(x+35, y, 20, 65, {isSensor: true, label: 'triggerRight'})],
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 60), triggerTop, triggerLeft, triggerRight],
           inertia: Infinity},
-        label: 'enemy'
+        label: 'enemy',
+        triggerTop: triggerTop,
+        triggerLeft: triggerLeft,
+        triggerRight: triggerRight
       });
     }
 
@@ -358,6 +305,108 @@ export default class Game extends Phaser.Scene {
     AddScore(scoreAdd){
       this.score = this.score + scoreAdd;
       this.scoreText.text = "SCORE: " + this.score;
+    }
+
+    CreatePlayer(x, y){
+      //HealthMeter
+      let healthMeter = new HealthMeter({
+        scene: this,
+          x: x - 10,
+          y: y - 35,
+          w: 64,
+          h: 32,
+          displayTime: 1000,  //En ms
+          image: 'healthMeter1',
+          toy: 65
+        });
+      
+        //Animaciones
+        this.anims.create({
+          key: 'runRight',
+          frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 3 }),
+          frameRate: 10,
+          repeat: -1
+        });
+        this.anims.create({
+          key: 'runLeft',
+          frames: this.anims.generateFrameNumbers('playerRun', { start: 4, end: 7 }),
+          frameRate: 10,
+          repeat: -1
+        });
+
+        // Whips
+        let whipLeft = new Whip({
+          x: x - 100,
+          y: y + 20,
+          w: 150,
+          h: 50,
+          scene: this, 
+          hasGravity: false,
+          image: 'whip',
+          body:{
+            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 100, y + 20, 150, 50, {isSensor: true, label: 'whipLeft'})],
+            inertia: Infinity
+          },
+          isStatic: false,
+          label: 'whipLeft',
+          offsetX: -100,
+          offsetY: 20
+        });
+        let whipRight = new Whip({
+          x: x + 100,
+          y: y + 20,
+          w: 150,
+          h: 50,
+          scene: this, 
+          hasGravity: false,
+          image: 'whip',
+          body:{
+            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 100, y + 20, 150, 50, {isSensor: true, label: 'whipRight'})],
+            inertia: Infinity
+          },
+          isStatic: false,
+          label: 'whipRight',
+          offsetX: 100,
+          offsetY: 20
+        });
+            
+        // Player
+          // Body
+          let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(x, y + 45, 20);
+          let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 10, 40, 70, {chamfer: {radius: 10}});
+          let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 70, 30, 20, {isSensor: true, label: 'feet'});
+        this.player = new Player({
+          scene: this,
+          x: x,
+          y: y,
+          w: 100,
+          h: 100,
+          hasGravity: true,
+          isStatic: false,
+          image: 'playerImage',
+          body: {
+            parts: [playerPartA, playerPartB, playerSensorFeet],
+            inertia: Infinity
+          },
+          jumpStrength: 10,
+          acceleration: 0.1,
+          drag: 0.05,
+          maxSpeedX: 12,
+          mass: 70,
+          restitution: 0,
+          label: 'player',
+          health: 3,
+          healthMeter: healthMeter,
+          pushX: 8,
+          pushY: 6,
+          whipLeft: whipLeft,
+          whipRight: whipRight
+        });
+
+        whipLeft.SetAnchor(this.player);
+        whipRight.SetAnchor(this.player);
+  
+        healthMeter.setTarget(this.player);
     }
 
     update(time, delta) {

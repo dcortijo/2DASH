@@ -11,9 +11,9 @@ export default class Enemy extends Character{
         this.body.setInertia(this.body, 10);*/
         this.varX = config.x;
         this.varY = config.y;
-        this.triggerLeft = this.body.parts.find(function(element){return element.label === 'triggerLeft';});
-        this.triggerRight = this.body.parts.find(function(element){return element.label === 'triggerRight';});
-        this.triggerTop = this.body.parts.find(function(element){return element.label === 'triggerTop';});
+        this.triggerLeft = config.triggerLeft;
+        this.triggerRight = config.triggerRight;
+        this.triggerTop = config.triggerTop;
         this.colliding = false;
         this.score = config.score;
     }
@@ -40,9 +40,8 @@ export default class Enemy extends Character{
 
     OnTriggerStart = function(obj1, obj2){
         if(obj2.gameObject && obj2.gameObject.label === 'player'){
-            if(obj1 === this.triggerTop){
+            if(obj1 === this.triggerTop && obj2.gameObject.GetFeet() === obj2){
                 obj2.gameObject.BoostJump();
-                this.scene.AddScore(this.score);
                 this.Die();
             }
         }
@@ -64,5 +63,10 @@ export default class Enemy extends Character{
                 }
             }
         }
+    }
+
+    Die(){
+        this.scene.AddScore(this.score);
+        super.Die();
     }
 }

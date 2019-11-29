@@ -2,7 +2,7 @@ import Character from './Character.js';
 export default class Player extends Character{
     constructor(config){ // config + {jumpStrength, acceleration, maxSpeed, drag, mass, restitution, pushX, pushY}
         super(config);
-        this.input = config.scene.input.keyboard.addKeys('W, A, S, D');
+        this.input = config.scene.input.keyboard.addKeys('up, left, right, Z, X');
         this.jumpStrength = config.jumpStrength;
         this.acceleration = config.acceleration;
         this.setFriction(0);
@@ -17,24 +17,29 @@ export default class Player extends Character{
         this.pushX = config.pushX;
         this.pushY = config.pushY;
         this.disabledControls = false;
+        this.whipLeft = config.whipLeft;
+        this.whipRight = config.whipRight;
+
+        this.input.Z.on('down', event =>{this.whipLeft.active = true;});     // Play animation whipLeft, callback to when it's in the middle, and when it ends
+        this.input.X.on('down', event =>{this.whipRight.active = true;});    // Play animation whipRight, callback to when it's in the middle, and when it ends
     }
 
     preUpdate(t, d){
         super.preUpdate(t, d);
         if(!this.disabledControls){
             if(Math.abs(this.body.velocity.x) < this.curMaxSpeedX){
-                if(this.input.A.isDown){
+                if(this.input.left.isDown){
                     if(!this.anims.isPlaying)this.play('runLeft');
                     this.MoveLeft();
                 }
-                if(this.input.D.isDown){
+                if(this.input.right.isDown){
                     if(!this.anims.isPlaying)this.play('runRight');
                     this.MoveRight();
                 }
             }
 
             if(this.onFloor){
-                if(this.input.W.isDown){
+                if(this.input.up.isDown){
                     this.Jump(); 
                 } else{
                     this.setVelocityY(0);
@@ -91,9 +96,12 @@ export default class Player extends Character{
     }
 
     OnTriggerStay = function(body, other){
-        if(!other.isSensor && !other.gameObject.Die){
-            this.onFloor = true;
-            //console.log("ontriggerstay");
+        if(!other.isSensor && other.gameObject) {
+            if(!other.gameObject.Die){
+                if(body.label === 'feet'){
+                    this.onFloor = true;
+                } 
+            }
         }
     }
 
@@ -127,5 +135,9 @@ export default class Player extends Character{
 
     ResetMaxSpeed(){
         this.curMaxSpeedX = this.maxSpeedX;
+    }
+
+    GetFeet(){
+        return this.body.parts.find(elem => elem.label === 'feet');
     }
 }

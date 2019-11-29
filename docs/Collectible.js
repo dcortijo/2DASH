@@ -6,7 +6,7 @@ export default class Collectible extends PhysSprite{
     }
 
     OnTriggerStart = function(body, other){
-        if(other.gameObject.label === 'player'){
+        if(other.gameObject && other.gameObject.label === 'player' && !other.isSensor){
             this.Collect();
         }
     }
