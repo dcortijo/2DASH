@@ -164,7 +164,7 @@ export default class Game extends Phaser.Scene {
 
 
       // Collectible
-      this.CreateColectible(300, 600);
+      this.CreateBigColectible(300, 600);
 
       //Enemy
       this.CreateEnemy(50, 700);
@@ -265,6 +265,23 @@ export default class Game extends Phaser.Scene {
         score: 10,
         body: {
           parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 32, 32, {isSensor: true})],
+          inertia: Infinity},
+          label: 'collectible'
+      });
+    }
+
+    CreateBigColectible(x, y){
+      new Collectible({
+        scene: this,
+        x: x,
+        y: y,
+        w: 96,
+        h: 96,
+        hasGravity: false,
+        image: 'collectible',
+        score: 50,
+        body: {
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 96, 96, {isSensor: true})],
           inertia: Infinity},
           label: 'collectible'
       });
