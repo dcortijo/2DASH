@@ -18,11 +18,12 @@ export default class Game extends Phaser.Scene {
       this.load.tilemapTiledJSON('NivelPrueba', 'NivelPrueba.json');
       this.load.image('patrones', 'TilesetPrueba.png');
       this.load.image('enemy1', 'DronCiudadano.png');
-      this.load.image('collectible', 'Collectible.png')
+      this.load.image('collectible', 'Collectible.png');
       this.load.spritesheet('healthMeter1', 'Heart1.png', {
         frameWidth: 64,
         frameHeight: 32,
-      })    
+      });
+      this.load.spritesheet('playerRun', 'MachFoxRunSheet.png', {frameWidth: 32, frameHeight: 32});
     }
 
     create() {
@@ -79,6 +80,13 @@ export default class Game extends Phaser.Scene {
         toy: 65
       });
 
+      //Animaciones
+      this.anims.create({
+        key: 'runRight',
+        frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 4 }),
+        frameRate: 20,
+      });
+
       // Player
         // Body
         let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 20);
@@ -111,6 +119,8 @@ export default class Game extends Phaser.Scene {
       });
 
       this.healthMeter.setTarget(this.player);
+
+      this.player.play('runRight');
 
       // Camera
         // Remove default camera
