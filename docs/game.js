@@ -83,10 +83,18 @@ export default class Game extends Phaser.Scene {
       //Animaciones
       this.anims.create({
         key: 'runRight',
-        frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 4 }),
-        frameRate: 20,
+        frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
       });
 
+      this.anims.create({
+        key: 'runLeft',
+        frames: this.anims.generateFrameNumbers('playerRun', { start: 4, end: 7 }),
+        frameRate: 10,
+        repeat: -1
+      });
+      
       // Player
         // Body
         let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(90, 145, 20);
@@ -106,9 +114,9 @@ export default class Game extends Phaser.Scene {
           inertia: Infinity
         },
         jumpStrength: 10,
-        acceleration: 0.12,
+        acceleration: 0.1,
         drag: 0.05,
-        maxSpeedX: 20,
+        maxSpeedX: 12,
         mass: 70,
         restitution: 0,
         label: 'player',
@@ -119,8 +127,6 @@ export default class Game extends Phaser.Scene {
       });
 
       this.healthMeter.setTarget(this.player);
-
-      this.player.play('runRight');
 
       // Camera
         // Remove default camera
@@ -252,13 +258,13 @@ export default class Game extends Phaser.Scene {
         scene: this,
         x: x,
         y: y,
-        w: 100,
-        h: 100,
+        w: 32,
+        h: 32,
         hasGravity: false,
         image: 'collectible',
         score: 10,
         body: {
-          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 100, {isSensor: true})],
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 32, 32, {isSensor: true})],
           inertia: Infinity},
           label: 'collectible'
       });

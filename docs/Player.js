@@ -19,19 +19,26 @@ export default class Player extends Character{
         this.disabledControls = false;
     }
 
-    preUpdate(){
+    preUpdate(t, d){
+        super.preUpdate(t, d);
         if(!this.disabledControls){
             if(Math.abs(this.body.velocity.x) < this.curMaxSpeedX){
                 if(this.input.A.isDown){
+                    if(!this.anims.isPlaying)this.play('runLeft');
                     this.MoveLeft();
                 }
                 if(this.input.D.isDown){
+                    if(!this.anims.isPlaying)this.play('runRight');
                     this.MoveRight();
                 }
             }
 
-            if(this.input.W.isDown && this.onFloor){
-                this.Jump(); 
+            if(this.onFloor){
+                if(this.input.W.isDown){
+                    this.Jump(); 
+                } else{
+                    this.setVelocityY(0);
+                }
             }
         }
 
@@ -42,6 +49,7 @@ export default class Player extends Character{
             this.applyForce({x: -this.dragX, y: 0});
         } else {
             this.setVelocityX(0);
+            this.anims.stop();
         }
     }
 
@@ -83,7 +91,7 @@ export default class Player extends Character{
     }
 
     OnTriggerStay = function(body, other){
-        if(!other.isSensor){
+        if(!other.isSensor && !other.gameObject.Die){
             this.onFloor = true;
             //console.log("ontriggerstay");
         }
