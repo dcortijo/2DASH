@@ -3,7 +3,7 @@ export default class Enemy extends Character{
     constructor(config){ // config de Character
         super(config);
         this.setFixedRotation();
-        this.setFriction(1, 1, 1)
+        this.setFriction(1, 1, 1);
         this.varX = config.x;
         this.varY = config.y;
         this.triggerLeft = config.triggerLeft;
