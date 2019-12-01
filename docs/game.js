@@ -252,8 +252,8 @@ export default class Game extends Phaser.Scene {
 
     CreateEnemy(x, y){
       let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerTop'});
-      let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerLeft'});
-      let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerRight'});
+      let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 35, y + 5, 15, 50, {isSensor: true, label: 'triggerLeft'});
+      let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 35, y + 5, 15, 50, {isSensor: true, label: 'triggerRight'});
       new Enemy({
         scene: this,
         x: x,
@@ -377,7 +377,7 @@ export default class Game extends Phaser.Scene {
             
         // Player
           // Body
-          let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(x, y + 45, 20);
+          let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(x, y + 45, 18, {label: 'lowBall'});
           let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 10, 40, 70, {chamfer: {radius: 10}});
           let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 70, 30, 20, {isSensor: true, label: 'feet'});
         this.player = new Player({
