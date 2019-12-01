@@ -24,7 +24,7 @@ export default class Game extends Phaser.Scene {
         frameWidth: 64,
         frameHeight: 32,
       });
-      this.load.image('whip', 'WhipSheet.png');
+      this.load.spritesheet('whipS', 'WhipSheet.png', {frameWidth: 96, frameHeight: 32});
       this.load.spritesheet('playerRun', 'MachFoxRunSheet.png', {frameWidth: 32, frameHeight: 32});
     }
 
@@ -34,6 +34,26 @@ export default class Game extends Phaser.Scene {
       background.setOrigin(0, 0);
       background.displayWidth = 32000;
       background.displayHeight = 3200;
+
+      //Animaciones
+      this.anims.create({
+        key: 'runRight',
+        frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+      });
+      this.anims.create({
+        key: 'runLeft',
+        frames: this.anims.generateFrameNumbers('playerRun', { start: 4, end: 7 }),
+        frameRate: 10,
+        repeat: -1
+      });
+      this.anims.create({
+        key: 'whip',
+        frames: this.anims.generateFrameNumbers('whipS', { start: 0, end: 2 }),
+        frameRate: 4,
+        repeat: 0
+      });
 
       //Tilemap
       this.map = this.make.tilemap({ 
@@ -88,7 +108,6 @@ export default class Game extends Phaser.Scene {
         repositionSpeed: 5
       });
       this.cameras.addExisting(cam, true);
-
 
 
 
@@ -319,20 +338,6 @@ export default class Game extends Phaser.Scene {
           image: 'healthMeter1',
           toy: 65
         });
-      
-        //Animaciones
-        this.anims.create({
-          key: 'runRight',
-          frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 3 }),
-          frameRate: 10,
-          repeat: -1
-        });
-        this.anims.create({
-          key: 'runLeft',
-          frames: this.anims.generateFrameNumbers('playerRun', { start: 4, end: 7 }),
-          frameRate: 10,
-          repeat: -1
-        });
 
         // Whips
         let whipLeft = new Whip({
@@ -342,7 +347,7 @@ export default class Game extends Phaser.Scene {
           h: 50,
           scene: this, 
           hasGravity: false,
-          image: 'whip',
+          image: 'whipS',
           body:{
             parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 100, y + 20, 150, 50, {isSensor: true, label: 'whipLeft'})],
             inertia: Infinity
@@ -359,7 +364,7 @@ export default class Game extends Phaser.Scene {
           h: 50,
           scene: this, 
           hasGravity: false,
-          image: 'whip',
+          image: 'whipS',
           body:{
             parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 100, y + 20, 150, 50, {isSensor: true, label: 'whipRight'})],
             inertia: Infinity

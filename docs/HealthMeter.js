@@ -1,5 +1,4 @@
 export default class HealthMeter extends Phaser.GameObjects.Sprite{
-
     constructor(config){
         super(config.scene, config.x, config.y, config.image);
         config.scene.add.existing(this);

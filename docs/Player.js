@@ -20,8 +20,8 @@ export default class Player extends Character{
         this.whipLeft = config.whipLeft;
         this.whipRight = config.whipRight;
 
-        this.input.Z.on('down', event =>{this.whipLeft.active = true;});     // Play animation whipLeft, callback to when it's in the middle, and when it ends
-        this.input.X.on('down', event =>{this.whipRight.active = true;});    // Play animation whipRight, callback to when it's in the middle, and when it ends
+        this.input.Z.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipLeft.Attack();});
+        this.input.X.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipRight.Attack();});
     }
 
     preUpdate(t, d){

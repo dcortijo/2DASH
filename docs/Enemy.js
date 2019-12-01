@@ -4,11 +4,6 @@ export default class Enemy extends Character{
         super(config);
         this.setFixedRotation();
         this.setFriction(1, 1, 1)
-        /*this.setFrictionAir(1);
-        this.body.inertia = Infinity;
-        this.setMass(Infinity);
-        console.log(this.body.inertia);
-        this.body.setInertia(this.body, 10);*/
         this.varX = config.x;
         this.varY = config.y;
         this.triggerLeft = config.triggerLeft;
@@ -21,8 +16,6 @@ export default class Enemy extends Character{
     preUpdate(){
         this.x = this.varX;
         this.y = this.varY;
-        //this.setVelocity(this.body, {x:0.1, y:0.1});
-        //console.log(this.body.velocity);
     }
 
     OnCollisionStart = function(body1, body2, evento){       

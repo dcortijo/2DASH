@@ -5,20 +5,28 @@ export default class Whip extends PhysSprite{
         this.anchor = config.anchor;
         this.offsetX = config.offsetX;
         this.offsetY = config.offsetY;
-        this.active = false;
+        this.colliding = false;
+        this.setFrame(1);
+        this.on('animationcomplete', (event) => {
+            this.colliding = false;
+        });
     }
 
-    preUpdate(){
-        //super.preUpdate(d, t);
+    preUpdate(d, t){
+        super.preUpdate(d, t);
         this.x = this.anchor.x + this.offsetX;
         this.y = this.anchor.y + this.offsetY;
-        console.log("!");
     }
 
     OnTriggerStay(body, other){
-        if(!other.isSensor && other.gameObject && other.gameObject.Die && this.active){
+        if(!other.isSensor && other.gameObject && other.gameObject.Die && this.colliding){
             other.gameObject.Die();
         }
+    }
+
+    Attack(){
+        this.colliding = true;
+        this.anims.play('whip');
     }
 
     SetAnchor(p){
