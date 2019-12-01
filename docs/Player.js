@@ -20,8 +20,8 @@ export default class Player extends Character{
         this.whipLeft = config.whipLeft;
         this.whipRight = config.whipRight;
 
-        this.input.Z.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipLeft.Attack();});
-        this.input.X.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipRight.Attack();});
+        this.input.Z.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipLeft.Attack(); this.StallFall();});
+        this.input.X.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipRight.Attack(); this.StallFall();});
     }
 
     preUpdate(t, d){
@@ -149,5 +149,14 @@ export default class Player extends Character{
 
     GetFeet(){
         return this.body.parts.find(elem => elem.label === 'feet');
+    }
+
+    StallFall(){       
+        if(!this.onFloor){
+            if(this.body.velocity.y > (-this.jumpStrength + this.jumpStrength/3)){
+                this.setVelocityY(0);
+                this.applyForce({x: 0, y: -1});
+            }
+        }
     }
 }
