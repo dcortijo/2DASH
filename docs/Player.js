@@ -19,6 +19,9 @@ export default class Player extends Character{
         this.disabledControls = false;
         this.whipLeft = config.whipLeft;
         this.whipRight = config.whipRight;
+        this.boostBool = true;
+
+        this.thrustDuration = 0;
 
         this.input.Z.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipLeft.Attack(); this.StallFall();});
         this.input.X.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipRight.Attack(); this.StallFall();});
@@ -56,6 +59,12 @@ export default class Player extends Character{
             this.setVelocityX(0);
             this.anims.stop();
         }
+
+        if(this.thrustDuration > -1) this.applyForce({x: 0, y: -0.1});
+
+        if(this.thrustDuration > -1){
+            this.thrustDuration--;
+        }else this.thrustDuration = -1;
     }
 
     Hurt(){
@@ -116,6 +125,7 @@ export default class Player extends Character{
             if(!other.gameObject.Die){
                 if(body.label === 'lowBall'){
                     this.onFloor = true;
+                    this.boostBool = true;
                 } 
             }
         }
@@ -151,12 +161,22 @@ export default class Player extends Character{
         return this.body.parts.find(elem => elem.label === 'feet');
     }
 
-    StallFall(){       
-        if(!this.onFloor){
+    /*StallFall(){       
+        if(!this.onFloor && this.boostBool){
             if(this.body.velocity.y > (-this.jumpStrength + this.jumpStrength/3)){
                 this.setVelocityY(0);
                 this.applyForce({x: 0, y: -1});
+                this.boostBool = false;
             }
         }
+    }*/
+
+    StallFall(){ 
+        if(this.thrustDuration === -1 && this.body.velocity.y > (-this.jumpStrength + this.jumpStrength/3) && !this.onFloor && this.boostBool){
+            this.thrustDuration = 15;
+            this.boostBool = false;
+            this.setVelocityY(0);
+        }            
     }
+
 }
