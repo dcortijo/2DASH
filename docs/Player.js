@@ -104,16 +104,6 @@ export default class Player extends Character{
         }
     }
 
-    OnTriggerStay = function(body, other){
-        /*if(!other.isSensor && other.gameObject) {
-            if(!other.gameObject.Die){
-                if(body.label === 'feet'){
-                    this.onFloor = true;
-                } 
-            }
-        }*/
-    }
-
     OnCollisionStart = function(body, other){
         if(other.gameObject && !other.gameObject.Die){
             this.disabledControls = false;

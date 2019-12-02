@@ -35,6 +35,16 @@ export default class Game extends Phaser.Scene {
       background.displayWidth = 32000;
       background.displayHeight = 3200;
 
+      this.collisionLayers = {
+        player: this.matter.world.nextCategory(),
+        enemy: this.matter.world.nextCategory(),
+        collectible: this.matter.world.nextCategory(),
+        whip: this.matter.world.nextCategory(),
+        obstacle: this.matter.world.nextCategory(),
+        levelGoal: this.matter.world.nextCategory(),
+        deadZone: this.matter.world.nextCategory(),
+      };
+
       //Animaciones
       this.anims.create({
         key: 'runRight',
@@ -141,7 +151,7 @@ export default class Game extends Phaser.Scene {
       //DeadZone
         //Body
         let deadZoneBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(1800, 3200, 20000, 30, {isSensor: true});
-      new DeadZone({
+      let deadZone = new DeadZone({
         scene: this,
         x: 0,
         y: 3200,
@@ -153,17 +163,17 @@ export default class Game extends Phaser.Scene {
           inertia: Infinity},
         label: 'deadzone'
       });
+      deadZone.setCollisionCategory(this.collisionLayers.deadZone);
+      deadZone.setCollidesWith(this.collisionLayers.player);
 
       // BrokenGlass
       this.CreateBrokenGlass(1700, 575);
 
-      this.dynamicObjs = this.matter.world.nextCategory();
-      //this.personaje = new Personaje(this, 100, 100, 100, 100);
 
-      this.staticObjs = this.matter.world.nextCategory();
-      //new StaticObj(this, 400, 500, 100, 100, 'playerImage', false, false);
 
-      this.triggers = this.matter.world.nextCategory();
+
+
+
 
 
 
@@ -217,7 +227,7 @@ export default class Game extends Phaser.Scene {
     }
 
     CreateColectible(x, y){
-      new Collectible({
+      let collectible = new Collectible({
         scene: this,
         x: x,
         y: y,
@@ -231,10 +241,12 @@ export default class Game extends Phaser.Scene {
           inertia: Infinity},
           label: 'collectible'
       });
+      collectible.setCollisionCategory(this.collisionLayers.collectible);
+      collectible.setCollidesWith([this.collisionLayers.player]);
     }
 
     CreateBigColectible(x, y){
-      new Collectible({
+      let collectible = new Collectible({
         scene: this,
         x: x,
         y: y,
@@ -247,14 +259,16 @@ export default class Game extends Phaser.Scene {
           parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 96, 96, {isSensor: true})],
           inertia: Infinity},
           label: 'collectible'
-      });
+      });     
+      collectible.setCollisionCategory(this.collisionLayers.collectible);
+      collectible.setCollidesWith([this.collisionLayers.player]);
     }
 
     CreateEnemy(x, y){
       let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y-30, 60, 20, {isSensor: true, label: 'triggerTop'});
       let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 35, y + 5, 15, 50, {isSensor: true, label: 'triggerLeft'});
       let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 35, y + 5, 15, 50, {isSensor: true, label: 'triggerRight'});
-      new Enemy({
+      let enemy = new Enemy({
         scene: this,
         x: x,
         y: y,
@@ -271,10 +285,12 @@ export default class Game extends Phaser.Scene {
         triggerLeft: triggerLeft,
         triggerRight: triggerRight
       });
+      enemy.setCollisionCategory(this.collisionLayers.enemy);
+      enemy.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip]);
     }
 
     CreateBrokenGlass(x, y){
-      new BrokenGlass({
+      let glass = new BrokenGlass({
         scene: this,
         x: x,
         y: y,
@@ -288,8 +304,16 @@ export default class Game extends Phaser.Scene {
         label: 'brokenglass',
         slowMultiplier: 0.2
       });
+      glass.setCollisionCategory(this.collisionLayers.obstacle);
+      glass.setCollidesWith([this.collisionLayers.player]);
     }
 
+
+
+
+
+
+    // Delete?
     CreatePlatform(x, y, w, h){
       new PhysSprite({
         scene: this,
@@ -307,7 +331,7 @@ export default class Game extends Phaser.Scene {
     }
 
     CreateLevelGoal(x, y){
-      new LevelGoal({
+      let goal = new LevelGoal({
         scene: this,
         x: x,
         y: y,
@@ -319,6 +343,8 @@ export default class Game extends Phaser.Scene {
           inertia: Infinity},
         label: 'levelGoal'
       });
+      goal.setCollisionCategory(this.collisionLayers.levelGoal);
+      goal.setCollidesWith([this.collisionLayers.player]);
     }
 
     AddScore(scoreAdd){
@@ -357,6 +383,8 @@ export default class Game extends Phaser.Scene {
           offsetX: -100,
           offsetY: 20
         });
+        whipLeft.setCollisionCategory(this.collisionLayers.whip);
+        whipLeft.setCollidesWith([this.collisionLayers.enemy]);
         let whipRight = new Whip({
           x: x + 100,
           y: y + 20,
@@ -374,6 +402,8 @@ export default class Game extends Phaser.Scene {
           offsetX: 100,
           offsetY: 20
         });
+        whipRight.setCollisionCategory(this.collisionLayers.whip);
+        whipRight.setCollidesWith([this.collisionLayers.enemy]);
             
         // Player
           // Body
@@ -407,6 +437,7 @@ export default class Game extends Phaser.Scene {
           whipLeft: whipLeft,
           whipRight: whipRight
         });
+        this.player.setCollisionCategory(this.collisionLayers.player);
 
         whipLeft.SetAnchor(this.player);
         whipRight.SetAnchor(this.player);

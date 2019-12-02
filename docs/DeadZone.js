@@ -6,7 +6,7 @@ export default class DeadZone extends PhysSprite{
     }
 
     OnTriggerStart = function(body, other){
-        if(other.gameObject && other.gameObject.Die && other.gameObject.label === 'player'){
+        if(other.gameObject && other.gameObject.label === 'player'){
             other.gameObject.Die();
         }
     }
