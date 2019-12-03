@@ -18,7 +18,7 @@ export default class Game extends Phaser.Scene {
     preload() {
       this.load.image('playerImage', 'Personaje1.png');
       this.load.image('background', 'background.png');
-      this.load.image('patrones', 'TilesetPrueba.png');
+      this.load.image('patrones', 'TilesetFirst.png');
       this.load.image('dronCiudadano', 'DronCiudadano.png');
       this.load.image('boba', 'Boba.png');
       this.load.tilemapTiledJSON('Nivel1', 'Nivel1.json');
