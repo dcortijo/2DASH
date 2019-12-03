@@ -1,5 +1,5 @@
-import Character from './Character.js';
-export default class Player extends Character{
+import Enemy from './Character.js';
+export default class Player extends Enemy{
     constructor(config){ // config + {jumpStrength, acceleration, maxSpeed, drag, mass, restitution, pushX, pushY}
         super(config);
         this.input = config.scene.input.keyboard.addKeys('up, left, right, Z, X');

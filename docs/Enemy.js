@@ -4,8 +4,8 @@ export default class Enemy extends Character{
         super(config);
         this.setFixedRotation();
         this.setFriction(1, 1, 1);
-        this.varX = config.x;
-        this.varY = config.y;
+        this.desiredX = config.x;
+        this.desiredY = config.y;
         this.triggerLeft = config.triggerLeft;
         this.triggerRight = config.triggerRight;
         this.triggerTop = config.triggerTop;
@@ -14,13 +14,13 @@ export default class Enemy extends Character{
     }
 
     preUpdate(){
-        this.x = this.varX;
-        this.y = this.varY;
+        //this.x = this.desiredX;
+        //this.y = this.desiredY;
     }
 
-    OnCollisionStart = function(body1, body2, evento){       
-        if(body2.gameObject && body2.gameObject.Hurt){    
-            this.colliding = true; 
+    OnCollisionStart = function(body1, body2, evento){
+        if(body2.gameObject && body2.gameObject.Hurt){
+            this.colliding = true;
             body2.gameObject.Hurt();
         } 
     }

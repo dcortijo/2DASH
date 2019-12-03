@@ -8,6 +8,7 @@ import HealthMeter from './HealthMeter.js';
 import DeadZone from './DeadZone.js';
 import BrokenGlass from './BrokenGlass.js';
 import Whip from './Whip.js';
+import DronCiudadano from './DronCiudadano.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -43,6 +44,7 @@ export default class Game extends Phaser.Scene {
         obstacle: this.matter.world.nextCategory(),
         levelGoal: this.matter.world.nextCategory(),
         deadZone: this.matter.world.nextCategory(),
+        triggers: this.matter.world.nextCategory(),
       };
 
       //Animaciones
@@ -142,7 +144,7 @@ export default class Game extends Phaser.Scene {
       this.CreateBigColectible(300, 600);
 
       //Enemy
-      this.CreateEnemy(50, 700);
+      this.CreateDronCiudadano(500, 200, [this.CreateTrigger(350, 150, 100, 100), this.CreateTrigger(650, 250, 100, 100)]);
 
       //Platform
       this.CreatePlatform(1500, 600, 3000, 30);
@@ -151,22 +153,7 @@ export default class Game extends Phaser.Scene {
       this.CreateLevelGoal(3000, 600);
 
       //DeadZone
-        //Body
-        let deadZoneBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(1800, 3200, 20000, 30, {isSensor: true});
-      let deadZone = new DeadZone({
-        scene: this,
-        x: 0,
-        y: 3200,
-        w: 32000,
-        h: 30,
-        hasGravity: false,
-        body:{
-          parts:[deadZoneBody],
-          inertia: Infinity},
-        label: 'deadzone'
-      });
-      deadZone.setCollisionCategory(this.collisionLayers.deadZone);
-      deadZone.setCollidesWith(this.collisionLayers.player);
+      this.CreateDeadZone(1800, 3200, 20000, 30);
 
       // BrokenGlass
       this.CreateBrokenGlass(1700, 575);
@@ -228,6 +215,26 @@ export default class Game extends Phaser.Scene {
       });
     }
 
+  CreateDeadZone(x, y, w, h) {
+    let deadZoneBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, w, h, { isSensor: true });
+    let deadZone = new DeadZone({
+      scene: this,
+      x: x,
+      y: y,
+      w: w,
+      h: h,
+      hasGravity: false,
+      body: {
+        parts: [deadZoneBody],
+        inertia: Infinity
+      },
+      label: 'deadzone'
+    });
+    deadZone.setCollisionCategory(this.collisionLayers.deadZone);
+    deadZone.setCollidesWith(this.collisionLayers.player);
+    return deadZone;
+  }
+
     CreateColectible(x, y){
       let collectible = new Collectible({
         scene: this,
@@ -245,6 +252,7 @@ export default class Game extends Phaser.Scene {
       });
       collectible.setCollisionCategory(this.collisionLayers.collectible);
       collectible.setCollidesWith([this.collisionLayers.player]);
+      return collectible;
     }
 
     CreateBigColectible(x, y){
@@ -264,6 +272,7 @@ export default class Game extends Phaser.Scene {
       });     
       collectible.setCollisionCategory(this.collisionLayers.collectible);
       collectible.setCollidesWith([this.collisionLayers.player]);
+      return collectible;
     }
 
     CreateEnemy(x, y){
@@ -288,7 +297,8 @@ export default class Game extends Phaser.Scene {
         triggerRight: triggerRight
       });
       enemy.setCollisionCategory(this.collisionLayers.enemy);
-      enemy.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip]);
+      enemy.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip, this.collisionLayers.triggers]);
+      return enemy;
     }
 
     CreateBrokenGlass(x, y){
@@ -308,6 +318,7 @@ export default class Game extends Phaser.Scene {
       });
       glass.setCollisionCategory(this.collisionLayers.obstacle);
       glass.setCollidesWith([this.collisionLayers.player]);
+      return glass;
     }
 
 
@@ -347,11 +358,54 @@ export default class Game extends Phaser.Scene {
       });
       goal.setCollisionCategory(this.collisionLayers.levelGoal);
       goal.setCollidesWith([this.collisionLayers.player]);
+      return goal;
     }
 
-    AddScore(scoreAdd){
-      this.score = this.score + scoreAdd;
-      this.scoreText.text = "SCORE: " + this.score;
+    CreateDronCiudadano(x, y, objectives){
+        // Body
+        let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 30, 60, 20, {isSensor: true, label: 'triggerTop'});
+        let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 35, y + 5, 15, 50, {isSensor: true, label: 'triggerLeft'});
+        let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 35, y + 5, 15, 50, {isSensor: true, label: 'triggerRight'});
+      let dron = new DronCiudadano({
+        scene: this,
+        x: x,
+        y: y,
+        w: 100,
+        h: 100,
+        hasGravity: false,
+        image: 'enemy1',
+        score: 15,
+        body: {
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 60), triggerTop, triggerLeft, triggerRight],
+          inertia: Infinity},
+        label: 'enemy',
+        triggerTop: triggerTop,
+        triggerLeft: triggerLeft,
+        triggerRight: triggerRight,
+        objectives: objectives,
+        speed: 0.1
+      });
+      dron.setCollisionCategory(this.collisionLayers.enemy);
+      dron.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip, this.collisionLayers.triggers]);
+      return dron;
+    }
+
+    CreateTrigger(x, y, w, h){
+      let trigger = new PhysSprite({
+        scene: this,
+        x: x,
+        y: y,
+        w: w,
+        h: h, 
+        hasGravity: false, 
+        body: {
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, w, h, {isSensor: true})],
+          inertia: Infinity},
+        isStatic: true,
+        label: 'trigger'
+        });
+      trigger.setCollisionCategory(this.collisionLayers.triggers);
+      return trigger;
     }
 
     CreatePlayer(x, y){
@@ -445,6 +499,12 @@ export default class Game extends Phaser.Scene {
         whipRight.SetAnchor(this.player);
   
         healthMeter.setTarget(this.player);
+        return this.player;
+    }
+
+    AddScore(scoreAdd){
+      this.score = this.score + scoreAdd;
+      this.scoreText.text = "SCORE: " + this.score;
     }
 
     update(time, delta) {
