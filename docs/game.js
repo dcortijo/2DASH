@@ -18,10 +18,11 @@ export default class Game extends Phaser.Scene {
     preload() {
       this.load.image('playerImage', 'Personaje1.png');
       this.load.image('background', 'background.png');
-      this.load.tilemapTiledJSON('NivelPrueba', 'NivelPrueba.json');
       this.load.image('patrones', 'TilesetPrueba.png');
       this.load.image('dronCiudadano', 'DronCiudadano.png');
       this.load.image('boba', 'Boba.png');
+      this.load.tilemapTiledJSON('Nivel1', 'Nivel1.json');
+      this.load.image('patrones', 'TilesetFirst.png');
       this.load.image('collectible', 'Collectible.png');
       this.load.spritesheet('healthMeter1', 'Heart1.png', {
         frameWidth: 64,
@@ -71,14 +72,16 @@ export default class Game extends Phaser.Scene {
 
       //Tilemap
       this.map = this.make.tilemap({ 
-        key: 'NivelPrueba', 
+        key: 'Nivel1', 
         tileWidth: 64, 
         tileHeight: 64,
       });
-      this.map.addTilesetImage('tilesetBuildings', 'patrones');
-      this.layer = this.map.createStaticLayer('layer', 'tilesetBuildings');
+      this.map.addTilesetImage('tileset1', 'patrones');
+      this.layer = this.map.createStaticLayer('layer', 'tileset1');
       this.layer.setCollisionBetween(0, 999);
       let objectLayers = this.map.objects;
+
+      this.CreatePlayer(objectLayers[3].objects[0].x, objectLayers[3].objects[0].y);
       for(let i = 0; i < objectLayers[2].objects.length; i++){     
           this.CreateColectible(objectLayers[2].objects[i].x, objectLayers[2].objects[i].y);
       }
@@ -105,7 +108,7 @@ export default class Game extends Phaser.Scene {
       this.matter.world.setBounds(0, 0, 32000, 3250);
 
       // Player
-      this.CreatePlayer(100, 100);
+      //this.CreatePlayer(100, 100);
 
       // Camera
         // Remove default camera
