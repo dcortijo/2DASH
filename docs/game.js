@@ -9,6 +9,7 @@ import DeadZone from './DeadZone.js';
 import BrokenGlass from './BrokenGlass.js';
 import Whip from './Whip.js';
 import DronCiudadano from './DronCiudadano.js';
+import Boba from './Boba.js';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -19,7 +20,8 @@ export default class Game extends Phaser.Scene {
       this.load.image('background', 'background.png');
       this.load.tilemapTiledJSON('NivelPrueba', 'NivelPrueba.json');
       this.load.image('patrones', 'TilesetPrueba.png');
-      this.load.image('enemy1', 'DronCiudadano.png');
+      this.load.image('dronCiudadano', 'DronCiudadano.png');
+      this.load.image('boba', 'Boba.png');
       this.load.image('collectible', 'Collectible.png');
       this.load.spritesheet('healthMeter1', 'Heart1.png', {
         frameWidth: 64,
@@ -141,8 +143,14 @@ export default class Game extends Phaser.Scene {
       // Collectible
       this.CreateBigColectible(300, 600);
 
-      //Enemy
-      this.CreateDronCiudadano(500, 200, [this.CreateTrigger(350, 150, 100, 100), this.CreateTrigger(650, 250, 100, 100)]);
+      //DronCiudadano
+      this.CreateDronCiudadano(500, 200, [this.CreateTrigger(350, 150, 30, 30), this.CreateTrigger(650, 250, 30, 30), this.CreateTrigger(400, 400, 30, 30)]);
+
+      //Boba
+      this.CreateBoba(900, 200, [this.CreateTrigger(750, 200, 30, 30), this.CreateTrigger(1050, 200, 30, 30)]);
+
+      //Platform
+      this.CreatePlatform(900, 240, 700, 30);
 
       //Platform
       this.CreatePlatform(1500, 600, 3000, 30);
@@ -284,7 +292,7 @@ export default class Game extends Phaser.Scene {
         w: 100,
         h: 100,
         hasGravity: false,
-        image: 'enemy1',
+        image: 'dronCiudadano',
         score: 15,
         body: {
           parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 60), triggerTop, triggerLeft, triggerRight],
@@ -326,7 +334,7 @@ export default class Game extends Phaser.Scene {
 
     // Delete?
     CreatePlatform(x, y, w, h){
-      new PhysSprite({
+      let plat = new PhysSprite({
         scene: this,
         x: x,
         y: y,
@@ -339,6 +347,7 @@ export default class Game extends Phaser.Scene {
         isStatic: true,
         label: 'platform'
       });
+      plat.setCollisionCategory(this.collisionLayers.obstacle);
     }
 
     CreateLevelGoal(x, y){
@@ -371,7 +380,7 @@ export default class Game extends Phaser.Scene {
         w: 100,
         h: 100,
         hasGravity: false,
-        image: 'enemy1',
+        image: 'dronCiudadano',
         score: 15,
         body: {
           parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 60), triggerTop, triggerLeft, triggerRight],
@@ -386,6 +395,36 @@ export default class Game extends Phaser.Scene {
       dron.setCollisionCategory(this.collisionLayers.enemy);
       dron.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip, this.collisionLayers.triggers]);
       return dron;
+    }
+
+    CreateBoba(x, y, objectives){
+        // Body
+        let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 20, 50, 20, {isSensor: true, label: 'triggerTop'});
+        let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 35, y, 15, 35, {isSensor: true, label: 'triggerLeft'});
+        let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 35, y, 15, 35, {isSensor: true, label: 'triggerRight'});
+      let boba = new Boba({
+        scene: this,
+        x: x,
+        y: y,
+        w: 100,
+        h: 100,
+        hasGravity: true,
+        isStatic: false,
+        image: 'boba',
+        score: 15,
+        body: {
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 60, 40), triggerTop, triggerLeft, triggerRight],
+          inertia: Infinity},
+        label: 'enemy',
+        triggerTop: triggerTop,
+        triggerLeft: triggerLeft,
+        triggerRight: triggerRight,
+        objectives: objectives,
+        speed: 0.05
+      });
+      boba.setCollisionCategory(this.collisionLayers.enemy);
+      boba.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip, this.collisionLayers.triggers, this.collisionLayers.obstacle]);
+      return boba;
     }
 
     CreateTrigger(x, y, w, h){

@@ -1,10 +1,10 @@
-import Enemy from './Enemy.js';
-import TriggerFlyerComponent from './TriggerFlyerComponent.js';
+import TriggerWalkerComponent from './TriggerWalkerComponent.js';
 import TriggerStayMessage from './TriggerStayMessage.js';
-export default class DronCiudadano extends Enemy{
+import Enemy from './Enemy.js';
+export default class Boba extends Enemy{
     constructor(config){ // config + {objectives[], speed}
         super(config);
-        this.components = [new TriggerFlyerComponent(this, config.objectives, config.speed)];
+        this.components = [new TriggerWalkerComponent(this, config.objectives, config.speed)];
     }
 
     OnTriggerStay = function(body, other){
