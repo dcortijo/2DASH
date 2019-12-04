@@ -1,7 +1,7 @@
 import Component from './Component.js';
 import TriggerEnterMessage from './TriggerEnterMessage.js';
 import TriggerStayMessage from './TriggerStayMessage.js';
-export default class TriggerFollowerComponent extends Component{
+export default class TriggerFlyerComponent extends Component{
     constructor(entity, triggers, speed){
         super(entity);
         this.triggers = triggers;//[]
@@ -36,10 +36,8 @@ export default class TriggerFollowerComponent extends Component{
     MoveTowardsObjective(delta){
         let direction = {x: this.triggers[this.objective].x - this.entity.x, y: this.triggers[this.objective].y - this.entity.y};
         let magnitude = Math.sqrt(Math.pow(direction.x, 2) + Math.pow(direction.y, 2));
-        direction = {x: direction.x / magnitude, y: direction.y / magnitude};
-        let newX = direction.x * this.speed * delta + this.entity.x;
-        let newY = direction.y * this.speed * delta + this.entity.y;
-        this.entity.x = newX;
-        this.entity.y = newY;
+        direction = {x: direction.x / magnitude * this.speed, y: direction.y / magnitude * this.speed};
+        magnitude = Math.sqrt(Math.pow(direction.x, 2) + Math.pow(direction.y, 2));
+        this.entity.applyForce(direction);
     }
 }

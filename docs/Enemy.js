@@ -2,20 +2,12 @@ import Character from './Character.js';
 export default class Enemy extends Character{
     constructor(config){ // config de Character
         super(config);
-        this.setFixedRotation();
         this.setFriction(1, 1, 1);
-        this.desiredX = config.x;
-        this.desiredY = config.y;
         this.triggerLeft = config.triggerLeft;
         this.triggerRight = config.triggerRight;
         this.triggerTop = config.triggerTop;
         this.colliding = false;
         this.score = config.score;
-    }
-
-    preUpdate(){
-        //this.x = this.desiredX;
-        //this.y = this.desiredY;
     }
 
     OnCollisionStart = function(body1, body2, evento){
