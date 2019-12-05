@@ -231,11 +231,11 @@ export default class Game extends Phaser.Scene {
     }
 
   CreateDeadZone(x, y, w, h) {
-    let deadZoneBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, w, h, { isSensor: true });
+    let deadZoneBody = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + w/2, y + h/2, w, h, { isSensor: true });
     let deadZone = new DeadZone({
       scene: this,
-      x: x,
-      y: y,
+      x: x + w/2,
+      y: y + h/2,
       w: w,
       h: h,
       hasGravity: false,
