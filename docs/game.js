@@ -81,6 +81,9 @@ export default class Game extends Phaser.Scene {
       let objectLayers = this.map.objects;
 
       // Object layers
+      for(let i = 0; i < objectLayers[5].objects.length; i++){
+        this.CreateDeadZone(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height);
+      }
       for(let i = 0; i < objectLayers[4].objects.length; i++){
         this.CreatePlatform(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, objectLayers[4].objects[i].width, objectLayers[4].objects[i].height);
       }
