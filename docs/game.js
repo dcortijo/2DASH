@@ -78,8 +78,6 @@ export default class Game extends Phaser.Scene {
       });
       this.map.addTilesetImage('tileset1', 'patrones');
       this.layer = this.map.createStaticLayer('layer', 'tileset1');
-      this.layerBelow = this.map.createStaticLayer('layerBelow', 'tileset1');
-      this.layer.setCollisionBetween(0, 999);
       let objectLayers = this.map.objects;
 
       this.CreatePlayer(objectLayers[3].objects[0].x, objectLayers[3].objects[0].y);
