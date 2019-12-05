@@ -337,12 +337,12 @@ export default class Game extends Phaser.Scene {
     CreatePlatform(x, y, w, h){
       let plat = new PhysSprite({
         scene: this,
-        x: x,
-        y: y,
+        x: x + w/2,
+        y: y + h/2,
         w: w,
         h: h,
         body: {
-          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, w, h, {label: 'plataforma'})],
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + w/2, y +h/2, w, h, {label: 'plataforma'})],
           inertia: Infinity},
         isStatic: true,
         label: 'platform'

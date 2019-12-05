@@ -112,11 +112,10 @@ export default class Player extends Enemy{
 
     OnCollisionStay = function(body, other){
         if(!other.isSensor && other.gameObject) {
-            if(!other.gameObject.Die){
-                if(body.label === 'lowBall'){
-                    this.onFloor = true;
-                    this.boostBool = true;
-                } 
+            if(!other.gameObject.Die && body.label === 'lowBall'){
+                this.onFloor = true;
+                this.boostBool = true;
+                
             }
         }
     }
