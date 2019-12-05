@@ -81,6 +81,10 @@ export default class Game extends Phaser.Scene {
       this.layer.setCollisionBetween(0, 999);
       let objectLayers = this.map.objects;
 
+      // Object layers
+      for(let i = 0; i < objectLayers[4].objects.length; i++){
+        this.CreatePlatform(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, objectLayers[4].objects[i].width, objectLayers[4].objects[i].height);
+      }
       this.CreatePlayer(objectLayers[3].objects[0].x, objectLayers[3].objects[0].y);
       for(let i = 0; i < objectLayers[2].objects.length; i++){     
           this.CreateColectible(objectLayers[2].objects[i].x, objectLayers[2].objects[i].y);
@@ -330,12 +334,7 @@ export default class Game extends Phaser.Scene {
       return glass;
     }
 
-
-
-
-
-
-    // Delete?
+    // Crea plataformas invisibles
     CreatePlatform(x, y, w, h){
       let plat = new PhysSprite({
         scene: this,
@@ -343,7 +342,6 @@ export default class Game extends Phaser.Scene {
         y: y,
         w: w,
         h: h,
-        image: 'playerImage',
         body: {
           parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, w, h, {label: 'plataforma'})],
           inertia: Infinity},
