@@ -18,7 +18,19 @@
          "draworder":"topdown",
          "id":4,
          "name":"glassLayer",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":336,
+                 "name":"",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":9728,
+                 "y":3008
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -29,7 +41,162 @@
          "draworder":"topdown",
          "id":2,
          "name":"enemyLayer",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":331,
+                 "name":"Dron",
+                 "point":true,
+                 "rotation":0,
+                 "type":"3",
+                 "visible":true,
+                 "width":0,
+                 "x":4638,
+                 "y":2818
+                }, 
+                {
+                 "height":0,
+                 "id":332,
+                 "name":"Dron",
+                 "point":true,
+                 "rotation":0,
+                 "type":"2",
+                 "visible":true,
+                 "width":0,
+                 "x":5846,
+                 "y":2764
+                }, 
+                {
+                 "height":0,
+                 "id":333,
+                 "name":"Dron",
+                 "point":true,
+                 "rotation":0,
+                 "type":"1",
+                 "visible":true,
+                 "width":0,
+                 "x":9342,
+                 "y":2972
+                }, 
+                {
+                 "height":0,
+                 "id":334,
+                 "name":"Dron",
+                 "point":true,
+                 "rotation":0,
+                 "type":"0",
+                 "visible":true,
+                 "width":0,
+                 "x":16060,
+                 "y":2660
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"objectiveLayer",
+         "objects":[
+                {
+                 "height":0,
+                 "id":338,
+                 "name":"DronObj",
+                 "point":true,
+                 "rotation":0,
+                 "type":"3",
+                 "visible":true,
+                 "width":0,
+                 "x":4736,
+                 "y":2816
+                }, 
+                {
+                 "height":0,
+                 "id":339,
+                 "name":"DronObj",
+                 "point":true,
+                 "rotation":0,
+                 "type":"3",
+                 "visible":true,
+                 "width":0,
+                 "x":4544,
+                 "y":2816
+                }, 
+                {
+                 "height":0,
+                 "id":344,
+                 "name":"DronObj",
+                 "point":true,
+                 "rotation":0,
+                 "type":"0",
+                 "visible":true,
+                 "width":0,
+                 "x":15937.3333333333,
+                 "y":2649.33333333333
+                }, 
+                {
+                 "height":0,
+                 "id":345,
+                 "name":"DronObj",
+                 "point":true,
+                 "rotation":0,
+                 "type":"0",
+                 "visible":true,
+                 "width":0,
+                 "x":16192,
+                 "y":2645.33333333333
+                }, 
+                {
+                 "height":0,
+                 "id":346,
+                 "name":"DronObj",
+                 "point":true,
+                 "rotation":0,
+                 "type":"1",
+                 "visible":true,
+                 "width":0,
+                 "x":9246.66666666667,
+                 "y":2962.66666666667
+                }, 
+                {
+                 "height":0,
+                 "id":347,
+                 "name":"DronObj",
+                 "point":true,
+                 "rotation":0,
+                 "type":"1",
+                 "visible":true,
+                 "width":0,
+                 "x":9440,
+                 "y":2958.66666666667
+                }, 
+                {
+                 "height":0,
+                 "id":348,
+                 "name":"DronObj",
+                 "point":true,
+                 "rotation":0,
+                 "type":"2",
+                 "visible":true,
+                 "width":0,
+                 "x":5760,
+                 "y":2750.66666666667
+                }, 
+                {
+                 "height":0,
+                 "id":349,
+                 "name":"DronObj",
+                 "point":true,
+                 "rotation":0,
+                 "type":"2",
+                 "visible":true,
+                 "width":0,
+                 "x":5924,
+                 "y":2745.33333333333
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -50,8 +217,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":605.333333333333,
-                 "y":2870.66666666667
+                 "x":605.333,
+                 "y":2870.67
                 }, 
                 {
                  "height":0,
@@ -63,7 +230,7 @@
                  "visible":true,
                  "width":0,
                  "x":796,
-                 "y":2810.66666666667
+                 "y":2810.67
                 }, 
                 {
                  "height":0,
@@ -74,7 +241,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1022.66666666667,
+                 "x":1022.67,
                  "y":2804
                 }, 
                 {
@@ -98,8 +265,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":2206.66666666667,
-                 "y":2738.66666666667
+                 "x":2206.67,
+                 "y":2738.67
                 }, 
                 {
                  "height":0,
@@ -110,8 +277,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":3070.66666666667,
-                 "y":2738.66666666667
+                 "x":3070.67,
+                 "y":2738.67
                 }, 
                 {
                  "height":0,
@@ -123,7 +290,7 @@
                  "visible":true,
                  "width":0,
                  "x":2748,
-                 "y":2785.33333333333
+                 "y":2785.33
                 }, 
                 {
                  "height":0,
@@ -146,8 +313,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":3933.33333333333,
-                 "y":2737.33333333333
+                 "x":3933.33,
+                 "y":2737.33
                 }, 
                 {
                  "height":0,
@@ -158,7 +325,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":4637.33333333333,
+                 "x":4637.33,
                  "y":2712
                 }, 
                 {
@@ -170,8 +337,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":5117.33333333333,
-                 "y":2710.66666666667
+                 "x":5117.33,
+                 "y":2710.67
                 }, 
                 {
                  "height":0,
@@ -182,8 +349,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":5846.66666666667,
-                 "y":2670.66666666667
+                 "x":5846.67,
+                 "y":2670.67
                 }, 
                 {
                  "height":0,
@@ -194,8 +361,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":5481.33333333333,
-                 "y":2741.33333333333
+                 "x":5481.33,
+                 "y":2741.33
                 }, 
                 {
                  "height":0,
@@ -218,7 +385,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":7261.33333333333,
+                 "x":7261.33,
                  "y":2684
                 }, 
                 {
@@ -230,8 +397,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":7922.66666666667,
-                 "y":2681.33333333333
+                 "x":7922.67,
+                 "y":2681.33
                 }, 
                 {
                  "height":0,
@@ -254,8 +421,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":8474.66666666667,
-                 "y":2745.33333333333
+                 "x":8474.67,
+                 "y":2745.33
                 }, 
                 {
                  "height":0,
@@ -266,8 +433,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":8666.66666666667,
-                 "y":2741.33333333333
+                 "x":8666.67,
+                 "y":2741.33
                 }, 
                 {
                  "height":0,
@@ -278,7 +445,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":9185.33333333333,
+                 "x":9185.33,
                  "y":2616
                 }, 
                 {
@@ -290,7 +457,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":9309.33333333333,
+                 "x":9309.33,
                  "y":2616
                 }, 
                 {
@@ -302,7 +469,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":9437.33333333333,
+                 "x":9437.33,
                  "y":2612
                 }, 
                 {
@@ -327,7 +494,7 @@
                  "visible":true,
                  "width":0,
                  "x":9692,
-                 "y":2614.66666666667
+                 "y":2614.67
                 }, 
                 {
                  "height":0,
@@ -339,7 +506,7 @@
                  "visible":true,
                  "width":0,
                  "x":9824,
-                 "y":2610.66666666667
+                 "y":2610.67
                 }, 
                 {
                  "height":0,
@@ -350,8 +517,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":9954.66666666667,
-                 "y":2610.66666666667
+                 "x":9954.67,
+                 "y":2610.67
                 }, 
                 {
                  "height":0,
@@ -362,8 +529,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":10650.6666666667,
-                 "y":2862.66666666667
+                 "x":10650.7,
+                 "y":2862.67
                 }, 
                 {
                  "height":0,
@@ -399,7 +566,7 @@
                  "visible":true,
                  "width":0,
                  "x":13720,
-                 "y":2797.33333333333
+                 "y":2797.33
                 }, 
                 {
                  "height":0,
@@ -422,7 +589,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":14878.6666666667,
+                 "x":14878.7,
                  "y":2648
                 }, 
                 {
@@ -626,8 +793,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":409.090909090909,
-                 "y":2860.60606060606
+                 "x":409.091,
+                 "y":2860.61
                 }, 
                 {
                  "height":0,
@@ -650,8 +817,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1282.66666666667,
-                 "y":2682.66666666667
+                 "x":1282.67,
+                 "y":2682.67
                 }, 
                 {
                  "height":0,
@@ -662,8 +829,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":10205.3333333333,
-                 "y":2614.66666666667
+                 "x":10205.3,
+                 "y":2614.67
                 }, 
                 {
                  "height":0,
@@ -674,7 +841,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":10329.3333333333,
+                 "x":10329.3,
                  "y":2740
                 }, 
                 {
@@ -686,8 +853,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":11182.6666666667,
-                 "y":2801.33333333333
+                 "x":11182.7,
+                 "y":2801.33
                 }, 
                 {
                  "height":0,
@@ -699,7 +866,7 @@
                  "visible":true,
                  "width":0,
                  "x":12512,
-                 "y":2749.33333333333
+                 "y":2749.33
                 }, 
                 {
                  "height":0,
@@ -710,7 +877,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":18621.3333333333,
+                 "x":18621.3,
                  "y":2616
                 }, 
                 {
@@ -722,7 +889,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":19261.3333333333,
+                 "x":19261.3,
                  "y":2544
                 }, 
                 {
@@ -734,7 +901,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":19838.6666666667,
+                 "x":19838.7,
                  "y":2468
                 }, 
                 {
@@ -746,8 +913,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":20289.3333333333,
-                 "y":2485.33333333333
+                 "x":20289.3,
+                 "y":2485.33
                 }, 
                 {
                  "height":0,
@@ -758,8 +925,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":23154.6666666667,
-                 "y":2358.66666666667
+                 "x":23154.7,
+                 "y":2358.67
                 }, 
                 {
                  "height":0,
@@ -770,7 +937,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":24866.6666666667,
+                 "x":24866.7,
                  "y":2632
                 }, 
                 {
@@ -782,8 +949,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":25277.3333333333,
-                 "y":2561.33333333333
+                 "x":25277.3,
+                 "y":2561.33
                 }, 
                 {
                  "height":0,
@@ -1502,9 +1669,31 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":10,
+         "name":"goalLayer",
+         "objects":[
+                {
+                 "height":128,
+                 "id":353,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":192,
+                 "x":31680,
+                 "y":2240
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":331,
+ "nextlayerid":11,
+ "nextobjectid":354,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.2.5",

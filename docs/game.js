@@ -81,19 +81,37 @@ export default class Game extends Phaser.Scene {
       let objectLayers = this.map.objects;
 
       // Object layers
+      this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);
+
+      for(let i = 0; i < objectLayers[6].objects.length; i++){
+        this.CreateDeadZone(objectLayers[6].objects[i].x, objectLayers[6].objects[i].y, objectLayers[6].objects[i].width, objectLayers[6].objects[i].height);
+      }
       for(let i = 0; i < objectLayers[5].objects.length; i++){
-        this.CreateDeadZone(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height);
+        this.CreatePlatform(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height);
       }
-      for(let i = 0; i < objectLayers[4].objects.length; i++){
-        this.CreatePlatform(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, objectLayers[4].objects[i].width, objectLayers[4].objects[i].height);
+
+      this.CreatePlayer(objectLayers[4].objects[0].x, objectLayers[4].objects[0].y);
+
+      for(let i = 0; i < objectLayers[3].objects.length; i++){     
+          this.CreateColectible(objectLayers[3].objects[i].x, objectLayers[3].objects[i].y);
       }
-      this.CreatePlayer(objectLayers[3].objects[0].x, objectLayers[3].objects[0].y);
-      for(let i = 0; i < objectLayers[2].objects.length; i++){     
-          this.CreateColectible(objectLayers[2].objects[i].x, objectLayers[2].objects[i].y);
+      
+      for(let i = 0; i < objectLayers[1].objects.length; i++){
+        let arrObjetivos = [];
+        for(let j = 0; j < objectLayers[2].objects.length; j++){
+          if(objectLayers[2].objects[j].type === objectLayers[1].objects[i].type){
+            let trigger = this.CreateTrigger(objectLayers[2].objects[j].x ,
+              objectLayers[2].objects[j].y, 30, 30);
+              arrObjetivos.push(trigger);
+          }          
+        }
+        if(objectLayers[1].objects[i].name === 'Dron'){
+          this.CreateDronCiudadano(objectLayers[1].objects[i].x, objectLayers[1].objects[i].y, arrObjetivos);
+        }else if(objectLayers[1].objects[i].name === 'Boba'){
+          this.CreateBoba(objectLayers[1].objects[i].x, objectLayers[1].objects[i].y, arrObjetivos);
+        }
       }
-      for(let i = 0; i < objectLayers[1].objects.length; i++){     
-        this.CreateEnemy(objectLayers[1].objects[i].x, objectLayers[1].objects[i].y);
-      }
+
       for(let i = 0; i < objectLayers[0].objects.length; i++){     
           this.CreateBrokenGlass(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y);
       }

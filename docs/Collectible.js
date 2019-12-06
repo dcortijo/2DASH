@@ -18,7 +18,9 @@ export default class Collectible extends PhysSprite{
     }
 
     Collect(){
-        this.scene.AddScore(this.score);
-        this.destroy();
+        if(this.scene){
+            this.scene.AddScore(this.score);
+            this.destroy();
+        }
     }
 }
