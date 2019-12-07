@@ -54,20 +54,17 @@ export default class Game extends Phaser.Scene {
       this.anims.create({
         key: 'runRight',
         frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 3 }),
-        frameRate: 10,
-        repeat: -1
+        frameRate: 10
       });
       this.anims.create({
         key: 'runLeft',
         frames: this.anims.generateFrameNumbers('playerRun', { start: 4, end: 7 }),
-        frameRate: 10,
-        repeat: -1
+        frameRate: 10
       });
       this.anims.create({
         key: 'whip',
         frames: this.anims.generateFrameNumbers('whipS', { start: 0, end: 2 }),
-        frameRate: 4,
-        repeat: 0
+        frameRate: 4
       });
 
       //Tilemap

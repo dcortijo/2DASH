@@ -41,7 +41,6 @@ export default class Enemy extends Character{
     OnTriggerStay(body, other){
         if(other.gameObject && other.gameObject.label === 'player'){
             if(this.colliding){
-                console.log("!");
                 if(body === this.triggerLeft){
                     other.gameObject.PushLeft();
                 } else if(body === this.triggerRight){

@@ -20,6 +20,7 @@ export default class Player extends Enemy{
         this.whipLeft = config.whipLeft;
         this.whipRight = config.whipRight;
         this.boostBool = true;
+        this.curAnim = '';
 
         this.thrustDuration = 0;
 
@@ -29,17 +30,22 @@ export default class Player extends Enemy{
 
     preUpdate(t, d){
         super.preUpdate(t, d);
+
+        // Input
         if(!this.disabledControls){
             if(Math.abs(this.body.velocity.x) < this.curMaxSpeedX){
                 if(this.input.left.isDown){
-                    if(!this.anims.isPlaying)this.play('runLeft');
                     this.MoveLeft();
                 }
                 if(this.input.right.isDown){
-                    if(!this.anims.isPlaying)this.play('runRight');
                     this.MoveRight();
                 }
             }
+
+            // State Machine
+            if(this.body.velocity.x < 0) this.curAnim = 'runLeft';
+            else if(this.body.velocity.x > 0) this.curAnim = 'runRight';
+            else this.curAnim = '';
 
             if(this.onFloor){
                 if(this.input.up.isDown){
@@ -49,6 +55,9 @@ export default class Player extends Enemy{
                 }
             }
         }
+
+        // Animation
+        if(this.curAnim != '' && !this.anims.isPlaying) this.play(this.curAnim);
 
         // Drag X
         if(this.body.velocity.x < -0.1){
