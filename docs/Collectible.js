@@ -5,13 +5,13 @@ export default class Collectible extends PhysSprite{
         this.score = config.score;
     }
 
-    OnTriggerStart = function(body, other){
+    OnTriggerStart(body, other){
         if(other.gameObject && other.gameObject.label === 'player' && !other.isSensor){
             this.Collect();
         }
     }
 
-    OnTriggerStay = function(body, other){
+    OnTriggerStay(body, other){
         if(other.gameObject && other.gameObject.label === 'player' && !other.isSensor){
             this.Collect();
         }

@@ -18,7 +18,6 @@ export default class TriggerFlyerComponent extends Component{
     receive(message){
         if(message instanceof TriggerStayMessage){
             if(message.other.gameObject === this.triggers[this.objective]){
-                console.log("Next trigger");
                 this.SetNextObjective();
             }
         }
