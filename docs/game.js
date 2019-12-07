@@ -23,6 +23,7 @@ export default class Game extends Phaser.Scene {
       this.load.image('boba', 'Boba.png');
       this.load.tilemapTiledJSON('Nivel1', 'Nivel1.json');
       this.load.image('patrones', 'TilesetFirst.png');
+      this.load.image('patronesB', 'TilesetBackground.png');
       this.load.image('collectible', 'Collectible.png');
       this.load.spritesheet('healthMeter1', 'Heart1.png', {
         frameWidth: 64,
@@ -87,7 +88,9 @@ export default class Game extends Phaser.Scene {
         tileHeight: 64,
       });
       this.map.addTilesetImage('tileset1', 'patrones');
+      this.map.addTilesetImage('tilesetB', 'patronesB');
       this.layer = this.map.createStaticLayer('layer', 'tileset1');
+      this.layerB = this.map.createStaticLayer('layerB', 'tilesetB');
       let objectLayers = this.map.objects;
 
       // Object layers
