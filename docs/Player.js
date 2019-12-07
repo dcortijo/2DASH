@@ -31,6 +31,11 @@ export default class Player extends Enemy{
     preUpdate(t, d){
         super.preUpdate(t, d);
 
+        if(this.body.velocity.y < -0.01 || this.body.velocity.y > 0.01){
+            if(this.body.velocity.x < -0.1) this.anims.play('jumpLeft');
+            else this.anims.play('jumpRight')
+        }else if(this.curAnim === '') this.anims.play('runRight');
+
         // Input
         if(!this.disabledControls){
             if(Math.abs(this.body.velocity.x) < this.curMaxSpeedX){
@@ -45,6 +50,10 @@ export default class Player extends Enemy{
             // State Machine
             if(this.body.velocity.x < 0) this.curAnim = 'runLeft';
             else if(this.body.velocity.x > 0) this.curAnim = 'runRight';
+            else if(this.body.velocity.y != 0){
+                if(this.body.velocity.x < -0.1) this.curAnim = 'jumpLeft';
+                else this.curAnim = 'jumpRight';
+            }
             else this.curAnim = '';
 
             if(this.onFloor){
