@@ -104,13 +104,13 @@ export default class Player extends Enemy{
         }
     }
 
-    OnCollisionStart = function(body, other){
+    OnCollisionStart(body, other){
         if(other.gameObject && !other.gameObject.Die){
             this.disabledControls = false;
         }
     }
 
-    OnCollisionStay = function(body, other){
+    OnCollisionStay(body, other){
         if(!other.isSensor && other.gameObject) {
             if(!other.gameObject.Die && body.label === 'lowBall'){
                 this.onFloor = true;

@@ -7,7 +7,7 @@ export default class DronCiudadano extends Enemy{
         this.components = [new TriggerFlyerComponent(this, config.objectives, config.speed)];
     }
 
-    OnTriggerStay = function(body, other){
+    OnTriggerStay(body, other){
         this.components.forEach(element => {
             element.receive(new TriggerStayMessage(this, body, other));
         });

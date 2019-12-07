@@ -5,13 +5,13 @@ export default class BrokenGlass extends PhysSprite{
         this.slowMultiplier = config.slowMultiplier;
     }
 
-    OnTriggerStart = function(body, other){
+    OnTriggerStart(body, other){
         if(other.gameObject && other.gameObject.label === 'player' && !other.isSensor){
             other.gameObject.ReduceMaxSpeed(this.slowMultiplier);
         }
     }
 
-    OnTriggerEnd = function(body, other){
+    OnTriggerEnd(body, other){
         if(other.gameObject && other.gameObject.label === 'player' && !other.isSensor){
             other.gameObject.ResetMaxSpeed();
         }
