@@ -30,6 +30,7 @@ export default class Game extends Phaser.Scene {
       });
       this.load.spritesheet('whipS', 'WhipSheet.png', {frameWidth: 96, frameHeight: 32});
       this.load.spritesheet('playerRun', 'MachFoxRunSheet.png', {frameWidth: 32, frameHeight: 32});
+      this.load.spritesheet('playerJump', 'MachFoxJumpin.png', {frameWidth: 32, frameHeight: 32});
     }
 
     create() {
@@ -53,13 +54,25 @@ export default class Game extends Phaser.Scene {
       //Animaciones
       this.anims.create({
         key: 'runRight',
-        frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 3 }),
+        frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 4 }),
         frameRate: 10
       });
       this.anims.create({
         key: 'runLeft',
-        frames: this.anims.generateFrameNumbers('playerRun', { start: 4, end: 7 }),
+        frames: this.anims.generateFrameNumbers('playerRun', { start: 5, end: 9 }),
         frameRate: 10
+      });
+      this.anims.create({
+        key: 'jumpRight',
+        frames: this.anims.generateFrameNumbers('playerJump', { start: 0, end: 0 }),
+        frameRate: 10,
+        repeat: 0
+      });
+      this.anims.create({
+        key: 'jumpLeft',
+        frames: this.anims.generateFrameNumbers('playerJump', { start: 1, end: 1 }),
+        frameRate: 10,
+        repeat: 0
       });
       this.anims.create({
         key: 'whip',
