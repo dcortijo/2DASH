@@ -411,7 +411,7 @@ export default class Game extends Phaser.Scene {
         triggerLeft: triggerLeft,
         triggerRight: triggerRight,
         objectives: objectives,
-        speed: 0.1
+        speed: 0.04
       });
       dron.setCollisionCategory(this.collisionLayers.enemy);
       dron.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip, this.collisionLayers.triggers]);
