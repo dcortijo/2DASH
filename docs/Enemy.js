@@ -10,20 +10,20 @@ export default class Enemy extends Character{
         this.score = config.score;
     }
 
-    OnCollisionStart = function(body1, body2, evento){
+    OnCollisionStart(body1, body2, evento){
         if(body2.gameObject && body2.gameObject.Hurt){
             this.colliding = true;
             body2.gameObject.Hurt();
         } 
     }
     
-    OnCollisionEnd = function (body, other, evento) {
+    OnCollisionEnd(body, other, evento) {
         if(other.gameObject && other.gameObject.Hurt){
             this.colliding = false;
         }
     }
 
-    OnTriggerStart = function(obj1, obj2){
+    OnTriggerStart(obj1, obj2){
         if(obj2.gameObject && obj2.gameObject.label === 'player'){
             if(obj1 === this.triggerTop && obj2.gameObject.GetFeet() === obj2){
                 obj2.gameObject.BoostJump();
@@ -32,15 +32,16 @@ export default class Enemy extends Character{
         }
     }
 
-    OnTriggerEnd = function (body, other) {
+    OnTriggerEnd(body, other) {
         if(other.gameObject && other.gameObject.label === 'player'){
          this.colliding = false;   
         }
     }
 
-    OnTriggerStay = function(body, other){
+    OnTriggerStay(body, other){
         if(other.gameObject && other.gameObject.label === 'player'){
             if(this.colliding){
+                console.log("!");
                 if(body === this.triggerLeft){
                     other.gameObject.PushLeft();
                 } else if(body === this.triggerRight){
