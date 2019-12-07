@@ -388,9 +388,9 @@ export default class Game extends Phaser.Scene {
 
     CreateDronCiudadano(x, y, objectives){
         // Body
-        let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 30, 60, 20, {isSensor: true, label: 'triggerTop'});
-        let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 35, y + 5, 15, 50, {isSensor: true, label: 'triggerLeft'});
-        let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 35, y + 5, 15, 50, {isSensor: true, label: 'triggerRight'});
+        let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 30, 60, 35, {isSensor: true, label: 'triggerTop'});
+        let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 40, y + 5, 15, 50, {isSensor: true, label: 'triggerLeft'});
+        let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 40, y + 5, 15, 50, {isSensor: true, label: 'triggerRight'});
       let dron = new DronCiudadano({
         scene: this,
         x: x,
