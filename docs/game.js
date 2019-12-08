@@ -535,7 +535,9 @@ export default class Game extends Phaser.Scene {
         // Player
           // Body
           let playerPartA = Phaser.Physics.Matter.Matter.Bodies.circle(x, y + 45, 18, {label: 'lowBall'});
-          let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 10, 40, 70, {chamfer: {radius: 10}});
+          let playerPartB = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 10, 40, 70);
+          let playerPartC = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 20, y + 45, 20, 30, {isSensor: true, label: 'failsafe'});
+          let playerPartD = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 20, y + 45, 20, 30, {isSensor: true, label: 'failsafe'});
           let playerSensorFeet = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 70, 30, 20, {isSensor: true, label: 'feet'});
         this.player = new Player({
           scene: this,
@@ -547,7 +549,7 @@ export default class Game extends Phaser.Scene {
           isStatic: false,
           image: 'playerImage',
           body: {
-            parts: [playerPartA, playerPartB, playerSensorFeet],
+            parts: [playerPartA, playerPartB, playerPartC, playerPartD, playerSensorFeet],
             inertia: Infinity
           },
           jumpStrength: 10,
