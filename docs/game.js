@@ -10,6 +10,8 @@ import BrokenGlass from './BrokenGlass.js';
 import Whip from './Whip.js';
 import DronCiudadano from './DronCiudadano.js';
 import Boba from './Boba.js';
+import CableDefectuoso from './CableDefectuoso.js';
+import Electricity from './Electricity.js'
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -25,6 +27,7 @@ export default class Game extends Phaser.Scene {
       this.load.image('patrones', 'TilesetFirst.png');
       this.load.image('patronesB', 'TilesetBackground.png');
       this.load.image('collectible', 'Collectible.png');
+      this.load.image('cableD', 'cableDefectuoso.png');
       this.load.spritesheet('healthMeter1', 'Heart1.png', {
         frameWidth: 64,
         frameHeight: 32,
@@ -32,6 +35,7 @@ export default class Game extends Phaser.Scene {
       this.load.spritesheet('whipS', 'WhipSheet.png', {frameWidth: 96, frameHeight: 32});
       this.load.spritesheet('playerRun', 'MachFoxRunSheet.png', {frameWidth: 32, frameHeight: 32});
       this.load.spritesheet('playerJump', 'MachFoxJumpin.png', {frameWidth: 32, frameHeight: 32});
+      this.load.spritesheet('electricity', 'Electricity.png', {frameWidth: 32, frameHeight: 100})
     }
 
     create() {
@@ -80,6 +84,11 @@ export default class Game extends Phaser.Scene {
         frames: this.anims.generateFrameNumbers('whipS', { start: 0, end: 2 }),
         frameRate: 4
       });
+      this.anims.create({
+        key: 'zap',
+        frames: this.anims.generateFrameNumbers('electricity', { start: 0, end: 4 }),
+        frameRate: 5
+      })
 
       //Tilemap
       this.map = this.make.tilemap({ 
@@ -130,6 +139,20 @@ export default class Game extends Phaser.Scene {
       }
       
       this.matter.world.convertTilemapLayer(this.layer);
+
+
+
+
+
+
+
+      this.CreateCableDefectuoso(610, 2912);
+
+
+
+
+
+
 
       //Score
       this.score = 0;
@@ -564,7 +587,8 @@ export default class Game extends Phaser.Scene {
           pushX: 8,
           pushY: 6,
           whipLeft: whipLeft,
-          whipRight: whipRight
+          whipRight: whipRight,
+          invul: 2000,
         });
         this.player.setCollisionCategory(this.collisionLayers.player);
 
@@ -573,6 +597,45 @@ export default class Game extends Phaser.Scene {
   
         healthMeter.setTarget(this.player);
         return this.player;
+    }
+
+    CreateCableDefectuoso(x, y){
+      let elec = new Electricity({
+        x: x + 16,
+        y: y - 50,
+        w: 32,
+        h: 100,
+        scene: this, 
+        hasGravity: false,
+        image: 'electricity',
+        body:{
+          parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 50, 32, 100, {isSensor: true, label: 'elec'})],
+          inertia: Infinity
+        },
+        isStatic: false,
+      });
+      elec.setCollisionCategory(this.collisionLayers.obstacle);
+      elec.setCollidesWith([this.collisionLayers.player]);
+
+      let cable = new CableDefectuoso({
+        scene: this,
+        x: x,
+        y: y + 16,
+        w: 64,
+        h: 32,
+        hasGravity: false,
+        image: 'cableD',
+        body: {
+        parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 16, 64, 32, {isSensor: true})],
+        inertia: Infinity 
+      },
+        label: 'cable',
+        coolDown: 5000,
+        hitBox: elec,
+      });
+      cable.setCollisionCategory(this.collisionLayers.obstacle);
+      cable.setCollidesWith([this.collisionLayers.player]);
+      return cable;
     }
 
     AddScore(scoreAdd){

@@ -21,6 +21,8 @@ export default class Player extends Enemy{
         this.whipRight = config.whipRight;
         this.boostBool = true;
         this.curAnim = '';
+        this.invul = config.invul;
+        this.invulTime = 0;
 
         this.thrustDuration = 0;
 
@@ -83,12 +85,18 @@ export default class Player extends Enemy{
         if(this.thrustDuration > -1){
             this.thrustDuration--;
         }else this.thrustDuration = -1;
+
+        if(this.invulTime < 0) this.invulTime = 0;
+        else if(this.invulTime > 0) this.invulTime = this.invulTime - d;
     }
 
     Hurt(){
-        this.health--;
-        if(this.health === 0) this.Die();
-        else this.healthMeter.HandleHealth(this.health);  
+        if(this.invulTime === 0){
+            this.health--;
+            if(this.health === 0) this.Die();
+            else this.healthMeter.HandleHealth(this.health); 
+            this.invulTime = this.invul;
+        }
     }
 
     Die(){
@@ -141,6 +149,7 @@ export default class Player extends Enemy{
     }
 
     PushLeft(){
+        
         this.setVelocityX(-this.pushX);
         this.setVelocityY(-this.pushY);
         this.disabledControls = true;
