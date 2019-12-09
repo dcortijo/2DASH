@@ -33,7 +33,7 @@ export default class Nivel1 extends Game {
       });
       this.map.addTilesetImage('tileset1', 'patrones');
       this.map.addTilesetImage('tilesetB', 'patronesB');
-      this.layer = this.map.createStaticLayer('layer', 'tileset1');
+      this.map.addTilesetImage('tilesetF', 'patronesF');
       this.layerB = this.map.createStaticLayer('layerB', 'tilesetB');
       let objectLayers = this.map.objects;
 
@@ -73,7 +73,9 @@ export default class Nivel1 extends Game {
           this.CreateBrokenGlass(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y);
       }
       
-      this.matter.world.convertTilemapLayer(this.layer);
+      //this.matter.world.convertTilemapLayer(this.layer);
+      this.layer = this.map.createStaticLayer('layer', 'tileset1');
+      this.layerF = this.map.createStaticLayer('layerF', 'tilesetF');
 
       //Score
       this.score = 0;

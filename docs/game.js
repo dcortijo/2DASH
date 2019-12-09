@@ -27,6 +27,7 @@ export default class Game extends Phaser.Scene{
         this.load.tilemapTiledJSON('Nivel2', 'Nivel2.json');
         this.load.image('patrones', './img/TilesetFirst.png');
         this.load.image('patronesB', './img/TilesetBackground.png');
+        this.load.image('patronesF', './img/TilesetForeground.png')
         this.load.image('collectible', './img/Collectible.png');
         this.load.image('cableD', './img/cableDefectuoso.png');
         this.load.spritesheet('healthMeter1', './img/Heart1.png', {
