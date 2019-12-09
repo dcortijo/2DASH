@@ -16,5 +16,6 @@ export default class LevelGoal extends PhysSprite{
 
     EndLevel(){
         console.log("Level complete!");
+        this.scene.NextLevel();
     }
 }

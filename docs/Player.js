@@ -141,9 +141,6 @@ export default class Player extends Enemy{
             if(!other.gameObject.Die && body.label === 'lowBall'){
                 this.onFloor = true;
                 this.boostBool = true;               
-            }else if(!other.gameObject.Die && body.label === 'failsafe'){
-                this.onFloor = false;
-                this.boostBool = false;
             }
         }
     }
