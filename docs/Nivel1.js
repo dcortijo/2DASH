@@ -9,10 +9,11 @@ export default class Nivel1 extends Game {
       super.create()
 
       // Background
-      let background = this.add.image(-100, 0, 'background');
+      let background = this.add.image(-100, 0, 'backgroundNivel1');
       background.setOrigin(0, 0);
-      background.displayWidth = 32000;
-      background.displayHeight = 3200;
+      background.displayWidth = 1640;
+      background.displayHeight = 810;
+      background.setScrollFactor(0);
 
       this.collisionLayers = {
         player: this.matter.world.nextCategory(),

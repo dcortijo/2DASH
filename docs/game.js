@@ -19,7 +19,7 @@ export default class Game extends Phaser.Scene{
     }
     preload() {
         this.load.image('playerImage', './img/Personaje1.png');
-        this.load.image('background', './img/background.png');
+        this.load.image('backgroundNivel1', './img/BackgroundNivel1.jpg');
         this.load.image('patrones', './img/TilesetFirst.png');
         this.load.image('dronCiudadano', './img/DronCiudadano.png');
         this.load.image('boba', './img/Boba.png');
