@@ -123,10 +123,15 @@ export default class Player extends Enemy{
         this.setVelocityX(this.body.velocity.x * 1.2);
     }
 
-    OnTriggerEnd = function(body, other){
+    OnTriggerStart(body, other){
+        if(!other.isSensor && other.gameObject && !other.gameObject.Die && body.label === 'feet') {
+            this.disabledControls = false;  
+        }
+    }
+
+    OnTriggerEnd(body, other){
         if(!other.isSensor){
             this.onFloor = false;
-            //console.log("ontriggerend");
         }
     }
 
@@ -139,6 +144,7 @@ export default class Player extends Enemy{
     OnCollisionStay(body, other){
         if(!other.isSensor && other.gameObject) {
             if(!other.gameObject.Die && body.label === 'lowBall'){
+                this.disabledControls = false;                
                 this.onFloor = true;
                 this.boostBool = true;               
             }

@@ -443,15 +443,15 @@ export default class Game extends Phaser.Scene{
     
         CreateCableDefectuoso(x, y){
           let elec = new Electricity({
-            x: x + 16,
-            y: y - 50,
+            x: x + 24,
+            y: y - 75,
             w: 32,
             h: 100,
             scene: this, 
             hasGravity: false,
             image: 'electricity',
             body:{
-              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 50, 32, 100, {isSensor: true, label: 'elec'})],
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 75, 48, 150, {isSensor: true, label: 'elec'})],
               inertia: Infinity
             },
             isStatic: false,
