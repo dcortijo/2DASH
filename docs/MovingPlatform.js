@@ -4,6 +4,7 @@ import TriggerStayMessage from './TriggerStayMessage.js';
 export default class MovingPlatform extends PhysSprite{
     constructor(config){ // config + {objectives[], speed}
         super(config);
+        this.setFriction(1, 1, 1);
         this.components = [new TriggerFlyerComponent(this, config.objectives, config.speed)];
     }
 
