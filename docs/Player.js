@@ -59,11 +59,7 @@ export default class Player extends Enemy{
             else this.curAnim = '';
 
             if(this.onFloor){
-                if(this.input.up.isDown){
-                    this.Jump(); 
-                } else{
-                    this.setVelocityY(0);
-                }
+                if(this.input.up.isDown) this.Jump(); 
             }
         }
 

@@ -232,8 +232,8 @@
                  "type":"4",
                  "visible":true,
                  "width":0,
-                 "x":446.666666666667,
-                 "y":2858.66666666667
+                 "x":894.667,
+                 "y":2830.67
                 }, 
                 {
                  "height":0,
@@ -244,8 +244,8 @@
                  "type":"4",
                  "visible":true,
                  "width":0,
-                 "x":765.333333333333,
-                 "y":2853.33333333333
+                 "x":1155.333,
+                 "y":2829.33
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1143,7 +1143,7 @@
                  "y":3008
                 }, 
                 {
-                 "height":256,
+                 "height":66,
                  "id":136,
                  "name":"",
                  "rotation":0,
@@ -1151,7 +1151,7 @@
                  "visible":true,
                  "width":192,
                  "x":512,
-                 "y":2944
+                 "y":3134
                 }, 
                 {
                  "height":320,
@@ -1689,8 +1689,19 @@
                  "type":"4",
                  "visible":true,
                  "width":64,
-                 "x":576,
-                 "y":2816
+                 "x":990,
+                 "y":2782
+                }, 
+                {
+                 "height":64,
+                 "id":372,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":512,
+                 "y":3072
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1752,9 +1763,31 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":15,
+         "name":"collapsingLayer",
+         "objects":[
+                {
+                 "height":64,
+                 "id":373,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":192,
+                 "x":512,
+                 "y":2944
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":15,
- "nextobjectid":371,
+ "nextlayerid":16,
+ "nextobjectid":374,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.2.5",

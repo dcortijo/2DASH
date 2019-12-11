@@ -38,6 +38,8 @@ export default class Nivel2 extends Game {
       let objectLayers = this.map.objects;
 
       // Object layers
+      this.CreatePlatformCrumbling(objectLayers[8].objects[0].x, objectLayers[8].objects[0].y, objectLayers[8].objects[0].width, objectLayers[8].objects[0].height);
+
       this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);
 
       for(let i = 0; i < objectLayers[6].objects.length; i++){
