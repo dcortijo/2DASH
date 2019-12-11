@@ -47,6 +47,11 @@ export default class Enemy extends Character{
                     other.gameObject.PushRight();
                 }
             }
+
+            if(obj1 === this.triggerTop && obj2.gameObject.GetFeet() === obj2){
+                obj2.gameObject.BoostJump();
+                this.Die();
+            }
         }
     }
 

@@ -38,13 +38,28 @@ export default class Nivel2 extends Game {
       let objectLayers = this.map.objects;
 
       // Object layers
+      this.CreatePlatformCrumbling(objectLayers[8].objects[0].x, objectLayers[8].objects[0].y, objectLayers[8].objects[0].width, objectLayers[8].objects[0].height);
+
       this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);
 
       for(let i = 0; i < objectLayers[6].objects.length; i++){
         this.CreateDeadZone(objectLayers[6].objects[i].x, objectLayers[6].objects[i].y, objectLayers[6].objects[i].width, objectLayers[6].objects[i].height);
       }
+
       for(let i = 0; i < objectLayers[5].objects.length; i++){
-        this.CreatePlatform(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height);
+        /*if(objectLayers[5].objects[i].name === 'Move'){
+          let arrObjetivos = [];
+          for(let j = 0; j < objectLayers[2].objects.length; j++){
+            if(objectLayers[2].objects[j].type === objectLayers[5].objects[i].type){
+              let trigger = this.CreateTrigger(objectLayers[2].objects[j].x ,
+                objectLayers[2].objects[j].y, 30, 30);
+                arrObjetivos.push(trigger);
+            }          
+          }
+          this.CreateMovingPlatform(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height, arrObjetivos);
+        }else{*/
+          this.CreatePlatform(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height);
+        //}       
       }
 
       this.CreatePlayer(objectLayers[4].objects[0].x, objectLayers[4].objects[0].y);

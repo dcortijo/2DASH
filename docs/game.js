@@ -12,6 +12,8 @@ import DronCiudadano from './DronCiudadano.js';
 import Boba from './Boba.js';
 import CableDefectuoso from './CableDefectuoso.js';
 import Electricity from './Electricity.js'
+import MovingPlatform from './MovingPlatform.js'
+import PlatformCrumbling from './PlatformCrumbling.js'
 
 export default class Game extends Phaser.Scene{
     constructor(keyname) {
@@ -234,6 +236,7 @@ export default class Game extends Phaser.Scene{
             label: 'platform'
           });
           plat.setCollisionCategory(this.collisionLayers.obstacle);
+          return plat;
         }
     
         CreateLevelGoal(x, y){
@@ -480,7 +483,50 @@ export default class Game extends Phaser.Scene{
           cable.setCollidesWith([this.collisionLayers.player]);
           return cable;
         }
-    
+        
+        CreateMovingPlatform(x, y, w, h, objectives){
+          let plat = new MovingPlatform({
+            scene: this,
+            x: x + w/2,
+            y: y + h/2,
+            w: w,
+            h: h,
+            hasGravity: false,
+            image: 'playerImage',
+            body: {
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + w/2, y + h/2, w, h)],
+              inertia: Infinity,
+            },
+            objectives: objectives,
+            label: 'movingPlat',
+            isStatic: false,
+            speed: 0.05,
+          });
+          plat.setCollisionCategory(this.collisionLayers.obstacle);
+          return plat;
+        }
+
+        CreatePlatformCrumbling(x, y, w, h){
+          let plat = new PlatformCrumbling({
+            scene: this,
+            x: x + w/2,
+            y: y + h/2,
+            w: w,
+            h: h,
+            hasGravity: false,
+            image: 'playerImage',
+            body: {
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + w/2, y + h/2, w, h)],
+              inertia: Infinity,
+            },
+            isStatic: true,
+            distanceToCollapse: 512,
+            //crumblingTime: 1000,
+          });
+          plat.setCollisionCategory(this.collisionLayers.obstacle);
+          return plat;
+        }
+
         AddScore(scoreAdd){
           this.score = this.score + scoreAdd;
           this.scoreText.text = "SCORE: " + this.score;
