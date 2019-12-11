@@ -413,7 +413,7 @@
   <object id="210" x="24960" y="2752" width="192" height="448"/>
   <object id="212" x="25536" y="2752" width="576" height="448"/>
   <object id="367" name="Move" type="4" x="990" y="2782" width="64" height="64"/>
-  <object id="372" x="512" y="3072" width="64" height="64"/>
+  <object id="372" x="512" y="3072" width="19" height="64"/>
  </objectgroup>
  <objectgroup id="8" name="deadLayer">
   <object id="216" x="512" y="3136" width="31488" height="64"/>

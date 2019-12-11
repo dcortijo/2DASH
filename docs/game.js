@@ -519,9 +519,9 @@ export default class Game extends Phaser.Scene{
               parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + w/2, y + h/2, w, h)],
               inertia: Infinity,
             },
-            isStatic: false,
-            timeToCrumble: 100,
-            crumblingTime: 1000,
+            isStatic: true,
+            distanceToCollapse: 512,
+            //crumblingTime: 1000,
           });
           plat.setCollisionCategory(this.collisionLayers.obstacle);
           return plat;
