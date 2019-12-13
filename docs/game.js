@@ -22,6 +22,7 @@ export default class Game extends Phaser.Scene{
     preload() {
         this.load.image('playerImage', './img/Personaje1.png');
         this.load.image('backgroundNivel1', './img/BackgroundNivel1.jpg');
+        this.load.image('backgroundNivel2', './img/BackgroundNivel2.jpg');
         this.load.image('patrones', './img/TilesetFirst.png');
         this.load.image('dronCiudadano', './img/DronCiudadano.png');
         this.load.image('boba', './img/Boba.png');
@@ -517,8 +518,7 @@ export default class Game extends Phaser.Scene{
             image: 'playerImage',
             body: {
               parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + w/2, y + h/2, w, h)],
-              inertia: Infinity,
-            },
+              inertia: Infinity,},
             isStatic: true,
             distanceToCollapse: 512,
             //crumblingTime: 1000,
@@ -536,10 +536,4 @@ export default class Game extends Phaser.Scene{
           this.timeNum = this.timeNum + delta;
           this.timerText.text =  "TIME: "+ (Math.round(this.timeNum/1000)); 
         }
-
-        
-
       }
-
-      
-    

@@ -1,5 +1,5 @@
-import Enemy from './Character.js';
-export default class Player extends Enemy{
+import Character from './Character.js';
+export default class Player extends Character{
     constructor(config){ // config + {jumpStrength, acceleration, maxSpeed, drag, mass, restitution, pushX, pushY}
         super(config);
         this.input = config.scene.input.keyboard.addKeys('up, left, right, Z, X');
@@ -26,8 +26,10 @@ export default class Player extends Enemy{
 
         this.thrustDuration = 0;
 
-        this.input.Z.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipLeft.Attack(); this.StallFall();});
-        this.input.X.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)this.whipRight.Attack(); this.StallFall();});
+        this.input.Z.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)
+            this.whipLeft.Attack(); this.StallFall();});
+        this.input.X.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)
+            this.whipRight.Attack(); this.StallFall();});
     }
 
     preUpdate(t, d){
@@ -178,17 +180,8 @@ export default class Player extends Enemy{
         return this.body.parts.find(elem => elem.label === 'feet');
     }
 
-    /*StallFall(){       
-        if(!this.onFloor && this.boostBool){
-            if(this.body.velocity.y > (-this.jumpStrength + this.jumpStrength/3)){
-                this.setVelocityY(0);
-                this.applyForce({x: 0, y: -1});
-                this.boostBool = false;
-            }
-        }
-    }*/
-
     StallFall(){ 
+        if(this.body === undefined) console.log("!");
         if(this.thrustDuration === -1 && this.body.velocity.y > (-this.jumpStrength + this.jumpStrength/3) && !this.onFloor && this.boostBool){
             this.thrustDuration = 15;
             this.boostBool = false;

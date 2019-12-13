@@ -25,6 +25,7 @@ export default class Whip extends PhysSprite{
     }
 
     Attack(){
+        if(this.anims === undefined) console.log("!");
         this.colliding = true;
         this.anims.play('whip');
     }

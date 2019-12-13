@@ -4,13 +4,14 @@ export default class PlatformCrumbling extends PhysSprite{
         super(config);
         this.setFriction(0.2, 0.2, 0.2);
         this.distanceToCollapse = config.distanceToCollapse;
-        //this.crumblingTime = config.crumblingTime;
-        //this.fallTimer = -1;
+        this.crumblingTime = config.crumblingTime;
+        this.fallTimer = -1;
         this.state = "normal";
     }
 
     preUpdate(t, d){
-        console.log(this.state)
+        super.preUpdate(t, d);
+        //console.log(this.state)
         switch(this.state){
             case "normal":
                 if(this.x - this.scene.player.x < this.distanceToCollapse){
@@ -21,7 +22,7 @@ export default class PlatformCrumbling extends PhysSprite{
                 break;
             case "falling":
                 /*if(this.fallTimer === -1){
-
+                    
                     this.fallTimer = this.crumblingTime;
                     this.setStatic(false);
                     this.setIgnoreGravity(false);
@@ -31,6 +32,7 @@ export default class PlatformCrumbling extends PhysSprite{
                     this.setStatic(true);
                 } 
                 else this.fallTimer = this.fallTimer - d;*/
+                this.angle += 0.5;
                 break;
             case "fallen":
                 break;
