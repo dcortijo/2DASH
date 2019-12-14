@@ -39,9 +39,9 @@ export default class Nivel2 extends Game {
       let objectLayers = this.map.objects;
 
       // Object layers
-      /*this.CreatePlatformCrumbling(objectLayers[8].objects[0].x, objectLayers[8].objects[0].y, objectLayers[8].objects[0].width, objectLayers[8].objects[0].height);
+      this.CreatePlatformCrumbling(objectLayers[8].objects[0].x, objectLayers[8].objects[0].y, objectLayers[8].objects[0].width, objectLayers[8].objects[0].height);
 
-      this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);*/
+      this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);
 
       for(let i = 0; i < objectLayers[2].objects.length; i++){
         this.CreateDeadZone(objectLayers[2].objects[i].x, objectLayers[2].objects[i].y, objectLayers[2].objects[i].width, objectLayers[2].objects[i].height);
@@ -65,29 +65,29 @@ export default class Nivel2 extends Game {
 
       this.CreatePlayer(objectLayers[1].objects[0].x, objectLayers[1].objects[0].y);
 
-      /*for(let i = 0; i < objectLayers[3].objects.length; i++){     
-          this.CreateColectible(objectLayers[3].objects[i].x, objectLayers[3].objects[i].y);
+      for(let i = 0; i < objectLayers[5].objects.length; i++){     
+          this.CreateColectible(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y);
       }
       
-      for(let i = 0; i < objectLayers[1].objects.length; i++){
+      for(let i = 0; i < objectLayers[4].objects.length; i++){
         let arrObjetivos = [];
-        for(let j = 0; j < objectLayers[2].objects.length; j++){
-          if(objectLayers[2].objects[j].type === objectLayers[1].objects[i].type){
-            let trigger = this.CreateTrigger(objectLayers[2].objects[j].x ,
-              objectLayers[2].objects[j].y, 30, 30);
+        for(let j = 0; j < objectLayers[3].objects.length; j++){
+          if(objectLayers[3].objects[j].type === objectLayers[4].objects[i].type){
+            let trigger = this.CreateTrigger(objectLayers[3].objects[j].x ,
+              objectLayers[3].objects[j].y, 30, 30);
               arrObjetivos.push(trigger);
           }          
         }
-        if(objectLayers[1].objects[i].name === 'Dron'){
-          this.CreateDronCiudadano(objectLayers[1].objects[i].x, objectLayers[1].objects[i].y, arrObjetivos);
-        }else if(objectLayers[1].objects[i].name === 'Boba'){
-          this.CreateBoba(objectLayers[1].objects[i].x, objectLayers[1].objects[i].y, arrObjetivos);
+        if(objectLayers[4].objects[i].name === 'Dron'){
+          this.CreateDronCiudadano(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, arrObjetivos);
+        }else if(objectLayers[4].objects[i].name === 'Boba'){
+          this.CreateBoba(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, arrObjetivos);
         }
       }
 
-      for(let i = 0; i < objectLayers[0].objects.length; i++){     
-          this.CreateBrokenGlass(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y);
-      }*/
+      for(let i = 0; i < objectLayers[6].objects.length; i++){     
+          this.CreateBrokenGlass(objectLayers[6].objects[i].x, objectLayers[6].objects[i].y);
+      }
       
       //this.matter.world.convertTilemapLayer(this.layer);
       this.layer = this.map.createStaticLayer('layer', 'tileset2');

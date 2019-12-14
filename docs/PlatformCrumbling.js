@@ -32,7 +32,7 @@ export default class PlatformCrumbling extends PhysSprite{
                     this.setStatic(true);
                 } 
                 else this.fallTimer = this.fallTimer - d;*/
-                this.angle += 0.5;
+                //this.angle += 0.5;
                 break;
             case "fallen":
                 break;

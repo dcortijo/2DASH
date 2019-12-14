@@ -8,6 +8,7 @@ export default class Boba extends Enemy{
     }
 
     OnTriggerStay(body, other){
+        super.OnTriggerStay(body, other);
         this.components.forEach(element => {
             element.receive(new TriggerStayMessage(this, body, other));
         });

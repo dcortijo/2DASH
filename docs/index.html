@@ -13,7 +13,8 @@
     <canvas id="canvas" width="1400" height="800"></canvas>
     <script type="module">
     import Nivel1 from './Nivel1.js'; 
-    import Nivel2 from './Nivel2.js'    
+    import Nivel2 from './Nivel2.js';
+    import LoadResources from './LoadResources.js'    
     
        var config = {
             type: Phaser.WEBGL,
@@ -28,7 +29,7 @@
                 mode: Phaser.Scale.FIT,
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
-            scene: [ /*Nivel1,*/ Nivel2 ],
+            scene: [ LoadResources, /*Nivel1,*/ Nivel2 ],
             physics: { default: 'matter', matter: { gravity: { y: 1 }, debug: true } }
         };
         new Phaser.Game(config);

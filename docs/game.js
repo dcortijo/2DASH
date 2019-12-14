@@ -44,76 +44,42 @@ export default class Game extends Phaser.Scene{
       }
 
     create(){
-        //Animaciones
-      this.anims.create({
-        key: 'runRight',
-        frames: this.anims.generateFrameNumbers('playerRun', { start: 0, end: 4 }),
-        frameRate: 10
-      });
-      this.anims.create({
-        key: 'runLeft',
-        frames: this.anims.generateFrameNumbers('playerRun', { start: 5, end: 9 }),
-        frameRate: 10
-      });
-      this.anims.create({
-        key: 'jumpRight',
-        frames: this.anims.generateFrameNumbers('playerJump', { start: 0, end: 0 }),
-        frameRate: 10,
-        repeat: 0
-      });
-      this.anims.create({
-        key: 'jumpLeft',
-        frames: this.anims.generateFrameNumbers('playerJump', { start: 1, end: 1 }),
-        frameRate: 10,
-        repeat: 0
-      });
-      this.anims.create({
-        key: 'whip',
-        frames: this.anims.generateFrameNumbers('whipS', { start: 0, end: 2 }),
-        frameRate: 4
-      });
-      this.anims.create({
-        key: 'zap',
-        frames: this.anims.generateFrameNumbers('electricity', { start: 0, end: 4 }),
-        frameRate: 5
-      })
-
         // Inicio de colisiones
         this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
-            if(!obj1.isSensor && !obj2.isSensor){
-            if(obj1.gameObject && obj1.gameObject.OnCollisionStart)obj1.gameObject.OnCollisionStart(obj1, obj2, evento);
-            if(obj2.gameObject && obj2.gameObject.OnCollisionStart)obj2.gameObject.OnCollisionStart(obj2, obj1, evento);
-            }else{
-            if(obj1.gameObject && obj1.gameObject.OnTriggerStart)obj1.gameObject.OnTriggerStart(obj1, obj2);
-            if(obj2.gameObject && obj2.gameObject.OnTriggerStart)obj2.gameObject.OnTriggerStart(obj2, obj1);
-            }
-        });
+          if(!obj1.isSensor && !obj2.isSensor){
+          if(obj1.gameObject && obj1.gameObject.OnCollisionStart)obj1.gameObject.OnCollisionStart(obj1, obj2, evento);
+          if(obj2.gameObject && obj2.gameObject.OnCollisionStart)obj2.gameObject.OnCollisionStart(obj2, obj1, evento);
+          }else{
+          if(obj1.gameObject && obj1.gameObject.OnTriggerStart)obj1.gameObject.OnTriggerStart(obj1, obj2);
+          if(obj2.gameObject && obj2.gameObject.OnTriggerStart)obj2.gameObject.OnTriggerStart(obj2, obj1);
+          }
+      });
 
-        // Fin de colisiones
-        this.matter.world.on('collisionend', (evento, obj1, obj2) => {
-            if(!obj1.isSensor && !obj2.isSensor){
-            if(obj1.gameObject && obj1.gameObject.OnCollisionEnd)obj1.gameObject.OnCollisionEnd(obj1, obj2, evento);
-            if(obj2.gameObject && obj2.gameObject.OnCollisionEnd)obj2.gameObject.OnCollisionEnd(obj2, obj1, evento);
-            }else{
-            if(obj1.gameObject && obj1.gameObject.OnTriggerEnd)obj1.gameObject.OnTriggerEnd(obj1, obj2);
-            if(obj2.gameObject && obj2.gameObject.OnTriggerEnd)obj2.gameObject.OnTriggerEnd(obj2, obj1);
-            }
-        });
+      // Fin de colisiones
+      this.matter.world.on('collisionend', (evento, obj1, obj2) => {
+          if(!obj1.isSensor && !obj2.isSensor){
+          if(obj1.gameObject && obj1.gameObject.OnCollisionEnd)obj1.gameObject.OnCollisionEnd(obj1, obj2, evento);
+          if(obj2.gameObject && obj2.gameObject.OnCollisionEnd)obj2.gameObject.OnCollisionEnd(obj2, obj1, evento);
+          }else{
+          if(obj1.gameObject && obj1.gameObject.OnTriggerEnd)obj1.gameObject.OnTriggerEnd(obj1, obj2);
+          if(obj2.gameObject && obj2.gameObject.OnTriggerEnd)obj2.gameObject.OnTriggerEnd(obj2, obj1);
+          }
+      });
 
-        // Durante colisiones
-        this.matter.world.on('collisionactive', (evento) => {
-            for(let i = 0; i < evento.pairs.length; i++){
-                let obj1 = evento.pairs[i].bodyA;
-                let obj2 = evento.pairs[i].bodyB;
-            if(!obj1.isSensor && !obj2.isSensor){
-            if(obj1.gameObject && obj1.gameObject.OnCollisionStay)obj1.gameObject.OnCollisionStay(obj1, obj2, evento);
-            if(obj2.gameObject && obj2.gameObject.OnCollisionStay)obj2.gameObject.OnCollisionStay(obj2, obj1, evento);
-            }else{
-            if(obj1.gameObject && obj1.gameObject.OnTriggerStay)obj1.gameObject.OnTriggerStay(obj1, obj2);
-            if(obj2.gameObject && obj2.gameObject.OnTriggerStay)obj2.gameObject.OnTriggerStay(obj2, obj1);
-            }
-            }
-        });
+      // Durante colisiones
+      this.matter.world.on('collisionactive', (evento) => {
+          for(let i = 0; i < evento.pairs.length; i++){
+              let obj1 = evento.pairs[i].bodyA;
+              let obj2 = evento.pairs[i].bodyB;
+          if(!obj1.isSensor && !obj2.isSensor){
+          if(obj1.gameObject && obj1.gameObject.OnCollisionStay)obj1.gameObject.OnCollisionStay(obj1, obj2, evento);
+          if(obj2.gameObject && obj2.gameObject.OnCollisionStay)obj2.gameObject.OnCollisionStay(obj2, obj1, evento);
+          }else{
+          if(obj1.gameObject && obj1.gameObject.OnTriggerStay)obj1.gameObject.OnTriggerStay(obj1, obj2);
+          if(obj2.gameObject && obj2.gameObject.OnTriggerStay)obj2.gameObject.OnTriggerStay(obj2, obj1);
+          }
+          }
+      });
     }
 
     CreateDeadZone(x, y, w, h) {
@@ -520,7 +486,7 @@ export default class Game extends Phaser.Scene{
               parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + w/2, y + h/2, w, h)],
               inertia: Infinity,},
             isStatic: true,
-            distanceToCollapse: 512,
+            distanceToCollapse: 576,
             //crumblingTime: 1000,
           });
           plat.setCollisionCategory(this.collisionLayers.obstacle);
