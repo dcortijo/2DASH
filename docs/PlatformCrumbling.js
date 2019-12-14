@@ -2,7 +2,7 @@ import PhysSprite from './PhysSprite.js';
 export default class PlatformCrumbling extends PhysSprite{
     constructor(config){
         super(config);
-        this.setFriction(0.2, 0.2, 0.2);
+        this.setFriction(1, 0.2, 0.2);
         this.distanceToCollapse = config.distanceToCollapse;
         this.crumblingTime = config.crumblingTime;
         this.fallTimer = -1;
