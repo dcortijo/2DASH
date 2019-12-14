@@ -32,22 +32,22 @@ export default class Nivel2 extends Game {
         tileWidth: 64, 
         tileHeight: 64,
       });
-      this.map.addTilesetImage('tileset1', 'patrones');
-      this.map.addTilesetImage('tilesetB', 'patronesB');
-      this.layer = this.map.createStaticLayer('layer', 'tileset1');
-      this.layerB = this.map.createStaticLayer('layerB', 'tilesetB');
+      this.map.addTilesetImage('tileset2', 'patrones');
+      this.map.addTilesetImage('tilesetB2', 'patronesB');
+      this.map.addTilesetImage('tilesetF2', 'patronesF');
+      this.layerB = this.map.createStaticLayer('layerB', 'tilesetB2');
       let objectLayers = this.map.objects;
 
       // Object layers
-      this.CreatePlatformCrumbling(objectLayers[8].objects[0].x, objectLayers[8].objects[0].y, objectLayers[8].objects[0].width, objectLayers[8].objects[0].height);
+      /*this.CreatePlatformCrumbling(objectLayers[8].objects[0].x, objectLayers[8].objects[0].y, objectLayers[8].objects[0].width, objectLayers[8].objects[0].height);
 
-      this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);
+      this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);*/
 
-      for(let i = 0; i < objectLayers[6].objects.length; i++){
-        this.CreateDeadZone(objectLayers[6].objects[i].x, objectLayers[6].objects[i].y, objectLayers[6].objects[i].width, objectLayers[6].objects[i].height);
+      for(let i = 0; i < objectLayers[2].objects.length; i++){
+        this.CreateDeadZone(objectLayers[2].objects[i].x, objectLayers[2].objects[i].y, objectLayers[2].objects[i].width, objectLayers[2].objects[i].height);
       }
 
-      for(let i = 0; i < objectLayers[5].objects.length; i++){
+      for(let i = 0; i < objectLayers[0].objects.length; i++){
         /*if(objectLayers[5].objects[i].name === 'Move'){
           let arrObjetivos = [];
           for(let j = 0; j < objectLayers[2].objects.length; j++){
@@ -59,13 +59,13 @@ export default class Nivel2 extends Game {
           }
           this.CreateMovingPlatform(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height, arrObjetivos);
         }else{*/
-          this.CreatePlatform(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height);
+          this.CreatePlatform(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y, objectLayers[0].objects[i].width, objectLayers[0].objects[i].height);
         //}       
       }
 
-      this.CreatePlayer(objectLayers[4].objects[0].x, objectLayers[4].objects[0].y);
+      this.CreatePlayer(objectLayers[1].objects[0].x, objectLayers[1].objects[0].y);
 
-      for(let i = 0; i < objectLayers[3].objects.length; i++){     
+      /*for(let i = 0; i < objectLayers[3].objects.length; i++){     
           this.CreateColectible(objectLayers[3].objects[i].x, objectLayers[3].objects[i].y);
       }
       
@@ -87,9 +87,11 @@ export default class Nivel2 extends Game {
 
       for(let i = 0; i < objectLayers[0].objects.length; i++){     
           this.CreateBrokenGlass(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y);
-      }
+      }*/
       
-      this.matter.world.convertTilemapLayer(this.layer);
+      //this.matter.world.convertTilemapLayer(this.layer);
+      this.layer = this.map.createStaticLayer('layer', 'tileset2');
+      this.layerF = this.map.createStaticLayer('layerF', 'tilesetF2');
 
       //Score
       this.score = 0;
