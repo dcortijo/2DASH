@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="left-up" width="650" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="13" nextobjectid="346">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="left-up" width="650" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="13" nextobjectid="348">
  <tileset firstgid="1" name="tileset2" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="img/TilesetFirst.png" width="512" height="512"/>
   <terraintypes>
@@ -119,6 +119,8 @@
  </objectgroup>
  <objectgroup id="4" name="deadLayer">
   <object id="2" x="0" y="3135.96" width="41600" height="64.0801"/>
+  <object id="346" x="5512" y="3024" width="36086.5" height="104"/>
+  <object id="347" x="14280" y="2872" width="14072" height="136"/>
  </objectgroup>
  <objectgroup id="7" name="objectiveLayer">
   <object id="13" type="0" x="2750.67" y="2604">
