@@ -481,12 +481,13 @@ export default class Game extends Phaser.Scene{
             w: w,
             h: h,
             hasGravity: false,
-            image: 'playerImage',
+            image: 'platCrumb',
             body: {
-              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + w/2, y + h/2, w, h)],
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + w/2, y + h/2, w, h, {label: 'plataforma'})],
               inertia: Infinity,},
             isStatic: true,
-            distanceToCollapse: 576,
+            distanceToCollapse: 448,
+            label: 'cringePlatform'
             //crumblingTime: 1000,
           });
           plat.setCollisionCategory(this.collisionLayers.obstacle);
