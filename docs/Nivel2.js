@@ -1,4 +1,5 @@
 import Game from './game.js'
+import Bullet from './Bullet.js'
 
 export default class Nivel2 extends Game {
     constructor() {
@@ -108,6 +109,37 @@ export default class Nivel2 extends Game {
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 3250);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      new Bullet({
+        scene: this,
+        x: 500,
+        y: 2500,
+        w: 50,
+        h: 50,
+        hasGravity: false,
+        image: 'playerImage',
+        body: {
+          parts: [Phaser.Physics.Matter.Matter.Bodies.circle(500, 2500, 50)],
+          inertia: Infinity
+        },
+        isStatic: false,
+        label: 'bullet',
+        speed: 2
+      });
     }
 
     NextLevel(){
