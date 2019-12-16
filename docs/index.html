@@ -31,7 +31,7 @@
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
             scene: [ LoadResources, Nivel1, Nivel2, Nivel3 ],
-            physics: { default: 'matter', matter: { gravity: { y: 1 }, debug: true } }
+            physics: { default: 'matter', matter: { gravity: { y: 1 }, debug: false } }
         };
         new Phaser.Game(config);
     </script>
