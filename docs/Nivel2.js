@@ -110,6 +110,6 @@ export default class Nivel2 extends Game {
     }
 
     NextLevel(){
-      this.scene.start('Nivel3', {score: this.score, time: this.timeNum});
+      this.scene.start(/*'Nivel3'*/ 'ResultsScreen', {score: this.score, time: this.timeNum});
     }
 }
