@@ -11,6 +11,7 @@ export default class LoadResources extends Phaser.Scene{
         this.load.image('boba', './img/Boba.png');
         this.load.tilemapTiledJSON('Nivel1', 'Nivel1.json');
         this.load.tilemapTiledJSON('Nivel2', 'Nivel2.json');
+        this.load.tilemapTiledJSON('Nivel3', 'Nivel3.json');
         this.load.image('patrones', './img/TilesetFirst.png');
         this.load.image('patronesB', './img/TilesetBackground.png');
         this.load.image('patronesF', './img/TilesetForeground.png')
@@ -62,6 +63,6 @@ export default class LoadResources extends Phaser.Scene{
         frameRate: 5
       })
 
-        this.scene.start(/*'Nivel1'*/ 'Nivel2');
+        this.scene.start('Nivel1');
     }
 }

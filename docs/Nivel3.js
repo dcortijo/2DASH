@@ -1,8 +1,8 @@
 import Game from './game.js'
 
-export default class Nivel2 extends Game {
+export default class Nivel3 extends Game {
     constructor() {
-      super('Nivel2');
+      super('Nivel3');
     }
 
     create(data) {
@@ -28,7 +28,7 @@ export default class Nivel2 extends Game {
 
       //Tilemap
       this.map = this.make.tilemap({ 
-        key: 'Nivel2', 
+        key: 'Nivel3', 
         tileWidth: 64, 
         tileHeight: 64,
       });
@@ -95,9 +95,19 @@ export default class Nivel2 extends Game {
       this.layer = this.map.createStaticLayer('layer', 'tileset2');
       this.layerF = this.map.createStaticLayer('layerF', 'tilesetF2');
 
+      //Score
+      this.score = 0;
+      this.scoreText = this.add.text(70, 55, "SCORE: " + this.score, {fill: "#ffffff"}).setFontSize(40);
+      this.scoreText.setScrollFactor(0);
+
+      //Timer
+      this.timeNum = 0;
+      this.timerText = this.add.text(1200, 55, "TIME: " + (Math.round(this.timeNum/1000)), {fill: "#ffffff"}).setFontSize(40);
+      this.timerText.setScrollFactor(0);
+
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 3250);
-      
+
       //Score
       this.score = data.score;
       this.scoreText = this.add.text(70, 55, "SCORE: " + this.score, {fill: "#ffffff"}).setFontSize(40);
@@ -107,9 +117,10 @@ export default class Nivel2 extends Game {
       this.timeNum = data.time;
       this.timerText = this.add.text(1200, 55, "TIME: " + (Math.round(this.timeNum/1000)), {fill: "#ffffff"}).setFontSize(40);
       this.timerText.setScrollFactor(0);
+
     }
 
     NextLevel(){
-      this.scene.start('Nivel3', {score: this.score, time: this.timeNum});
+      this.scene.start('ResultsScreen');
     }
 }
