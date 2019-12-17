@@ -505,7 +505,7 @@ export default class Game extends Phaser.Scene{
             w: 15,
             h: 15,
             hasGravity: false,
-            image: 'playerImage',
+            image: 'bullet',
             body:{
               parts: [Phaser.Physics.Matter.Matter.Bodies.circle(x, y, 15, {label: 'bullet'})]},
             isStatic: false,
@@ -529,7 +529,7 @@ export default class Game extends Phaser.Scene{
             w: 70,
             h: 70,
             hasGravity: true,
-            image: 'playerImage',
+            image: 'shooter',
             body:{
               parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 70, {label: 'shooter'}), triggerTop, triggerLeft, triggerRight]},
             isStatic: true,
