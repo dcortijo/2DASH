@@ -21,29 +21,6 @@ export default class Game extends Phaser.Scene{
     constructor(keyname) {
         super({key: keyname});
     }
-    preload() {
-        this.load.image('playerImage', './img/Personaje1.png');
-        this.load.image('backgroundNivel1', './img/BackgroundNivel1.jpg');
-        this.load.image('backgroundNivel2', './img/BackgroundNivel2.jpg');
-        this.load.image('patrones', './img/TilesetFirst.png');
-        this.load.image('dronCiudadano', './img/DronCiudadano.png');
-        this.load.image('boba', './img/Boba.png');
-        this.load.tilemapTiledJSON('Nivel1', 'Nivel1.json');
-        this.load.tilemapTiledJSON('Nivel2', 'Nivel2.json');
-        this.load.image('patrones', './img/TilesetFirst.png');
-        this.load.image('patronesB', './img/TilesetBackground.png');
-        this.load.image('patronesF', './img/TilesetForeground.png')
-        this.load.image('collectible', './img/Collectible.png');
-        this.load.image('cableD', './img/cableDefectuoso.png');
-        this.load.spritesheet('healthMeter1', './img/Heart1.png', {
-          frameWidth: 64,
-          frameHeight: 32,
-        });
-        this.load.spritesheet('whipS', './img/WhipSheet.png', {frameWidth: 96, frameHeight: 32});
-        this.load.spritesheet('playerRun', './img/MachFoxRunSheet.png', {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet('playerJump', './img/MachFoxJumpin.png', {frameWidth: 32, frameHeight: 32});
-        this.load.spritesheet('electricity', './img/Electricity.png', {frameWidth: 32, frameHeight: 100})
-      }
 
     create(){
         // Inicio de colisiones
