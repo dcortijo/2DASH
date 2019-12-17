@@ -124,22 +124,7 @@ export default class Nivel2 extends Game {
 
 
 
-      new Bullet({
-        scene: this,
-        x: 500,
-        y: 2500,
-        w: 50,
-        h: 50,
-        hasGravity: false,
-        image: 'playerImage',
-        body: {
-          parts: [Phaser.Physics.Matter.Matter.Bodies.circle(500, 2500, 50)],
-          inertia: Infinity
-        },
-        isStatic: false,
-        label: 'bullet',
-        speed: 2
-      });
+      this.CreateShooter(900, 2700);
     }
 
     NextLevel(){

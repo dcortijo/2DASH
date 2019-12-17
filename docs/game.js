@@ -14,6 +14,8 @@ import CableDefectuoso from './CableDefectuoso.js';
 import Electricity from './Electricity.js'
 import MovingPlatform from './MovingPlatform.js'
 import PlatformCrumbling from './PlatformCrumbling.js'
+import Shooter from './NotSoSharpShooter.js'
+import Bullet from './Bullet.js'
 
 export default class Game extends Phaser.Scene{
     constructor(keyname) {
@@ -492,6 +494,54 @@ export default class Game extends Phaser.Scene{
           });
           plat.setCollisionCategory(this.collisionLayers.obstacle);
           return plat;
+        }
+
+        CreateBullet(x, y){
+          let bullet = new Bullet({
+            scene: this,
+            x: x,
+            y: y,
+            w: 15,
+            h: 15,
+            hasGravity: false,
+            image: 'playerImage',
+            body:{
+              parts: [Phaser.Physics.Matter.Matter.Bodies.circle(x, y, 15, {label: 'bullet'})]},
+            isStatic: false,
+            label: 'bullet',
+            speed: 3
+          });
+          bullet.setCollisionCategory(this.collisionLayers.enemy);
+          bullet.setCollidesWith([this.collisionLayers.player]);
+          return bullet;
+        }
+
+        CreateShooter(x, y){
+          // Body
+          let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 45, 70, 20, {isSensor: true, label: 'triggerTop'});
+          let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 40, y, 15, 65, {isSensor: true, label: 'triggerLeft'});
+          let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 40, y, 15, 65, {isSensor: true, label: 'triggerRight'});
+          let shooter = new Shooter({
+            scene: this,
+            x: x,
+            y: y,
+            w: 70,
+            h: 70,
+            hasGravity: true,
+            image: 'playerImage',
+            body:{
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 70, {label: 'shooter'}), triggerTop, triggerLeft, triggerRight]},
+            isStatic: true,
+            label: 'shooter',
+            triggerTop: triggerTop,
+            triggerLeft: triggerLeft,
+            triggerRight: triggerRight,
+            shootDelay: 2000,
+            score: 15
+          });
+          shooter.setCollisionCategory(this.collisionLayers.enemy);
+          shooter.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip]);
+          return shooter;
         }
 
         AddScore(scoreAdd){
