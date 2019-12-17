@@ -8,6 +8,8 @@ export default class Nivel3 extends Game {
     create(data) {
       super.create()
 
+      this.camBoundsHeight = 9600;
+
       // Background
       let background = this.add.image(-100, 0, 'backgroundNivel2');
       background.setOrigin(0, 0);
@@ -32,43 +34,35 @@ export default class Nivel3 extends Game {
         tileWidth: 64, 
         tileHeight: 64,
       });
-      this.map.addTilesetImage('tileset2', 'patrones');
-      this.map.addTilesetImage('tilesetB2', 'patronesB');
-      this.map.addTilesetImage('tilesetF2', 'patronesF');
-      this.layerB = this.map.createStaticLayer('layerB', 'tilesetB2');
+      this.map.addTilesetImage('tileset3', 'patrones');
+      //this.map.addTilesetImage('tilesetB3', 'patronesB');
+      //this.map.addTilesetImage('tilesetF3', 'patronesF');
+      //this.layerB = this.map.createStaticLayer('layerB', 'tilesetB3');
       let objectLayers = this.map.objects;
 
       // Object layers
-      for(let i = 0; i < objectLayers[8].objects.length; i++){
-        this.CreatePlatformCrumbling(objectLayers[8].objects[i].x, objectLayers[8].objects[i].y, objectLayers[8].objects[i].width, objectLayers[8].objects[i].height);
+      for(let i = 0; i < objectLayers[7].objects.length; i++){
+        this.CreatePlatformCrumbling(objectLayers[7].objects[i].x, objectLayers[7].objects[i].y, objectLayers[7].objects[i].width, objectLayers[7].objects[i].height);
       }
 
-      this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);
+      //this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);*/
 
       for(let i = 0; i < objectLayers[2].objects.length; i++){
         this.CreateDeadZone(objectLayers[2].objects[i].x, objectLayers[2].objects[i].y, objectLayers[2].objects[i].width, objectLayers[2].objects[i].height);
       }
 
+      for(let i = 0; i < objectLayers[5].objects.length; i++){
+        this.CreateCableDefectuoso(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y);
+      }
+
       for(let i = 0; i < objectLayers[0].objects.length; i++){
-        /*if(objectLayers[5].objects[i].name === 'Move'){
-          let arrObjetivos = [];
-          for(let j = 0; j < objectLayers[2].objects.length; j++){
-            if(objectLayers[2].objects[j].type === objectLayers[5].objects[i].type){
-              let trigger = this.CreateTrigger(objectLayers[2].objects[j].x ,
-                objectLayers[2].objects[j].y, 30, 30);
-                arrObjetivos.push(trigger);
-            }          
-          }
-          this.CreateMovingPlatform(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height, arrObjetivos);
-        }else{*/
-          this.CreatePlatform(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y, objectLayers[0].objects[i].width, objectLayers[0].objects[i].height);
-        //}       
+        this.CreatePlatform(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y, objectLayers[0].objects[i].width, objectLayers[0].objects[i].height);     
       }
 
       this.CreatePlayer(objectLayers[1].objects[0].x, objectLayers[1].objects[0].y);
 
-      for(let i = 0; i < objectLayers[5].objects.length; i++){     
-          this.CreateColectible(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y);
+      for(let i = 0; i < objectLayers[8].objects.length; i++){     
+        this.CreateColectible(objectLayers[8].objects[i].x, objectLayers[8].objects[i].y);
       }
       
       for(let i = 0; i < objectLayers[4].objects.length; i++){
@@ -92,32 +86,21 @@ export default class Nivel3 extends Game {
       }
       
       //this.matter.world.convertTilemapLayer(this.layer);
-      this.layer = this.map.createStaticLayer('layer', 'tileset2');
-      this.layerF = this.map.createStaticLayer('layerF', 'tilesetF2');
-
-      //Score
-      this.score = 0;
-      this.scoreText = this.add.text(70, 55, "SCORE: " + this.score, {fill: "#ffffff"}).setFontSize(40);
-      this.scoreText.setScrollFactor(0);
-
-      //Timer
-      this.timeNum = 0;
-      this.timerText = this.add.text(1200, 55, "TIME: " + (Math.round(this.timeNum/1000)), {fill: "#ffffff"}).setFontSize(40);
-      this.timerText.setScrollFactor(0);
+      this.layer = this.map.createStaticLayer('layer', 'tileset3');
+      //this.layerF = this.map.createStaticLayer('layerF', 'tilesetF3');
 
       // World walls
-      this.matter.world.setBounds(0, 0, 32000, 3250);
+      this.matter.world.setBounds(0, 0, 32000, 10000);
 
       //Score
-      this.score = data.score;
+      this.score = 0;//data.score;
       this.scoreText = this.add.text(70, 55, "SCORE: " + this.score, {fill: "#ffffff"}).setFontSize(40);
       this.scoreText.setScrollFactor(0);
 
       //Timer
-      this.timeNum = data.time;
+      this.timeNum = 0;//data.time;
       this.timerText = this.add.text(1200, 55, "TIME: " + (Math.round(this.timeNum/1000)), {fill: "#ffffff"}).setFontSize(40);
       this.timerText.setScrollFactor(0);
-
     }
 
     NextLevel(){

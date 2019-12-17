@@ -403,7 +403,7 @@ export default class Game extends Phaser.Scene{
             y: 0,
             width: 1440,
             height: 810,
-            bounds: { x: 0, y: 0, width: 32000, height: 3200 },
+            bounds: { x: 0, y: 0, width: 32000, height: this.camBoundsHeight },
             target: this.player,
             maxOffsetX: 400,
             offsetY: 200,
@@ -434,17 +434,17 @@ export default class Game extends Phaser.Scene{
           let cable = new CableDefectuoso({
             scene: this,
             x: x,
-            y: y + 16,
+            y: y - 16,
             w: 64,
             h: 32,
             hasGravity: false,
             image: 'cableD',
             body: {
-            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 16, 64, 32, {isSensor: true})],
+            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 16, 64, 32, {isSensor: true})],
             inertia: Infinity 
           },
             label: 'cable',
-            coolDown: 5000,
+            coolDown: 2000,
             hitBox: elec,
           });
           cable.setCollisionCategory(this.collisionLayers.obstacle);
