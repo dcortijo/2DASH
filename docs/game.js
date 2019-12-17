@@ -497,7 +497,7 @@ export default class Game extends Phaser.Scene{
           return plat;
         }
 
-        CreateBullet(x, y){
+        CreateBullet(x, y, flipX){
           let bullet = new Bullet({
             scene: this,
             x: x,
@@ -510,14 +510,15 @@ export default class Game extends Phaser.Scene{
               parts: [Phaser.Physics.Matter.Matter.Bodies.circle(x, y, 15, {label: 'bullet'})]},
             isStatic: false,
             label: 'bullet',
-            speed: 3
+            speed: 3,
+            flipX: flipX
           });
           bullet.setCollisionCategory(this.collisionLayers.enemy);
           bullet.setCollidesWith([this.collisionLayers.player]);
           return bullet;
         }
 
-        CreateShooter(x, y){
+        CreateShooter(x, y, flipX){
           // Body
           let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 45, 70, 20, {isSensor: true, label: 'triggerTop'});
           let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 40, y, 15, 65, {isSensor: true, label: 'triggerLeft'});
@@ -538,7 +539,8 @@ export default class Game extends Phaser.Scene{
             triggerLeft: triggerLeft,
             triggerRight: triggerRight,
             shootDelay: 2000,
-            score: 15
+            score: 15,
+            flipX: flipX
           });
           shooter.setCollisionCategory(this.collisionLayers.enemy);
           shooter.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip]);

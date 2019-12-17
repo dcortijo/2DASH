@@ -5,12 +5,17 @@ export default class Bullet extends PhysSprite{
         this.speed = config.speed;
         this.lifeTime = 4000;
         this.distanceToDissapear = 1440;
+        this.flipped = config.flipX;
     }
 
     preUpdate(t, d){
         super.preUpdate(t, d);
 
-        this.setVelocityX(-this.speed);
+        if(!this.flipped){
+            this.setVelocityX(-this.speed);
+        } else {
+            this.setVelocityX(this.speed);
+        }
         this.setVelocityY(0);
 
         this.lifeTime -= d;

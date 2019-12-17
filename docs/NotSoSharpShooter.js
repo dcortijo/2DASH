@@ -5,8 +5,9 @@ import DeactivateMessage from './DeactivateMessage.js'
 export default class NotSoSharpShooter extends Enemy{
     constructor(config){ // config + {shootDelay}
         super(config);
-        this.components = [new ShooterComponent(this, config.shootDelay, this.scene)];
+        this.components = [new ShooterComponent(this, config.shootDelay, this.scene, config.flipX)];
         this.closeToPlayer = true;
+        this.flipX = config.flipX;
     }
 
     preUpdate(t, d){

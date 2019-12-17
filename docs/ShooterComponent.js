@@ -2,12 +2,13 @@ import Component from './Component.js'
 import ActivateMessage from './ActivateMessage.js';
 import DeactivateMessage from './DeactivateMessage.js';
 export default class ShooterComponent extends Component{
-    constructor(entity, shootDelay, scene){
+    constructor(entity, shootDelay, scene, flipX){
         super(entity);
         this.shootDelay = shootDelay;
         this.scene = scene;
         this.shootCooldown = 0;
         this.activated = true;
+        this.flipped = flipX
     }
 
     update(t, d){
@@ -16,8 +17,7 @@ export default class ShooterComponent extends Component{
         } else {
             if(this.activated){
                 this.shootCooldown = this.shootDelay;
-                this.scene.CreateBullet(this.entity.x, this.entity.y);
-                console.log("bulletCreated");
+                this.scene.CreateBullet(this.entity.x, this.entity.y, this.flipped);
             }
         }
     }
