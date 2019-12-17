@@ -178,7 +178,7 @@ export default class Game extends Phaser.Scene{
             w: 100,
             h: 30,
             hasGravity: false,
-            image: 'playerImage',
+            image: 'cristalRoto',
             body: {
             parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 30, {isSensor: true})],
             inertia: Infinity },
@@ -216,6 +216,7 @@ export default class Game extends Phaser.Scene{
             w: 100,
             h: 100,
             hasGravity: false,
+            image: 'levelGoal',
             body: {
               parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 100, {isSensor: true})],
               inertia: Infinity},

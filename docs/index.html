@@ -12,9 +12,10 @@
     <h1>2-DASH</h1>
     <canvas id="canvas" width="1400" height="800"></canvas>
     <script type="module">
+    import LoadResources from './LoadResources.js';  
     import Nivel1 from './Nivel1.js'; 
     import Nivel2 from './Nivel2.js';
-    import LoadResources from './LoadResources.js'    
+    import Nivel3 from './Nivel3.js';  
     
        var config = {
             type: Phaser.WEBGL,
@@ -29,8 +30,8 @@
                 mode: Phaser.Scale.FIT,
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
-            scene: [ LoadResources, /*Nivel1,*/ Nivel2 ],
-            physics: { default: 'matter', matter: { gravity: { y: 1 }, debug: true } }
+            scene: [ LoadResources, Nivel1, Nivel2, Nivel3 ],
+            physics: { default: 'matter', matter: { gravity: { y: 1 }, debug: false } }
         };
         new Phaser.Game(config);
     </script>
