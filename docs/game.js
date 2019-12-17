@@ -150,14 +150,14 @@ export default class Game extends Phaser.Scene{
         CreateBrokenGlass(x, y){
           let glass = new BrokenGlass({
             scene: this,
-            x: x,
-            y: y,
+            x: x + 50,
+            y: y - 15,
             w: 100,
             h: 30,
             hasGravity: false,
             image: 'cristalRoto',
             body: {
-            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 30, {isSensor: true})],
+            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 50, y - 15, 100, 30, {isSensor: true})],
             inertia: Infinity },
             label: 'brokenglass',
             slowMultiplier: 0.2
@@ -190,12 +190,12 @@ export default class Game extends Phaser.Scene{
             scene: this,
             x: x,
             y: y,
-            w: 100,
-            h: 100,
+            w: 128,
+            h: 128,
             hasGravity: false,
             image: 'levelGoal',
             body: {
-              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 100, 100, {isSensor: true})],
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 128, 128, {isSensor: true})],
               inertia: Infinity},
             label: 'levelGoal'
           });
