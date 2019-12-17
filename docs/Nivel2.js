@@ -8,7 +8,7 @@ export default class Nivel2 extends Game {
 
     create() {
       super.create()
-
+      console.log("starting");
       // Background
       let background = this.add.image(-100, 0, 'backgroundNivel2');
       background.setOrigin(0, 0);
@@ -108,23 +108,6 @@ export default class Nivel2 extends Game {
 
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 3250);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      this.CreateShooter(900, 2700);
     }
 
     NextLevel(){
