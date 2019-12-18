@@ -20,6 +20,14 @@ export default class ResultsScreen extends Phaser.Scene{
       
       //Final Score
       this.score = data.score;
-      this.scoreText = this.add.text(500, 450, "FINAL RATING: " + (Math.round((this.score * 1000) / this.timeNum)), {fill: "#aa00ff"}).setFontSize(40);
+      this.scoreText = this.add.text(535, 450, "FINAL RATING:", {fill: "#aa00ff"}).setFontSize(40);
+      let rate = this.add.image(700, 575, 'ratings');
+      rate.displayWidth = 150;
+      rate.displayHeight = 150;
+      let rating = Math.round((this.score * 1000) / this.timeNum);
+      console.log(rating);
+      if(rating > 10) rate.setFrame(6);
+      else if(rating < 3) rate.setFrame(0);
+      else rate.setFrame(rating - 3);
     }
 }

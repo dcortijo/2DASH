@@ -31,6 +31,7 @@ export default class LoadResources extends Phaser.Scene{
         this.load.spritesheet('playerRun', './img/MachFoxRunSheet.png', {frameWidth: 32, frameHeight: 32});
         this.load.spritesheet('playerJump', './img/MachFoxJumpin.png', {frameWidth: 32, frameHeight: 32});
         this.load.spritesheet('electricity', './img/Electricity.png', {frameWidth: 32, frameHeight: 100});
+        this.load.spritesheet('ratings', './img/ratings.png', {frameWidth: 100, frameHeight: 100});
         this.load.image('shooter', './img/NotSoSharpShooter.png');
         this.load.image('bullet', './img/Bullet.png');
         this.load.image('misiluro', './img/Misiluro.png');

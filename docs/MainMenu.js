@@ -5,7 +5,7 @@ export default class LoadResources extends Phaser.Scene{
 
     preload(){
         this.input = this.input.keyboard.addKeys('ENTER');
-        this.input.ENTER.on('down', event =>{this.scene.start('Nivel1');});
+        this.input.ENTER.on('down', event =>{this.scene.start('Nivel1')});
     }
 
     create(){
