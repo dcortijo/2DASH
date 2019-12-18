@@ -1,4 +1,5 @@
 import Game from './game.js'
+import Bullet from './Bullet.js'
 
 export default class Nivel2 extends Game {
     constructor() {
@@ -7,7 +8,6 @@ export default class Nivel2 extends Game {
 
     create(data) {
       super.create()
-
       this.camBoundsHeight = 3200;
 
       // Background
@@ -52,19 +52,7 @@ export default class Nivel2 extends Game {
       }
 
       for(let i = 0; i < objectLayers[0].objects.length; i++){
-        /*if(objectLayers[5].objects[i].name === 'Move'){
-          let arrObjetivos = [];
-          for(let j = 0; j < objectLayers[2].objects.length; j++){
-            if(objectLayers[2].objects[j].type === objectLayers[5].objects[i].type){
-              let trigger = this.CreateTrigger(objectLayers[2].objects[j].x ,
-                objectLayers[2].objects[j].y, 30, 30);
-                arrObjetivos.push(trigger);
-            }          
-          }
-          this.CreateMovingPlatform(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y, objectLayers[5].objects[i].width, objectLayers[5].objects[i].height, arrObjetivos);
-        }else{*/
-          this.CreatePlatform(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y, objectLayers[0].objects[i].width, objectLayers[0].objects[i].height);
-        //}       
+        this.CreatePlatform(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y, objectLayers[0].objects[i].width, objectLayers[0].objects[i].height);   
       }
 
       this.CreatePlayer(objectLayers[1].objects[0].x, objectLayers[1].objects[0].y);
@@ -101,9 +89,6 @@ export default class Nivel2 extends Game {
       this.layer = this.map.createStaticLayer('layer', 'tileset2');
       this.layerF = this.map.createStaticLayer('layerF', 'tilesetF2');
 
-      // World walls
-      this.matter.world.setBounds(0, 0, 32000, 3250);
-      
       //Score
       this.score = data.score;
       this.scoreText = this.add.text(70, 55, "SCORE: " + this.score, {fill: "#ffffff"}).setFontSize(40);
@@ -113,6 +98,9 @@ export default class Nivel2 extends Game {
       this.timeNum = data.time;
       this.timerText = this.add.text(1200, 55, "TIME: " + (Math.round(this.timeNum/1000)), {fill: "#ffffff"}).setFontSize(40);
       this.timerText.setScrollFactor(0);
+
+      // World walls
+      this.matter.world.setBounds(0, 0, 32000, 3250);
     }
 
     NextLevel(){

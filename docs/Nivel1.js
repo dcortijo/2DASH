@@ -92,7 +92,6 @@ export default class Nivel1 extends Game {
 
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 3250);
-
     }
 
     NextLevel(){

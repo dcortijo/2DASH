@@ -3,7 +3,7 @@ export default class Component{
         this.entity = entity;
     }
 
-    update(){
+    update(t, d){
 
     }
 
