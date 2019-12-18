@@ -6,6 +6,7 @@ export default class LoadResources extends Phaser.Scene{
         this.load.image('playerImage', './img/Personaje1.png');
         this.load.image('backgroundNivel1', './img/BackgroundNivel1.jpg');
         this.load.image('backgroundNivel2', './img/BackgroundNivel2.jpg');
+        this.load.image('backgroundNivel3', './img/BackgroundNivel3.jpg');
         this.load.image('patrones', './img/TilesetFirst.png');
         this.load.image('dronCiudadano', './img/DronCiudadano.png');
         this.load.image('boba', './img/Boba.png');
@@ -20,7 +21,8 @@ export default class LoadResources extends Phaser.Scene{
         this.load.image('platCrumb', './img/crumblingPlat.png');
         this.load.image('cristalRoto', './img/cristal.png');
         this.load.image('levelGoal', './img/bandera.png');
-        this.load.image('results', './img/results.png')
+        this.load.image('results', './img/results.png');
+        this.load.image('menu', './img/menu.png');
         this.load.spritesheet('healthMeter1', './img/Heart1.png', {
           frameWidth: 64,
           frameHeight: 32,
@@ -70,6 +72,6 @@ export default class LoadResources extends Phaser.Scene{
         frameRate: 5
       })
 
-      this.scene.start('Nivel3');
+      this.scene.start('Menu');
     }
 }
