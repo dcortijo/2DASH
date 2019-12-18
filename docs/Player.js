@@ -92,8 +92,11 @@ export default class Player extends Character{
         if(this.invulTime === 0){
             this.health--;
             if(this.health === 0) this.Die();
-            else this.healthMeter.HandleHealth(this.health); 
-            this.invulTime = this.invul;
+            else {
+                this.scene.sound.play('hurt');
+                this.healthMeter.HandleHealth(this.health); 
+                this.invulTime = this.invul;
+            }
         }
     }
 

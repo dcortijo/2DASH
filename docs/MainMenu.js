@@ -5,7 +5,7 @@ export default class LoadResources extends Phaser.Scene{
 
     preload(){
         this.input = this.input.keyboard.addKeys('ENTER');
-        this.input.ENTER.on('down', event =>{this.scene.start('Nivel1')});
+        this.input.ENTER.on('down', event =>{this.startGame()});
     }
 
     create(){
@@ -15,5 +15,9 @@ export default class LoadResources extends Phaser.Scene{
       background.displayWidth = 1640;
       background.displayHeight = 810;
       background.setScrollFactor(0);
+    }
+
+    startGame(){
+        this.scene.start('Nivel1');
     }
 }
