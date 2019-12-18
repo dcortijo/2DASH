@@ -18,7 +18,7 @@ export default class ShooterComponent extends Component{
         } else {
             if(this.activated){
                 this.shootCooldown = this.shootDelay;
-                this.createFunction.call(this.scene, this.entity.x, this.entity.y, this.projectileDirection);
+                this.createFunction.call(this.scene, this.entity.x, this.entity.y, this.projectileDirection);   // Oh yeah
             }
         }
     }

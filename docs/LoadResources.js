@@ -31,7 +31,7 @@ export default class LoadResources extends Phaser.Scene{
         this.load.image('shooter', './img/NotSoSharpShooter.png');
         this.load.image('bullet', './img/Bullet.png');
         this.load.image('misiluro', './img/Misiluro.png');
-        this.load.image('misiluroCannon', './img/MisiluroCannon.png');
+        this.load.image('cannon', './img/MisiluroCannon.png');
     }
     
     create(){
