@@ -7,7 +7,6 @@ export default class Nivel1 extends Game {
 
     create() {
       super.create()
-
       this.camBoundsHeight = 3200;
 
       // Background
