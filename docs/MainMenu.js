@@ -1,6 +1,6 @@
 export default class LoadResources extends Phaser.Scene{
     constructor(keyname) {
-        super({key: "Menu"});
+        super({key: 'Menu'});
     }
 
     preload(){
