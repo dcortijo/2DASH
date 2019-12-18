@@ -497,19 +497,19 @@ export default class Game extends Phaser.Scene{
 
         CreateShooter(x, y, flipX){
           // Body
-          let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 45, 70, 20, {isSensor: true, label: 'triggerTop'});
-          let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 40, y, 15, 65, {isSensor: true, label: 'triggerLeft'});
-          let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 40, y, 15, 65, {isSensor: true, label: 'triggerRight'});
+          let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 35, y - 70, 70, 20, {isSensor: true, label: 'triggerTop'});
+          let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 75, y - 25, 15, 65, {isSensor: true, label: 'triggerLeft'});
+          let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 5, y - 25, 15, 65, {isSensor: true, label: 'triggerRight'});
           let shooter = new Shooter({
             scene: this,
-            x: x,
-            y: y,
+            x: x - 35,
+            y: y - 25,
             w: 70,
             h: 70,
             hasGravity: true,
             image: 'shooter',
             body:{
-              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 70, {label: 'shooter'}), triggerTop, triggerLeft, triggerRight]},
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 35, y - 25, 70, 70, {label: 'shooter'}), triggerTop, triggerLeft, triggerRight]},
             isStatic: true,
             label: 'shooter',
             triggerTop: triggerTop,

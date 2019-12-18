@@ -68,6 +68,6 @@ export default class LoadResources extends Phaser.Scene{
         frameRate: 5
       })
 
-      this.scene.start('Nivel1');
+      this.scene.start('Nivel3');
     }
 }

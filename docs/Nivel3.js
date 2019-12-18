@@ -80,9 +80,9 @@ export default class Nivel3 extends Game {
         }else if(objectLayers[4].objects[i].name === 'Boba'){
           this.CreateBoba(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, arrObjetivos);
         }else if(objectLayers[4].objects[i].name === 'ShooterR'){
-
+          this.CreateShooter(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, true);
         }else if(objectLayers[4].objects[i].name === 'ShooterL'){
-          
+          this.CreateShooter(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, false);
         }else if(objectLayers[4].objects[i].name === 'MisilR'){
 
         }else if(objectLayers[4].objects[i].name === 'MisilL'){
