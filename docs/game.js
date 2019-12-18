@@ -16,6 +16,7 @@ import MovingPlatform from './MovingPlatform.js'
 import PlatformCrumbling from './PlatformCrumbling.js'
 import Shooter from './NotSoSharpShooter.js'
 import Bullet from './Bullet.js'
+import Misiluro from './Misiluro.js'
 
 export default class Game extends Phaser.Scene{
     constructor(keyname) {
@@ -518,6 +519,34 @@ export default class Game extends Phaser.Scene{
             shootDelay: 2000,
             score: 15,
             flipX: flipX
+          });
+          shooter.setCollisionCategory(this.collisionLayers.enemy);
+          shooter.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip]);
+          return shooter;
+        }
+
+        CreateMisiluro(x, y, direction){
+          // Body
+          let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 20, 70, 20, {isSensor: true, label: 'triggerTop'});
+          let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 40, y, 15, 20, {isSensor: true, label: 'triggerLeft'});
+          let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 40, y, 15, 20, {isSensor: true, label: 'triggerRight'});
+          let shooter = new Misiluro({
+            scene: this,
+            x: x,
+            y: y,
+            w: 70,
+            h: 70,
+            hasGravity: true,
+            image: 'misiluro',
+            body:{
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 20, {label: 'misiluro'}), triggerTop, triggerLeft, triggerRight]},
+            isStatic: true,
+            label: 'misiluro',
+            triggerTop: triggerTop,
+            triggerLeft: triggerLeft,
+            triggerRight: triggerRight,
+            score: 15,
+            direction: direction
           });
           shooter.setCollisionCategory(this.collisionLayers.enemy);
           shooter.setCollidesWith([this.collisionLayers.player, this.collisionLayers.whip]);

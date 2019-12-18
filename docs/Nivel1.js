@@ -90,6 +90,18 @@ export default class Nivel1 extends Game {
 
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 3250);
+
+
+
+
+
+
+
+
+
+
+
+      this.CreateMisiluro(400, 2900, {x: 0.2, y: 0});
     }
 
     NextLevel(){

@@ -30,6 +30,7 @@ export default class LoadResources extends Phaser.Scene{
         this.load.spritesheet('electricity', './img/Electricity.png', {frameWidth: 32, frameHeight: 100});
         this.load.image('shooter', './img/NotSoSharpShooter.png');
         this.load.image('bullet', './img/Bullet.png');
+        this.load.image('misiluro', './img/Misiluro.png');
     }
     
     create(){
