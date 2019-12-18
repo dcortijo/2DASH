@@ -2,13 +2,14 @@ import Component from './Component.js'
 import ActivateMessage from './ActivateMessage.js';
 import DeactivateMessage from './DeactivateMessage.js';
 export default class ShooterComponent extends Component{
-    constructor(entity, shootDelay, scene, flipX){
+    constructor(entity, shootDelay, scene, flipX, createFunction){
         super(entity);
         this.shootDelay = shootDelay;
         this.scene = scene;
         this.shootCooldown = 0;
         this.activated = true;
-        this.flipped = flipX
+        this.flipped = flipX;
+        this.createFunction = createFunction;
     }
 
     update(t, d){

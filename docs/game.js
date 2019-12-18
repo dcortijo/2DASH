@@ -475,7 +475,7 @@ export default class Game extends Phaser.Scene{
           return plat;
         }
 
-        CreateBullet(x, y, flipX){
+        CreateBullet(x, y, direction){
           let bullet = new Bullet({
             scene: this,
             x: x,
@@ -488,8 +488,7 @@ export default class Game extends Phaser.Scene{
               parts: [Phaser.Physics.Matter.Matter.Bodies.circle(x, y, 15, {label: 'bullet'})]},
             isStatic: false,
             label: 'bullet',
-            speed: 3,
-            flipX: flipX
+            direction: direction
           });
           bullet.setCollisionCategory(this.collisionLayers.enemy);
           bullet.setCollidesWith([this.collisionLayers.player]);

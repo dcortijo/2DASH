@@ -1,22 +1,25 @@
 import PhysSprite from './PhysSprite.js';
+import MoveInDirectionComponent from './MoveInDirectionComponent.js'
 export default class Bullet extends PhysSprite{
     constructor(config){ // config + { speed }
         super(config);
         this.speed = config.speed;
         this.lifeTime = 4000;
         this.distanceToDissapear = 1440;
-        this.flipped = config.flipX;
+        this.components = [new MoveInDirectionComponent(this, config.direction)];
+        this.flipX = config.direction.x > 0;
     }
 
     preUpdate(t, d){
         super.preUpdate(t, d);
+        this.components.forEach(element =>{
+            element.update(t, d);
+        });
 
-        if(!this.flipped){
-            this.setVelocityX(-this.speed);
-        } else {
-            this.setVelocityX(this.speed);
+        if(this.scene.player.x > this.x + 2000
+            || this.scene.player.x < this.x - 2000){
+            this.destroy();
         }
-        this.setVelocityY(0);
 
         this.lifeTime -= d;
         if(this.lifeTime <= 0 
