@@ -11,7 +11,7 @@ export default class Nivel3 extends Game {
       this.camBoundsHeight = 9600;
 
       // Background
-      let background = this.add.image(-100, 0, 'backgroundNivel2');
+      let background = this.add.image(-100, 0, 'backgroundNivel3');
       background.setOrigin(0, 0);
       background.displayWidth = 1640;
       background.displayHeight = 810;
@@ -102,12 +102,12 @@ export default class Nivel3 extends Game {
       this.matter.world.setBounds(0, 0, 32000, 10000);
 
       //Score
-      this.score = 0;//data.score;
+      this.score = data.score;
       this.scoreText = this.add.text(70, 55, "SCORE: " + this.score, {fill: "#ffffff"}).setFontSize(40);
       this.scoreText.setScrollFactor(0);
 
       //Timer
-      this.timeNum = 0;//data.time;
+      this.timeNum = data.time;
       this.timerText = this.add.text(1200, 55, "TIME: " + (Math.round(this.timeNum/1000)), {fill: "#ffffff"}).setFontSize(40);
       this.timerText.setScrollFactor(0);
     }
