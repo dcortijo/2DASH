@@ -384,7 +384,7 @@ export default class Game extends Phaser.Scene{
             y: 0,
             width: 1440,
             height: 810,
-            bounds: { x: 0, y: 0, width: 32000, height: 3200 },
+            bounds: { x: 0, y: 0, width: 32000, height: this.camBoundsHeight },
             target: this.player,
             maxOffsetX: 400,
             offsetY: 200,
@@ -415,17 +415,17 @@ export default class Game extends Phaser.Scene{
           let cable = new CableDefectuoso({
             scene: this,
             x: x,
-            y: y + 16,
+            y: y - 16,
             w: 64,
             h: 32,
             hasGravity: false,
             image: 'cableD',
             body: {
-            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 16, 64, 32, {isSensor: true})],
+            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 16, 64, 32, {isSensor: true})],
             inertia: Infinity 
           },
             label: 'cable',
-            coolDown: 5000,
+            coolDown: 3000,
             hitBox: elec,
           });
           cable.setCollisionCategory(this.collisionLayers.obstacle);
@@ -498,19 +498,19 @@ export default class Game extends Phaser.Scene{
 
         CreateShooter(x, y, flipX){
           // Body
-          let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 45, 70, 20, {isSensor: true, label: 'triggerTop'});
-          let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 40, y, 15, 65, {isSensor: true, label: 'triggerLeft'});
-          let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 40, y, 15, 65, {isSensor: true, label: 'triggerRight'});
+          let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 70, 70, 20, {isSensor: true, label: 'triggerTop'});
+          let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 40, y - 25, 15, 65, {isSensor: true, label: 'triggerLeft'});
+          let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 40, y - 25, 15, 65, {isSensor: true, label: 'triggerRight'});
           let shooter = new Shooter({
             scene: this,
             x: x,
-            y: y,
+            y: y - 25,
             w: 70,
             h: 70,
             hasGravity: true,
             image: 'shooter',
             body:{
-              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 70, {label: 'shooter'}), triggerTop, triggerLeft, triggerRight]},
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 25, 70, 70, {label: 'shooter'}), triggerTop, triggerLeft, triggerRight]},
             isStatic: true,
             label: 'shooter',
             triggerTop: triggerTop,
@@ -559,16 +559,16 @@ export default class Game extends Phaser.Scene{
           let cannon = new MisiluroCannon({
             scene: this,
             x: x,
-            y: y,
+            y: y - 35,
             w: 70,
             h: 70,
             hasGravity: true,
             image: 'cannon',
             body:{
-              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 70, {label: 'shooter'})]},
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 35, 70, 70, {label: 'shooter'})]},
             isStatic: true,
             label: 'cannon',
-            shootDelay: 2000,
+            shootDelay: 3000,
             score: 15,
             createFunction: this.CreateMisiluro,
             flipX: flipX

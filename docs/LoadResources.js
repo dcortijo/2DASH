@@ -20,6 +20,7 @@ export default class LoadResources extends Phaser.Scene{
         this.load.image('platCrumb', './img/crumblingPlat.png');
         this.load.image('cristalRoto', './img/cristal.png');
         this.load.image('levelGoal', './img/bandera.png');
+        this.load.image('results', './img/results.png')
         this.load.spritesheet('healthMeter1', './img/Heart1.png', {
           frameWidth: 64,
           frameHeight: 32,

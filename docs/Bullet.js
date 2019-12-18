@@ -16,11 +16,6 @@ export default class Bullet extends PhysSprite{
             element.update(t, d);
         });
 
-        if(this.scene.player.x > this.x + 2000
-            || this.scene.player.x < this.x - 2000){
-            this.destroy();
-        }
-
         this.lifeTime -= d;
         if(this.lifeTime <= 0 
             || this.scene.player.x > this.x + this.distanceToDissapear
