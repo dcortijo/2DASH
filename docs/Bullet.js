@@ -1,7 +1,7 @@
 import PhysSprite from './PhysSprite.js';
 import MoveInDirectionComponent from './MoveInDirectionComponent.js'
 export default class Bullet extends PhysSprite{
-    constructor(config){ // config + { speed }
+    constructor(config){ // config + { speed, direction }
         super(config);
         this.speed = config.speed;
         this.lifeTime = 4000;

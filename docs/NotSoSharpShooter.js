@@ -3,12 +3,12 @@ import ShooterComponent from './ShooterComponent.js'
 import ActivateMessage from './ActivateMessage.js'
 import DeactivateMessage from './DeactivateMessage.js'
 export default class NotSoSharpShooter extends Enemy{
-    constructor(config){ // config + {shootDelay}
+    constructor(config){ // config + {shootDelay, createFunction, flipX}
         super(config);
         let bulletX;
         if(!config.flipX) bulletX = -0.2;
         else bulletX = 0.2;
-        this.components = [new ShooterComponent(this, config.shootDelay, this.scene, {x: bulletX, y: 0})];
+        this.components = [new ShooterComponent(this, config.shootDelay, this.scene, config.createFunction, {x: bulletX, y: 0})];
         this.closeToPlayer = true;
         this.flipX = config.flipX;
     }

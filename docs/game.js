@@ -517,6 +517,7 @@ export default class Game extends Phaser.Scene{
             triggerRight: triggerRight,
             shootDelay: 2000,
             score: 15,
+            createFunction: this.CreateBullet,
             flipX: flipX
           });
           shooter.setCollisionCategory(this.collisionLayers.enemy);

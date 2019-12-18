@@ -102,6 +102,7 @@ export default class Nivel1 extends Game {
 
 
       this.CreateMisiluro(400, 2900, {x: 0.2, y: 0});
+      this.CreateShooter(600, 2900, true);
     }
 
     NextLevel(){
