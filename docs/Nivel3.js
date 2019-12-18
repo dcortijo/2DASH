@@ -45,7 +45,7 @@ export default class Nivel3 extends Game {
         this.CreatePlatformCrumbling(objectLayers[7].objects[i].x, objectLayers[7].objects[i].y, objectLayers[7].objects[i].width, objectLayers[7].objects[i].height);
       }
 
-      //this.CreateLevelGoal(objectLayers[7].objects[0].x + objectLayers[7].objects[0].width/2, objectLayers[7].objects[0].y + objectLayers[7].objects[0].height/2);*/
+      this.CreateLevelGoal(objectLayers[9].objects[0].x + objectLayers[9].objects[0].width/2, objectLayers[9].objects[0].y + objectLayers[9].objects[0].height/2);
 
       for(let i = 0; i < objectLayers[2].objects.length; i++){
         this.CreateDeadZone(objectLayers[2].objects[i].x, objectLayers[2].objects[i].y, objectLayers[2].objects[i].width, objectLayers[2].objects[i].height);
@@ -61,8 +61,9 @@ export default class Nivel3 extends Game {
 
       this.CreatePlayer(objectLayers[1].objects[0].x, objectLayers[1].objects[0].y);
 
-      for(let i = 0; i < objectLayers[8].objects.length; i++){     
-        this.CreateColectible(objectLayers[8].objects[i].x, objectLayers[8].objects[i].y);
+      for(let i = 0; i < objectLayers[8].objects.length; i++){  
+        if(objectLayers[8].objects[i].name === 'Big')   this.CreateBigColectible(objectLayers[8].objects[i].x, objectLayers[8].objects[i].y);
+        else this.CreateColectible(objectLayers[8].objects[i].x, objectLayers[8].objects[i].y);
       }
       
       for(let i = 0; i < objectLayers[4].objects.length; i++){
@@ -78,6 +79,14 @@ export default class Nivel3 extends Game {
           this.CreateDronCiudadano(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, arrObjetivos);
         }else if(objectLayers[4].objects[i].name === 'Boba'){
           this.CreateBoba(objectLayers[4].objects[i].x, objectLayers[4].objects[i].y, arrObjetivos);
+        }else if(objectLayers[4].objects[i].name === 'ShooterR'){
+
+        }else if(objectLayers[4].objects[i].name === 'ShooterL'){
+          
+        }else if(objectLayers[4].objects[i].name === 'MisilR'){
+
+        }else if(objectLayers[4].objects[i].name === 'MisilL'){
+          
         }
       }
 
@@ -104,6 +113,6 @@ export default class Nivel3 extends Game {
     }
 
     NextLevel(){
-      this.scene.start('ResultsScreen');
+      this.scene.start('ResultsScreen', {score: this.score, time: this.timeNum});
     }
 }

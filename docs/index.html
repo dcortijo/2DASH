@@ -31,7 +31,7 @@
                 mode: Phaser.Scale.FIT,
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
-            scene: [ LoadResources, /*Nivel1, Nivel2,*/ Nivel3, ResultsScreen ],
+            scene: [ LoadResources, Nivel1, Nivel2, Nivel3, ResultsScreen ],
             physics: { default: 'matter', matter: { gravity: { y: 1 }, debug: false } }
         };
         new Phaser.Game(config);

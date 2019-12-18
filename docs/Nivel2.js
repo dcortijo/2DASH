@@ -69,8 +69,12 @@ export default class Nivel2 extends Game {
 
       this.CreatePlayer(objectLayers[1].objects[0].x, objectLayers[1].objects[0].y);
 
-      for(let i = 0; i < objectLayers[5].objects.length; i++){     
+      for(let i = 0; i < objectLayers[5].objects.length; i++){  
+        if(objectLayers[5].objects[i].name === 'Big'){
+          this.CreateBigColectible(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y);
+        } else{
           this.CreateColectible(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y);
+        }     
       }
       
       for(let i = 0; i < objectLayers[4].objects.length; i++){

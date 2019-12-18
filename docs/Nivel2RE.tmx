@@ -343,7 +343,7 @@
   <object id="110" x="8768" y="2432">
    <point/>
   </object>
-  <object id="111" x="10304" y="2304">
+  <object id="111" name="Big" x="10304" y="2279.76">
    <point/>
   </object>
   <object id="112" x="10880" y="2304">
@@ -454,13 +454,7 @@
   <object id="254" x="23744" y="2304">
    <point/>
   </object>
-  <object id="261" x="24448" y="1920">
-   <point/>
-  </object>
-  <object id="262" x="24640" y="1920">
-   <point/>
-  </object>
-  <object id="263" x="24832" y="1920">
+  <object id="261" name="Big" x="24448" y="1920">
    <point/>
   </object>
   <object id="264" x="25024" y="1920">
@@ -511,19 +505,7 @@
   <object id="279" x="28544" y="1664">
    <point/>
   </object>
-  <object id="280" x="28800" y="1600">
-   <point/>
-  </object>
-  <object id="281" x="28864" y="1600">
-   <point/>
-  </object>
-  <object id="282" x="28928" y="1600">
-   <point/>
-  </object>
-  <object id="283" x="28992" y="1600">
-   <point/>
-  </object>
-  <object id="284" x="29056" y="1600">
+  <object id="282" name="Big" x="28928" y="1600">
    <point/>
   </object>
   <object id="288" x="29248" y="1600">
@@ -541,10 +523,7 @@
   <object id="292" x="29760" y="1600">
    <point/>
   </object>
-  <object id="293" x="29888" y="1536">
-   <point/>
-  </object>
-  <object id="294" x="30016" y="1536">
+  <object id="294" name="Big" x="29952" y="1536">
    <point/>
   </object>
   <object id="295" x="30144" y="1600">
