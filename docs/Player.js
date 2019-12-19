@@ -27,9 +27,9 @@ export default class Player extends Character{
         this.thrustDuration = 0;
 
         this.input.Z.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)
-            this.whipLeft.Attack(); this.StallFall();});
+            this.whipLeft.Attack(); this.scene.sound.play('crack'); this.StallFall();});
         this.input.X.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)
-            this.whipRight.Attack(); this.StallFall();});
+            this.whipRight.Attack(); this.scene.sound.play('crack'); this.StallFall();});
     }
 
     preUpdate(t, d){

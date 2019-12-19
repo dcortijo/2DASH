@@ -57,6 +57,7 @@ export default class Enemy extends Character{
 
     Die(){
         this.scene.AddScore(this.score);
+        this.scene.sound.play('shut');
         super.Die();
     }
 }

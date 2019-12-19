@@ -25,11 +25,6 @@ export default class Game extends Phaser.Scene{
     }
 
     create(){
-      
-      this.sound.add('hurt');
-      this.sound.add('jump');
-      this.sound.add('coin');
-
         // Inicio de colisiones
         this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
           if(!obj1.isSensor && !obj2.isSensor){
@@ -304,39 +299,40 @@ export default class Game extends Phaser.Scene{
             // Whips
             let whipLeft = new Whip({
               x: x - 100,
-              y: y + 20,
+              y: y,
               w: 150,
               h: 50,
               scene: this, 
               hasGravity: false,
               image: 'whipS',
               body:{
-                parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 100, y + 20, 150, 50, {isSensor: true, label: 'whipLeft'})],
+                parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 100, y, 150, 50, {isSensor: true, label: 'whipLeft'})],
                 inertia: Infinity
               },
               isStatic: false,
               label: 'whipLeft',
               offsetX: -100,
-              offsetY: 20
+              offsetY: -20
             });
+            whipLeft.flipX = true;
             whipLeft.setCollisionCategory(this.collisionLayers.whip);
             whipLeft.setCollidesWith([this.collisionLayers.enemy]);
             let whipRight = new Whip({
               x: x + 100,
-              y: y + 20,
+              y: y,
               w: 150,
               h: 50,
               scene: this, 
               hasGravity: false,
               image: 'whipS',
               body:{
-                parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 100, y + 20, 150, 50, {isSensor: true, label: 'whipRight'})],
+                parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 100, y, 150, 50, {isSensor: true, label: 'whipRight'})],
                 inertia: Infinity
               },
               isStatic: false,
               label: 'whipRight',
               offsetX: 100,
-              offsetY: 20
+              offsetY: -20
             });
             whipRight.setCollisionCategory(this.collisionLayers.whip);
             whipRight.setCollidesWith([this.collisionLayers.enemy]);
