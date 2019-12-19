@@ -25,22 +25,27 @@ body{
     max-width: 1920px;  
 }
 
-footer {
+#footer {
+    position: absolute;
     margin: auto;
     width: 90vw;
-    max-width: 1920px; 
-    padding-bottom: 2rem;
     bottom: 0;
+    margin-left: 4vw;
+    margin-right: 4vw;
     height: 2.5rem;            /* Footer height */
+    padding-bottom: 2rem;      /* Footer padding */
+    max-width: 1920px;
 }
 
 #page-container {
     position: relative;
     min-height: 100vh;
+    max-width: 1920px;
   }
   
   #content-wrap {
-    padding-bottom: 2.5rem;    /* Footer height */
+    padding-top: 50px;
+    padding-bottom: 4.5rem;    /* Footer height + footer padding */
   }
 
 .flex-container{
@@ -48,6 +53,7 @@ footer {
     flex-direction: row;
     width: 100%;
     max-height: 40px;
+    margin-top: -50px;
     background-color: #743411;
     position: fixed;
 }
@@ -70,6 +76,10 @@ footer {
     text-align: center;
     vertical-align: middle;
     color: white;
+    position: relative;
+    top: 50%;  
+    transform: translateY(-50%);
+    outline-width: 0;
 }
 
 .flex-container>div{

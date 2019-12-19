@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="./img/favicon.png">
     <script src="phaser.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +13,14 @@
     <div id="page-container">
         <div id="content-wrap">
             <div class="flex-container">
-                <div style="padding-left: 9px;"><img src="Logo.png" height="100%"></div>
-                <div><img src="FlexBoxSeparator.png" height="100%"></div>
-                <div><button>Game</button></div>
-                <div><img src="FlexBoxSeparator.png" height="100%"></div>
-                <div><button>About</button></div>
-                <div><img src="FlexBoxSeparator.png" height="100%"></div>
-                <div><button>Contact</button></div>
-                <div><img src="FlexBoxSeparator.png" height="100%"></div>
+                <div style="padding-left: 9px;"><img src="./img/Logo.png" height="100%" onclick="location.href='./'"></div>
+                <div><img src="./img/FlexBoxSeparator.png" height="100%"></div>
+                <div><button onclick="location.href='./'">Game</button></div>
+                <div><img src="./img/FlexBoxSeparator.png" height="100%"></div>
+                <div><button onclick="location.href='./about'">About</button></div>
+                <div><img src="./img/FlexBoxSeparator.png" height="100%"></div>
+                <div><button onclick="location.href='./contact'">Contact</button></div>
+                <div><img src="./img/FlexBoxSeparator.png" height="100%"></div>
             </div>
             <canvas id="canvas" width="1400" height="800"></canvas>
             <script type="module">
@@ -49,7 +49,6 @@
                 new Phaser.Game(config);
             </script>
             <div id="TextDiv">
-                <h2>Descripción</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
@@ -58,9 +57,9 @@
                     deserunt mollit anim id est laborum.</p>
             </div>
         </div>
-        <footer>
+        <footer id="footer">
             <hr>
-            <p style="text-align: center;"><span style="float:left;">2DASH - Duo Bot.</span><img src="Cc-by-nc_icon.svg.png" style="vertical-align:middle;" alt="CC BY-NC" height=30px><span style="float:right;">Grado de Desarrollo de Videojuegos de la UCM</span></p>
+            <p style="text-align: center;"><span style="float:left;">2DASH - Duo Bot</span><img src="./img/Cc-by-nc_icon.svg.png" style="vertical-align:middle;" alt="CC BY-NC" height=30px><span style="float:right;">Grado de Desarrollo de Videojuegos - UCM</span></p>
         </footer>
     </div>
 </body>
