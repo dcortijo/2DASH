@@ -94,3 +94,22 @@ body{
 #centered{
     text-align: center;
 }
+
+#TextDiv>.row{
+    display: flex;
+}
+
+#TextDiv>.column{
+    padding: 100px;
+}
+
+#TextDiv>.left{
+    float: left;
+    width: 40%;
+}
+
+#TextDiv>.right{
+    float: right;
+    width: 40%;
+}
+
