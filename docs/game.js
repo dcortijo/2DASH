@@ -25,6 +25,11 @@ export default class Game extends Phaser.Scene{
     }
 
     create(){
+      
+      this.sound.add('hurt');
+      this.sound.add('jump');
+      this.sound.add('coin');
+
         // Inicio de colisiones
         this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
           if(!obj1.isSensor && !obj2.isSensor){
@@ -587,4 +592,5 @@ export default class Game extends Phaser.Scene{
           this.timeNum = this.timeNum + delta;
           this.timerText.text =  "TIME: "+ (Math.round(this.timeNum/1000)); 
         }
+
       }

@@ -15,9 +15,16 @@ export default class LoadResources extends Phaser.Scene{
       background.displayWidth = 1640;
       background.displayHeight = 810;
       background.setScrollFactor(0);
+
+      this.menu = this.sound.add('menu');
+      this.menu.play();
+
     }
 
     startGame(){
-        this.scene.start('Nivel1');
+        this.menu.stop();
+        this.music = this.sound.add('background', {loop: true});
+        this.music.play();
+        this.scene.start('Nivel1', {music: this.music});
     }
 }

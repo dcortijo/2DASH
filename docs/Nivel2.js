@@ -10,6 +10,9 @@ export default class Nivel2 extends Game {
       super.create()
       this.camBoundsHeight = 3200;
 
+      this.music = data.music;
+      if(!this.music.isPlaying) this.music.play;
+
       // Background
       let background = this.add.image(-100, 0, 'backgroundNivel2');
       background.setOrigin(0, 0);
@@ -104,6 +107,6 @@ export default class Nivel2 extends Game {
     }
 
     NextLevel(){
-      this.scene.start('Nivel3', {score: this.score, time: this.timeNum});
+      this.scene.start('Nivel3', {score: this.score, time: this.timeNum, music: this.music});
     }
 }

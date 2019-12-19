@@ -61,7 +61,7 @@ export default class Player extends Character{
             else this.curAnim = '';
 
             if(this.onFloor){
-                if(this.input.up.isDown) this.Jump(); 
+                if(this.input.up.isDown) this.Jump(true); 
             }
         }
 
@@ -114,13 +114,14 @@ export default class Player extends Character{
         this.applyForce({x: this.acceleration, y: 0});
     }
 
-    Jump(){
+    Jump(sound){
+        if(sound === true) this.scene.sound.play('jump');
         this.setVelocityY(-this.jumpStrength);
         this.onFloor = false;
     }
 
     BoostJump(){
-        this.Jump();
+        this.Jump(false);
         this.setVelocityX(this.body.velocity.x * 1.2);
     }
 

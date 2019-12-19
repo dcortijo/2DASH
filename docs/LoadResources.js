@@ -39,7 +39,10 @@ export default class LoadResources extends Phaser.Scene{
 
         //Sonidos
         this.load.audio('hurt', './audio/pain.mp3');
-        this.sound.add('hurt');
+        this.load.audio('jump', './audio/jump.mp3');
+        this.load.audio('coin', './audio/collect(artisticdude).mp3');
+        this.load.audio('menu', './audio/space(AlexanderZhelanov).mp3');
+        this.load.audio('background', './audio/neocrey - Last Cyber Dance.mp3');
     }
     
     create(){
