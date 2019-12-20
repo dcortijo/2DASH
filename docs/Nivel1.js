@@ -5,8 +5,9 @@ export default class Nivel1 extends Game {
       super('Nivel1');
     }
 
-    create() {
-      super.create()
+    create(data) {
+      super.create(data)
+      this.music = data.music;
 
       // Background
       let background = this.add.image(-100, 0, 'backgroundNivel1');
@@ -90,22 +91,9 @@ export default class Nivel1 extends Game {
 
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 3250);
-
-
-
-
-
-
-
-
-
-
-
-      this.CreateCannon(400, 2900, false);
-      this.CreateShooter(600, 2900, true);
     }
 
     NextLevel(){
-      this.scene.start('Nivel2', {score: this.score, time: this.timeNum});
+      this.scene.start('Nivel2', {score: this.score, time: this.timeNum, music: this.music});
     }
 }

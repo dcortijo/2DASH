@@ -19,6 +19,7 @@ export default class Collectible extends PhysSprite{
 
     Collect(){
         if(this.scene){
+            this.scene.sound.play('coin');
             this.scene.AddScore(this.score);
             this.destroy();
         }

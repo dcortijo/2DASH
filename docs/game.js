@@ -24,7 +24,11 @@ export default class Game extends Phaser.Scene{
         super({key: keyname});
     }
 
-    create(){
+    create(data){
+
+      this.music = data.music;
+      this.shock = this.sound.add('shock');
+
         // Inicio de colisiones
         this.matter.world.on('collisionstart', (evento, obj1, obj2) => {
           if(!obj1.isSensor && !obj2.isSensor){
@@ -299,39 +303,40 @@ export default class Game extends Phaser.Scene{
             // Whips
             let whipLeft = new Whip({
               x: x - 100,
-              y: y + 20,
+              y: y,
               w: 150,
               h: 50,
               scene: this, 
               hasGravity: false,
               image: 'whipS',
               body:{
-                parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 100, y + 20, 150, 50, {isSensor: true, label: 'whipLeft'})],
+                parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 100, y, 150, 50, {isSensor: true, label: 'whipLeft'})],
                 inertia: Infinity
               },
               isStatic: false,
               label: 'whipLeft',
               offsetX: -100,
-              offsetY: 20
+              offsetY: -20
             });
+            whipLeft.flipX = true;
             whipLeft.setCollisionCategory(this.collisionLayers.whip);
             whipLeft.setCollidesWith([this.collisionLayers.enemy]);
             let whipRight = new Whip({
               x: x + 100,
-              y: y + 20,
+              y: y,
               w: 150,
               h: 50,
               scene: this, 
               hasGravity: false,
               image: 'whipS',
               body:{
-                parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 100, y + 20, 150, 50, {isSensor: true, label: 'whipRight'})],
+                parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 100, y, 150, 50, {isSensor: true, label: 'whipRight'})],
                 inertia: Infinity
               },
               isStatic: false,
               label: 'whipRight',
               offsetX: 100,
-              offsetY: 20
+              offsetY: -20
             });
             whipRight.setCollisionCategory(this.collisionLayers.whip);
             whipRight.setCollidesWith([this.collisionLayers.enemy]);
@@ -384,7 +389,7 @@ export default class Game extends Phaser.Scene{
             y: 0,
             width: 1440,
             height: 810,
-            bounds: { x: 0, y: 0, width: 32000, height: 3200 },
+            bounds: { x: 0, y: 0, width: 32000, height: this.camBoundsHeight },
             target: this.player,
             maxOffsetX: 400,
             offsetY: 200,
@@ -415,17 +420,17 @@ export default class Game extends Phaser.Scene{
           let cable = new CableDefectuoso({
             scene: this,
             x: x,
-            y: y + 16,
+            y: y - 16,
             w: 64,
             h: 32,
             hasGravity: false,
             image: 'cableD',
             body: {
-            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y + 16, 64, 32, {isSensor: true})],
+            parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 16, 64, 32, {isSensor: true})],
             inertia: Infinity 
           },
             label: 'cable',
-            coolDown: 5000,
+            coolDown: 3000,
             hitBox: elec,
           });
           cable.setCollisionCategory(this.collisionLayers.obstacle);
@@ -498,19 +503,19 @@ export default class Game extends Phaser.Scene{
 
         CreateShooter(x, y, flipX){
           // Body
-          let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 45, 70, 20, {isSensor: true, label: 'triggerTop'});
-          let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 40, y, 15, 65, {isSensor: true, label: 'triggerLeft'});
-          let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 40, y, 15, 65, {isSensor: true, label: 'triggerRight'});
+          let triggerTop = Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 70, 70, 20, {isSensor: true, label: 'triggerTop'});
+          let triggerLeft = Phaser.Physics.Matter.Matter.Bodies.rectangle(x - 40, y - 25, 15, 65, {isSensor: true, label: 'triggerLeft'});
+          let triggerRight = Phaser.Physics.Matter.Matter.Bodies.rectangle(x + 40, y - 25, 15, 65, {isSensor: true, label: 'triggerRight'});
           let shooter = new Shooter({
             scene: this,
             x: x,
-            y: y,
+            y: y - 25,
             w: 70,
             h: 70,
             hasGravity: true,
             image: 'shooter',
             body:{
-              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 70, {label: 'shooter'}), triggerTop, triggerLeft, triggerRight]},
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 25, 70, 70, {label: 'shooter'}), triggerTop, triggerLeft, triggerRight]},
             isStatic: true,
             label: 'shooter',
             triggerTop: triggerTop,
@@ -559,16 +564,16 @@ export default class Game extends Phaser.Scene{
           let cannon = new MisiluroCannon({
             scene: this,
             x: x,
-            y: y,
+            y: y - 35,
             w: 70,
             h: 70,
             hasGravity: true,
             image: 'cannon',
             body:{
-              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y, 70, 70, {label: 'shooter'})]},
+              parts: [Phaser.Physics.Matter.Matter.Bodies.rectangle(x, y - 35, 70, 70, {label: 'shooter'})]},
             isStatic: true,
             label: 'cannon',
-            shootDelay: 2000,
+            shootDelay: 3000,
             score: 15,
             createFunction: this.CreateMisiluro,
             flipX: flipX
@@ -587,4 +592,10 @@ export default class Game extends Phaser.Scene{
           this.timeNum = this.timeNum + delta;
           this.timerText.text =  "TIME: "+ (Math.round(this.timeNum/1000)); 
         }
+
+        playMultipleShock(){ //Para que no se overlapeen sonidos
+          if(this.shock.isPlaying) this.shock.stop();
+          this.shock.play();
+        }
+
       }

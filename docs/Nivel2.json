@@ -1540,14 +1540,14 @@
                 {
                  "height":0,
                  "id":111,
-                 "name":"",
+                 "name":"Big",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":10304,
-                 "y":2304
+                 "y":2279.75757575758
                 }, 
                 {
                  "height":0,
@@ -1984,37 +1984,13 @@
                 {
                  "height":0,
                  "id":261,
-                 "name":"",
+                 "name":"Big",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":24448,
-                 "y":1920
-                }, 
-                {
-                 "height":0,
-                 "id":262,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":24640,
-                 "y":1920
-                }, 
-                {
-                 "height":0,
-                 "id":263,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":24832,
                  "y":1920
                 }, 
                 {
@@ -2211,62 +2187,14 @@
                 }, 
                 {
                  "height":0,
-                 "id":280,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":28800,
-                 "y":1600
-                }, 
-                {
-                 "height":0,
-                 "id":281,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":28864,
-                 "y":1600
-                }, 
-                {
-                 "height":0,
                  "id":282,
-                 "name":"",
+                 "name":"Big",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":28928,
-                 "y":1600
-                }, 
-                {
-                 "height":0,
-                 "id":283,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":28992,
-                 "y":1600
-                }, 
-                {
-                 "height":0,
-                 "id":284,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":29056,
                  "y":1600
                 }, 
                 {
@@ -2331,26 +2259,14 @@
                 }, 
                 {
                  "height":0,
-                 "id":293,
-                 "name":"",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":29888,
-                 "y":1536
-                }, 
-                {
-                 "height":0,
                  "id":294,
-                 "name":"",
+                 "name":"Big",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":30016,
+                 "x":29952,
                  "y":1536
                 }, 
                 {

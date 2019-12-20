@@ -27,9 +27,9 @@ export default class Player extends Character{
         this.thrustDuration = 0;
 
         this.input.Z.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)
-            this.whipLeft.Attack(); this.StallFall();});
+            this.whipLeft.Attack(); this.scene.sound.play('crack'); this.StallFall();});
         this.input.X.on('down', event =>{if(!this.whipLeft.colliding && !this.whipRight.colliding)
-            this.whipRight.Attack(); this.StallFall();});
+            this.whipRight.Attack(); this.scene.sound.play('crack'); this.StallFall();});
     }
 
     preUpdate(t, d){
@@ -61,7 +61,7 @@ export default class Player extends Character{
             else this.curAnim = '';
 
             if(this.onFloor){
-                if(this.input.up.isDown) this.Jump(); 
+                if(this.input.up.isDown) this.Jump(true); 
             }
         }
 
@@ -90,10 +90,13 @@ export default class Player extends Character{
 
     Hurt(){
         if(this.invulTime === 0){
+            this.scene.sound.play('hurt');
             this.health--;
             if(this.health === 0) this.Die();
-            else this.healthMeter.HandleHealth(this.health); 
-            this.invulTime = this.invul;
+            else {
+                this.healthMeter.HandleHealth(this.health); 
+                this.invulTime = this.invul;
+            }
         }
     }
 
@@ -111,13 +114,14 @@ export default class Player extends Character{
         this.applyForce({x: this.acceleration, y: 0});
     }
 
-    Jump(){
+    Jump(sound){
+        if(sound === true) this.scene.sound.play('jump');
         this.setVelocityY(-this.jumpStrength);
         this.onFloor = false;
     }
 
     BoostJump(){
-        this.Jump();
+        this.Jump(false);
         this.setVelocityX(this.body.velocity.x * 1.2);
     }
 
