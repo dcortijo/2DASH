@@ -90,6 +90,19 @@ export default class Nivel1 extends Game {
 
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 3250);
+
+
+
+
+
+
+
+
+
+
+
+      this.CreateCannon(400, 2900, false);
+      this.CreateShooter(600, 2900, true);
     }
 
     NextLevel(){
