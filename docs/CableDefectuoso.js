@@ -16,8 +16,8 @@ export default class CableDefectuoso extends PhysSprite{
         && this.scene.player.y < this.y + 512)){
             if(this.timer <= 0){
                 this.timer = this.coolDown;
-                this.scene.sound.play('shock');
-                //this.scene.playMultipleSound('shock');
+                //this.scene.sound.play('shock');
+                this.scene.playMultipleShock();
                 this.hitBox.Attack();
             } else this.timer = this.timer - d;
         }

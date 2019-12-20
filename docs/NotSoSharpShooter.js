@@ -20,9 +20,7 @@ export default class NotSoSharpShooter extends Enemy{
         });
 
         if((this.scene.player.x > this.x + 2000
-            || this.scene.player.x < this.x - 2000) && 
-            (this.scene.player.y > this.y + 512
-            || this.scene.player.y < this.y - 512)){
+            || this.scene.player.x < this.x - 2000)){
             if(!this.closeToPlayer){
                 this.components.forEach(element => {
                     element.receive(new DeactivateMessage(this));

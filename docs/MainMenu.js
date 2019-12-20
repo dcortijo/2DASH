@@ -25,6 +25,6 @@ export default class LoadResources extends Phaser.Scene{
         this.menu.stop();
         this.music = this.sound.add('background', {loop: true});
         this.music.play();
-        this.scene.start('Nivel3', {music: this.music});
+        this.scene.start('Nivel1', {music: this.music});
     }
 }

@@ -47,14 +47,14 @@ export default class LoadResources extends Phaser.Scene{
         this.load.audio('shut', './audio/MachinePowerOff.mp3');
         this.load.audio('shock', './audio/qubodupElectricityDamage02.mp3');
         this.load.audio('gun', './audio/Black Powder.wav');
+        this.load.audio('victory', './audio/Victory.mp3')
 
         this.sound.add('hurt');
         this.sound.add('jump');
         this.sound.add('coin');
         this.sound.add('crack');
-        this.sound.add('shut');
-        this.sound.add('shock');
         this.sound.add('gun');
+        this.sound.add('victory');
     }
     
     create(){
