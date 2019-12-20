@@ -80,6 +80,9 @@ export default class Nivel1 extends Game {
       this.layer = this.map.createStaticLayer('layer', 'tileset1');
       this.layerF = this.map.createStaticLayer('layerF', 'tilesetF');
 
+      // Rain
+      this.CreateRain(100, 1840, 0);
+
       //Score
       this.score = 0;
       this.scoreText = this.add.text(70, 55, "SCORE: " + this.score, {fill: "#ffffff"}).setFontSize(40);

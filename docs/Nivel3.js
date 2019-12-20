@@ -100,6 +100,9 @@ export default class Nivel3 extends Game {
       // World walls
       this.matter.world.setBounds(0, 0, 32000, 10000);
 
+      // Rain
+      this.CreateRain(100, 1840, 0);
+
       //Score
       this.score = data.score;
       this.scoreText = this.add.text(70, 55, "SCORE: " + this.score, {fill: "#ffffff"}).setFontSize(40);
