@@ -98,10 +98,12 @@ body{
 #TextDiv>.row{
     display: flex;
     justify-content: space-between;
+    height: 164px;
 }
 
 #TextDiv>.row>.column{
     padding: 7px;
+    height: 100%;
 }
 
 #TextDiv>.row>.left{
@@ -114,7 +116,9 @@ body{
     width: 40%;
 }
 
-#imgFloatLeft{
+#floatLeft{
     float: left;
     padding-right: 2rem;
+    width: 100px;
+    height: 100%;
 }
