@@ -29,6 +29,7 @@
             import Nivel2 from './Nivel2.js';
             import Nivel3 from './Nivel3.js';  
             import ResultsScreen from'./ResultsScreen.js';
+            import MainMenu from './MainMenu.js';
             
             var config = {
                     type: Phaser.WEBGL,
@@ -43,7 +44,7 @@
                         mode: Phaser.Scale.FIT,
                         autoCenter: Phaser.Scale.CENTER_BOTH
                     },
-                    scene: [ LoadResources, Nivel1, Nivel2, Nivel3, ResultsScreen ],
+                    scene: [ LoadResources, MainMenu, Nivel1, Nivel2, Nivel3, ResultsScreen ],
                     physics: { default: 'matter', matter: { gravity: { y: 1 }, debug: false } }
                 };
                 new Phaser.Game(config);
