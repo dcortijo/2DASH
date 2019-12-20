@@ -6,11 +6,8 @@ export default class Nivel3 extends Game {
     }
 
     create(data) {
-      super.create()
+      super.create(data)
       this.camBoundsHeight = 9600;
-
-      this.music = data.music;
-      if(!this.music.isPlaying) this.music.play;
 
       // Background
       let background = this.add.image(-100, 0, 'backgroundNivel3');
@@ -56,7 +53,6 @@ export default class Nivel3 extends Game {
       for(let i = 0; i < objectLayers[5].objects.length; i++){
         this.CreateCableDefectuoso(objectLayers[5].objects[i].x, objectLayers[5].objects[i].y);
       }
-
       for(let i = 0; i < objectLayers[0].objects.length; i++){
         this.CreatePlatform(objectLayers[0].objects[i].x, objectLayers[0].objects[i].y, objectLayers[0].objects[i].width, objectLayers[0].objects[i].height);     
       }

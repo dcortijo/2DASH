@@ -46,6 +46,7 @@ export default class LoadResources extends Phaser.Scene{
         this.load.audio('crack', './audio/TailWhip(Blender Foundation).mp3');
         this.load.audio('shut', './audio/MachinePowerOff.mp3');
         this.load.audio('shock', './audio/qubodupElectricityDamage02.mp3');
+        this.load.audio('gun', './audio/Black Powder.wav');
 
         this.sound.add('hurt');
         this.sound.add('jump');
@@ -53,6 +54,7 @@ export default class LoadResources extends Phaser.Scene{
         this.sound.add('crack');
         this.sound.add('shut');
         this.sound.add('shock');
+        this.sound.add('gun');
     }
     
     create(){
