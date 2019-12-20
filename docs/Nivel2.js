@@ -1,5 +1,4 @@
 import Game from './game.js'
-import Bullet from './Bullet.js'
 
 export default class Nivel2 extends Game {
     constructor() {
