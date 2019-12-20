@@ -1,7 +1,7 @@
 h1 {
     text-align : center;
     color: black;
-    font-size: 80px;
+    font-size: 40px;
     font-style: italic;
     margin-bottom: 30px;
 }
@@ -97,19 +97,24 @@ body{
 
 #TextDiv>.row{
     display: flex;
+    justify-content: space-between;
 }
 
-#TextDiv>.column{
-    padding: 100px;
+#TextDiv>.row>.column{
+    padding: 7px;
 }
 
-#TextDiv>.left{
+#TextDiv>.row>.left{
+    align-self: flex-start;
+    width: 40%;
+}
+
+#TextDiv>.row>.right{
+    align-self: flex-end;
+    width: 40%;
+}
+
+#imgFloatLeft{
     float: left;
-    width: 40%;
+    padding-right: 2rem;
 }
-
-#TextDiv>.right{
-    float: right;
-    width: 40%;
-}
-
