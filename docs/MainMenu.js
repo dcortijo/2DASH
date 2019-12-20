@@ -18,7 +18,6 @@ export default class LoadResources extends Phaser.Scene{
 
       this.menu = this.sound.add('menu');
       this.menu.play();
-
     }
 
     startGame(){

@@ -583,6 +583,24 @@ export default class Game extends Phaser.Scene{
           return cannon;
         }
 
+        CreateRain(xMin, xMax, y){
+          //Rain
+          let rain = this.add.particles('raindrop').createEmitter({
+            x: {min: xMin, max: xMax},
+            y: y,
+            lifespan: 2000,
+            speed: { min: 400, max: 600 },
+            angle: 127,
+            gravityY: 300,
+            scale: { start: 0.3, end: 0.3 },
+            quantity: 4,
+            blendMode: 'DARKEN'
+          });
+
+          rain.setScrollFactor(0);
+          return rain;
+        }
+
         AddScore(scoreAdd){
           this.score = this.score + scoreAdd;
           this.scoreText.text = "SCORE: " + this.score;
