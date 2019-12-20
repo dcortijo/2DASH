@@ -9,6 +9,7 @@ export default class Nivel2 extends Game {
     create(data) {
       super.create(data)
       this.camBoundsHeight = 3200;
+      this.music = data.music;
 
       // Background
       let background = this.add.image(-100, 0, 'backgroundNivel2');

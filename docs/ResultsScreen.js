@@ -27,8 +27,8 @@ export default class ResultsScreen extends Phaser.Scene{
       let rating = Math.round(this.score * 1000 / this.timeNum);
       console.log(rating);
       if(rating > 13) rate.setFrame(6);
-      else if(rating < 6) rate.setFrame(0);
-      else rate.setFrame(rating - 6);
+      else if(rating < 7) rate.setFrame(0);
+      else rate.setFrame(rating - 7);
 
       this.sound.play('victory');
     }

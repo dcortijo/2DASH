@@ -28,6 +28,7 @@ export default class Whip extends PhysSprite{
         if(this.anims === undefined) console.log("!");
         this.colliding = true;
         this.anims.play('whip');
+        this.scene.sound.play('crack');
     }
 
     SetAnchor(p){
