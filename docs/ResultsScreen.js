@@ -24,11 +24,11 @@ export default class ResultsScreen extends Phaser.Scene{
       let rate = this.add.image(700, 575, 'ratings');
       rate.displayWidth = 150;
       rate.displayHeight = 150;
-      let rating = Math.round(this.score / this.timeNum);
+      let rating = Math.round(this.score * 1000 / this.timeNum);
       console.log(rating);
-      if(rating > 11) rate.setFrame(6);
-      else if(rating < 4) rate.setFrame(0);
-      else rate.setFrame(rating - 4);
+      if(rating > 13) rate.setFrame(6);
+      else if(rating < 6) rate.setFrame(0);
+      else rate.setFrame(rating - 6);
 
       this.sound.play('victory');
     }
