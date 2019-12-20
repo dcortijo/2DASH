@@ -1,9 +1,13 @@
 h1 {
     text-align : center;
     color: black;
-    font-size: 80px;
+    font-size: 40px;
     font-style: italic;
     margin-bottom: 30px;
+}
+
+body{
+    background-color: rgb(217, 230, 235);
 }
 
 #GameWindow {
@@ -15,8 +19,106 @@ h1 {
     max-height: 1080px;
 }
 
-#DescriptionDiv {
+#TextDiv {
     margin: auto;
     width: 90vw;
     max-width: 1920px;  
+}
+
+#footer {
+    position: absolute;
+    margin: auto;
+    width: 90vw;
+    bottom: 0;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    height: 2.5rem;            /* Footer height */
+    padding-bottom: 2rem;      /* Footer padding */
+    max-width: 1920px;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+    max-width: 1920px;
+  }
+  
+  #content-wrap {
+    padding-top: 50px;
+    padding-bottom: 4.5rem;    /* Footer height + footer padding */
+  }
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-height: 40px;
+    margin-top: -50px;
+    background-color: #743411;
+    position: fixed;
+}
+
+.flex-container>div>img {
+    max-height: 100%;
+    width: auto;
+}
+
+.flex-container>div>p{
+    font-size: large;
+    text-align: center;
+    color: white;
+}
+
+.flex-container>div>button{
+    border: none;
+    background-color: inherit;
+    font-size: large;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    position: relative;
+    top: 50%;  
+    transform: translateY(-50%);
+    outline-width: 0;
+}
+
+.flex-container>div{
+    min-height: 0;
+    display: inline-block;
+    text-align:center;
+    line-height: 0px;
+    height: 40px;
+    padding-right: 15px;
+}
+
+#centered{
+    text-align: center;
+}
+
+#TextDiv>.row{
+    display: flex;
+    justify-content: space-between;
+    height: 164px;
+}
+
+#TextDiv>.row>.column{
+    padding: 7px;
+    height: 100%;
+}
+
+#TextDiv>.row>.left{
+    align-self: flex-start;
+    width: 40%;
+}
+
+#TextDiv>.row>.right{
+    align-self: flex-end;
+    width: 40%;
+}
+
+#floatLeft{
+    float: left;
+    padding-right: 2rem;
+    width: 100px;
+    height: 100%;
 }
